@@ -16,6 +16,10 @@
 
 #include "graphviz.h"
 
+
+#include <zorba/error_list.h>
+#include <zorba/xquery_exception.h>
+
 #include <cassert>
 #include <fstream>
 #include <sstream>
@@ -60,10 +64,7 @@ GraphvizFunction::getGraphvizTmpFileName() {
 
   if (!GetCurrentDir(lTmpDir, sizeof(lTmpDir)))
   {
-    throw ExternalFunctionData::createZorbaException(XQP0000_DYNAMIC_RUNTIME_ERROR,
-    "Test",
-    __FILE__, __LINE__
-    );
+	  throw XQUERY_EXCEPTION_VAR(err::XQP0001_DYNAMIC_RUNTIME_ERROR, ERROR_PARAMS( "Test"));
   }
   zorba::String test(lTmpDir);
   std::ostringstream  lTmpFileNameTemplate;
@@ -125,10 +126,7 @@ GraphvizFunction::printTypeAndAttr(ItemFactory* aFactory,
     if (lNodeName.getLocalName().equals(lAttrQName.getLocalName())) {
       Item lNameAttr;
       if (!getAttribute(aFactory, "name", lItem, lNameAttr)) {
-        throw ExternalFunctionData::createZorbaException(XQP0000_DYNAMIC_RUNTIME_ERROR,
-          "GXL parse error: attr node does not have a name attribute",
-          __FILE__, __LINE__
-        );
+		  throw XQUERY_EXCEPTION_VAR(err::XQP0001_DYNAMIC_RUNTIME_ERROR, ERROR_PARAMS( "GXL parse error: attr node does not have a name attribute"));
       }
 
       os << "    \"" << lNameAttr.getStringValue() << "\"=\"";
@@ -155,10 +153,8 @@ GraphvizFunction::printTypeAndAttr(ItemFactory* aFactory,
     } else if (lNodeName.getStringValue().equals(lTypeQName.getStringValue())) {
       Item lHRefAttr;
       if (!getAttribute(aFactory, "href", lItem, lHRefAttr)) {
-        throw ExternalFunctionData::createZorbaException(XQP0000_DYNAMIC_RUNTIME_ERROR,
-          "GXL parse error: type node does not have a href attribute",
-          __FILE__, __LINE__
-        );
+		throw XQUERY_EXCEPTION_VAR(err::XQP0001_DYNAMIC_RUNTIME_ERROR, ERROR_PARAMS("GXL parse error: type node does not have a href attribute"));
+        
       }
 
       os << "    _gxl_type=\"" << lHRefAttr.getStringValue() << "\"" << std::endl;
@@ -174,10 +170,7 @@ GraphvizFunction::visitNode(ItemFactory* aFactory,
 {
   Item lItem;
   if (!getAttribute(aFactory, "id", in, lItem)) {
-    throw ExternalFunctionData::createZorbaException(XQP0000_DYNAMIC_RUNTIME_ERROR,
-      "GXL parse error: node does not have an id attribute",
-       __FILE__, __LINE__
-    );
+	throw XQUERY_EXCEPTION_VAR(err::XQP0001_DYNAMIC_RUNTIME_ERROR, ERROR_PARAMS("GXL parse error: node does not have an id attribute"));
   }
 
   // start node with id attribute as name
@@ -201,22 +194,13 @@ GraphvizFunction::visitEdge(ItemFactory* aFactory,
   Item lToAttr;
 
   if (!getAttribute(aFactory, "id", in, lIdAttr)) {
-    throw ExternalFunctionData::createZorbaException(XQP0000_DYNAMIC_RUNTIME_ERROR,
-      "GXL parse error: edge does not have an id attribute",
-       __FILE__, __LINE__
-     );
+	throw XQUERY_EXCEPTION_VAR(err::XQP0001_DYNAMIC_RUNTIME_ERROR, ERROR_PARAMS( "GXL parse error: edge does not have an id attribute"));
   }
   if (!getAttribute(aFactory, "to", in, lToAttr)) {
-    throw ExternalFunctionData::createZorbaException(XQP0000_DYNAMIC_RUNTIME_ERROR,
-      "GXL parse error: edge does not have an id attribute",
-       __FILE__, __LINE__
-    );
+    throw XQUERY_EXCEPTION_VAR(err::XQP0001_DYNAMIC_RUNTIME_ERROR, ERROR_PARAMS( "GXL parse error: edge does not have an id attribute"));
   }
   if (!getAttribute(aFactory, "from", in, lFromAttr)) {
-    throw ExternalFunctionData::createZorbaException(XQP0000_DYNAMIC_RUNTIME_ERROR,
-      "GXL parse error: edge does not have an id attribute",
-      __FILE__, __LINE__
-    );
+    throw XQUERY_EXCEPTION_VAR(err::XQP0001_DYNAMIC_RUNTIME_ERROR, ERROR_PARAMS( "GXL parse error: edge does not have an id attribute"));
   }
 
   os << "  \"" << lFromAttr.getStringValue() << "\" -> \"" << lToAttr.getStringValue() << "\" [ " << std::endl
@@ -241,10 +225,7 @@ GraphvizFunction::printGraph(ItemFactory* aFactory,
   // print the graph with all its children
   Item lGraphId;
   if (!getAttribute(aFactory, "id", in, lGraphId)) {
-    throw ExternalFunctionData::createZorbaException(XQP0000_DYNAMIC_RUNTIME_ERROR,
-      "GXL parse error: graph does not have an id attribute.",
-      __FILE__, __LINE__
-    );
+	throw XQUERY_EXCEPTION_VAR(err::XQP0001_DYNAMIC_RUNTIME_ERROR, ERROR_PARAMS( "GXL parse error: graph does not have an id attribute"));
   }
 
   os << "digraph \"" << lGraphId.getStringValue() << "\" {" << std::endl;
@@ -276,10 +257,7 @@ GraphvizFunction::gxl2dot(ItemFactory* aFactory,
   Item lGraphQName = aFactory->createQName("", "", "graph");
 
   if (!in.isNode()) {
-    throw ExternalFunctionData::createZorbaException(XQP0000_DYNAMIC_RUNTIME_ERROR,
-      "GXL parse error: item is not a node",
-      __FILE__, __LINE__
-    );
+	throw XQUERY_EXCEPTION_VAR(err::XQP0001_DYNAMIC_RUNTIME_ERROR, ERROR_PARAMS( "GXL parse error: item is not a node"));
   }
 
   Item lNodeName;
@@ -292,11 +270,7 @@ GraphvizFunction::gxl2dot(ItemFactory* aFactory,
     lErrorMsg << "GXL parse error: only element with name "
               << lGXLQName.getStringValue() << " allowed (got " << lNodeName.getStringValue()
               << ").";
-
-    throw ExternalFunctionData::createZorbaException(XQP0000_DYNAMIC_RUNTIME_ERROR,
-      lErrorMsg.str(),
-      __FILE__, __LINE__
-    );
+	throw XQUERY_EXCEPTION_VAR(err::XQP0001_DYNAMIC_RUNTIME_ERROR, ERROR_PARAMS( lErrorMsg.str()));
   }
 
   Iterator_t lGraphs = in.getChildren();
@@ -305,10 +279,7 @@ GraphvizFunction::gxl2dot(ItemFactory* aFactory,
   Item lGraph;
   while(lGraphs->next(lGraph)) {
     if (!lGraph.isNode()) {
-      throw ExternalFunctionData::createZorbaException(XQP0000_DYNAMIC_RUNTIME_ERROR,
-        "GXL parse error: item is not a node",
-        __FILE__, __LINE__
-      );
+	  throw XQUERY_EXCEPTION_VAR(err::XQP0001_DYNAMIC_RUNTIME_ERROR, ERROR_PARAMS( "GXL parse error: item is not a node"));
     }
 
     lGraph.getNodeName(lNodeName);
@@ -320,10 +291,7 @@ GraphvizFunction::gxl2dot(ItemFactory* aFactory,
       lErrorMsg << "GXL parse error: only elements with name "
                 << lGraphQName.getStringValue() << " allowed (got "
                 << lNodeName.getLocalName() << ").";
-      throw ExternalFunctionData::createZorbaException(XQP0000_DYNAMIC_RUNTIME_ERROR,
-        lErrorMsg.str(),
-        __FILE__, __LINE__
-      );
+	  throw XQUERY_EXCEPTION_VAR(err::XQP0001_DYNAMIC_RUNTIME_ERROR, ERROR_PARAMS( lErrorMsg.str()));
     }
 
     printGraph(aFactory, lGraph, os);
@@ -376,8 +344,7 @@ DotFunction::LazyDotSequence::InternalIterator::next(Item& aItem)
 {
   if(!is_open)
   {
-    throw zorba::ExternalFunctionData::createZorbaException(XQP0019_INTERNAL_ERROR,
-      "DotFunction::LazyDotSequence Iterator consumed without open", __FILE__, __LINE__);  
+	throw XQUERY_EXCEPTION_VAR(err::XQP0019_INTERNAL_ERROR, ERROR_PARAMS("DotFunction::LazyDotSequence Iterator consumed without open"));
   }
   Item          lItem;
   Agraph_t      *lGraph = 0;
@@ -395,21 +362,18 @@ DotFunction::LazyDotSequence::InternalIterator::next(Item& aItem)
 
     lGraph = agmemread(const_cast<char*>(lGraphInput.c_str()));
     if (!lGraph) {
-      throw ExternalFunctionData::createZorbaException(XQP0000_DYNAMIC_RUNTIME_ERROR,
-        "could not read input", __FILE__, __LINE__);
+	  throw XQUERY_EXCEPTION_VAR(err::XQP0001_DYNAMIC_RUNTIME_ERROR, ERROR_PARAMS( "could not read input"));
     }
 
     if ( gvLayout(lGvc, lGraph, const_cast<char*>("dot")) != 0 ) {
-      throw ExternalFunctionData::createZorbaException(XQP0000_DYNAMIC_RUNTIME_ERROR,
-        "could not generate layout", __FILE__, __LINE__);
+	  throw XQUERY_EXCEPTION_VAR(err::XQP0001_DYNAMIC_RUNTIME_ERROR, ERROR_PARAMS("could not generate layout"));
     }
 
     std::string lTmpFile = theItemSequence->theFunc->getGraphvizTmpFileName();
 
     if ( gvRenderFilename(lGvc, lGraph, const_cast<char*>("svg"),
                           const_cast<char*>(lTmpFile.c_str())) != 0 )  {
-      throw ExternalFunctionData::createZorbaException(XQP0000_DYNAMIC_RUNTIME_ERROR,
-        "could not render graph", __FILE__, __LINE__);
+	  throw XQUERY_EXCEPTION_VAR(err::XQP0001_DYNAMIC_RUNTIME_ERROR, ERROR_PARAMS("could not render graph"));
     }
 
     lSVGFile.open(lTmpFile.c_str());
@@ -418,8 +382,8 @@ DotFunction::LazyDotSequence::InternalIterator::next(Item& aItem)
       lErrorMsg << "could not read from file "
                 << lTmpFile.c_str();
 
-      throw ExternalFunctionData::createZorbaException(XQP0000_DYNAMIC_RUNTIME_ERROR,
-          lErrorMsg.str(), __FILE__, __LINE__);
+      throw XQUERY_EXCEPTION_VAR(err::XQP0001_DYNAMIC_RUNTIME_ERROR, ERROR_PARAMS(lErrorMsg.str()));
+	  
     }
 
     aItem = Zorba::getInstance(0)->getXmlDataManager()->parseDocument(lSVGFile);
@@ -478,8 +442,8 @@ GxlFunction::LazyGxlSequence::InternalIterator::next(Item& aItem)
 {
   if(!is_open)
   {
-    throw zorba::ExternalFunctionData::createZorbaException(XQP0019_INTERNAL_ERROR,
-      "GxlFunction::LazyGxlSequence Iterator consumed without open", __FILE__, __LINE__);  
+	throw XQUERY_EXCEPTION_VAR(err::XQP0019_INTERNAL_ERROR, ERROR_PARAMS("GxlFunction::LazyGxlSequence Iterator consumed without open"));
+     
   }
   Item              lItem;
   Agraph_t          *lGraph = 0;
@@ -505,36 +469,33 @@ GxlFunction::LazyGxlSequence::InternalIterator::next(Item& aItem)
     if (!lFile) {
       std::ostringstream lErrorMsg;
       lErrorMsg << "could not read from file " << lTmpFile.c_str();
-      throw ExternalFunctionData::createZorbaException(XQP0000_DYNAMIC_RUNTIME_ERROR,
-          lErrorMsg.str(), __FILE__, __LINE__);
+	  throw XQUERY_EXCEPTION_VAR(err::XQP0001_DYNAMIC_RUNTIME_ERROR, ERROR_PARAMS(lErrorMsg.str()));
     }
 
     lGraph = agread(lFile);
     fclose(lFile);
 
     if (!lGraph) {
-      throw ExternalFunctionData::createZorbaException(XQP0000_DYNAMIC_RUNTIME_ERROR,
-          "could not read input", __FILE__, __LINE__);
+	  throw XQUERY_EXCEPTION_VAR(err::XQP0001_DYNAMIC_RUNTIME_ERROR, ERROR_PARAMS("could not read input"));
     }
 
     int blub =  gvLayout(lGvc, lGraph, const_cast<char*>("dot"));
     if ( blub != 0 ) {
-      throw ExternalFunctionData::createZorbaException(XQP0000_DYNAMIC_RUNTIME_ERROR,
-          "could not generate layout", __FILE__, __LINE__);
+		throw XQUERY_EXCEPTION_VAR(err::XQP0001_DYNAMIC_RUNTIME_ERROR, ERROR_PARAMS("could not generate layout"));
     }
 
     if ( gvRenderFilename(lGvc, lGraph, const_cast<char*>("svg"),
                           const_cast<char*>(lTmpFile.c_str())) != 0 )  {
-      throw ExternalFunctionData::createZorbaException(XQP0000_DYNAMIC_RUNTIME_ERROR,
-          "could not render graph", __FILE__, __LINE__);
+		throw XQUERY_EXCEPTION_VAR(err::XQP0001_DYNAMIC_RUNTIME_ERROR, ERROR_PARAMS( "could not render graph"));
+     
     }
 
     lSVGFile.open(lTmpFile.c_str(), std::ifstream::in);
     if (lSVGFile.bad()) {
       std::ostringstream lErrorMsg;
       lErrorMsg << "could not read from file " << lTmpFile.c_str();
-      throw ExternalFunctionData::createZorbaException(XQP0000_DYNAMIC_RUNTIME_ERROR,
-          lErrorMsg.str(), __FILE__, __LINE__);
+	  throw XQUERY_EXCEPTION_VAR(err::XQP0001_DYNAMIC_RUNTIME_ERROR, ERROR_PARAMS(lErrorMsg.str()));
+      
     }
 
     aItem = Zorba::getInstance(0)->getXmlDataManager()->parseDocument(lSVGFile);

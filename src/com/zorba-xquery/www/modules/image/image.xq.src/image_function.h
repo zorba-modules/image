@@ -17,7 +17,11 @@
 #ifndef ZORBA_IMAGEMODULE_IMAGE_FUNCTION_H
 #define ZORBA_IMAGEMODULE_IMAGE_FUNCTION_H
 
+#include <zorba/error.h>
 #include <zorba/external_function.h>
+#include <zorba/item.h>
+#include <zorba/iterator.h>
+#include <zorba/options.h>
 #include <Magick++.h>
 
 namespace zorba { namespace imagemodule {
@@ -51,7 +55,7 @@ namespace zorba { namespace imagemodule {
     static void
     throwError(
           const std::string errorMessage,
-          const XQUERY_ERROR& errorType);
+          const Error& errorType);
 
     static String
     getOneStringArg(

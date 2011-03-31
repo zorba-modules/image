@@ -19,6 +19,7 @@
 
 #include <map>
 
+#include <zorba/iterator.h>
 #include <zorba/zorba.h>
 #include <zorba/external_function.h>
 #include <zorba/external_module.h>

@@ -18,6 +18,8 @@
 #include <zorba/zorba.h>
 #include <Magick++.h>
 #include <zorba/base64.h>
+#include <zorba/error_list.h>
+#include <zorba/xquery_exception.h>
 #include <zorba/empty_sequence.h>
 #include <zorba/singleton_item_sequence.h>
 #include "image_function.h"
@@ -42,10 +44,9 @@ ImageFunction::getURI() const
 void
 ImageFunction::throwError(
         const std::string aErrorMessage,
-        const XQUERY_ERROR& aErrorType)
+        const Error& aErrorType)
 {
-  throw zorba::ExternalFunctionData::createZorbaException(aErrorType,
-              aErrorMessage.c_str(), __FILE__, __LINE__);
+  throw XQUERY_EXCEPTION_VAR(aErrorType, ERROR_PARAMS( aErrorMessage.c_str() ));
 }
 
 void
@@ -79,7 +80,9 @@ ImageFunction::throwErrorWithQName (const DynamicContext* aDynamicContext, const
 void
 ImageFunction::checkIfItemIsNull(Item& aItem) {
   if (aItem.isNull()) {
-    throw ExternalFunctionData::createZorbaException(XPST0083, "Error while building the base64binary item. ", __FILE__, __LINE__);
+	std::stringstream lErrorMessage;
+	lErrorMessage << "Error while building the base64binary item. ";
+	throwError(lErrorMessage.str(), err::XPST0083);
   }
 }
 String
@@ -94,14 +97,14 @@ ImageFunction::getOneStringArg(
     std::stringstream lErrorMessage;
     lErrorMessage << "An empty-sequence is not allowed as "
                   << aPos << ". parameter.";
-    throwError(lErrorMessage.str(), XPTY0004);
+    throwError(lErrorMessage.str(), err::XPTY0004);
   }
   zorba::String lTmpString = lItem.getStringValue();
   if (arg_iter->next(lItem)) {
     std::stringstream lErrorMessage;
     lErrorMessage << "A sequence of more then one item is not allowed as "
                   << aPos << ". parameter.";
-    throwError(lErrorMessage.str(), XPTY0004);
+    throwError(lErrorMessage.str(), err::XPTY0004);
   }
   arg_iter->close();
   return lTmpString;
@@ -119,14 +122,14 @@ ImageFunction::getOneBoolArg(
     std::stringstream lErrorMessage;
     lErrorMessage << "An empty-sequence is not allowed as "
                   << aPos << ". parameter.";
-    throwError(lErrorMessage.str(), XPTY0004);
+    throwError(lErrorMessage.str(), err::XPTY0004);
   }
   bool lTmpBool = lItem.getBooleanValue();
   if (arg_iter->next(lItem)) {
     std::stringstream lErrorMessage;
     lErrorMessage << "A sequence of more then one item is not allowed as "
                   << aPos << ". parameter.";
-    throwError(lErrorMessage.str(), XPTY0004);
+    throwError(lErrorMessage.str(), err::XPTY0004);
   }
   arg_iter->close();
   return lTmpBool;
@@ -150,7 +153,7 @@ ImageFunction::getOneColorArg(
     std::stringstream lErrorMessage;
     lErrorMessage << "A sequence of more then one item is not allowed as "
                   << aPos << ". parameter.";
-    throwError(lErrorMessage.str(), XPTY0004);
+    throwError(lErrorMessage.str(), err::XPTY0004);
   }
   arg_iter->close();
   getColorFromString(lTmpString, aColor);
@@ -184,14 +187,14 @@ ImageFunction::getOneIntArg(
     std::stringstream lErrorMessage;
     lErrorMessage << "An empty-sequence is not allowed as "
                   << (aPos + 1)  << ". parameter.";
-    throwError(lErrorMessage.str(), XPTY0004);
+    throwError(lErrorMessage.str(), err::XPTY0004);
   }
   int lTmpInt = (int) lItem.getIntValue();
   if (arg_iter->next(lItem)) {
     std::stringstream lErrorMessage;
     lErrorMessage << "A sequence of more then one item is not allowed as "
                   << (aPos + 1)  << ". parameter.";
-    throwError(lErrorMessage.str(), XPTY0004);
+    throwError(lErrorMessage.str(), err::XPTY0004);
   }
   arg_iter->close();
   return lTmpInt;
@@ -209,14 +212,14 @@ ImageFunction::getOneUnsignedIntArg(const StatelessExternalFunction::Arguments_t
     std::stringstream lErrorMessage;
     lErrorMessage << "An empty-sequence is not allowed as "
                   << (aPos + 1) << ". parameter.";
-    throwError(lErrorMessage.str(), XPTY0004);
+    throwError(lErrorMessage.str(), err::XPTY0004);
   }
   unsigned int lTmpInt = lItem.getUnsignedIntValue();
   if (arg_iter->next(lItem)) {
     std::stringstream lErrorMessage;
     lErrorMessage << "A sequence of more then one item is not allowed as "
                   << (aPos + 1) << ". parameter.";
-    throwError(lErrorMessage.str(), XPTY0004);
+    throwError(lErrorMessage.str(), err::XPTY0004);
   }
   arg_iter->close();
   return lTmpInt;
@@ -235,14 +238,14 @@ ImageFunction::getOneDoubleArg(
     std::stringstream lErrorMessage;
     lErrorMessage << "An empty-sequence is not allowed as "
                   << (aPos + 1)  << ". parameter.";
-    throwError(lErrorMessage.str(), XPTY0004);
+    throwError(lErrorMessage.str(), err::XPTY0004);
   }
   double lTmpDouble =  lItem.getDoubleValue();
   if (arg_iter->next(lItem)) {
     std::stringstream lErrorMessage;
     lErrorMessage << "A sequence of more then one item is not allowed as "
                   << (aPos + 1) << ". parameter.";
-    throwError(lErrorMessage.str(), XPTY0004);
+    throwError(lErrorMessage.str(), err::XPTY0004);
   }
   arg_iter->close();
   return lTmpDouble;
@@ -298,7 +301,7 @@ ImageFunction::getOneOrMoreImageArg(const DynamicContext* aDynamicContext,
   Iterator_t  arg_iter = aArgs[aPos]->getIterator();
   arg_iter->open();
   if (!arg_iter->next(lItem)) {
-    throwError("An empty sequence is not allowed as first parameter", XPTY0004);
+    throwError("An empty sequence is not allowed as first parameter", err::XPTY0004);
   }
 
   Magick::Image lFirstImage;
@@ -347,7 +350,7 @@ ImageFunction::getAntiAliasingArg(
     std::stringstream lErrorMessage;
     lErrorMessage << "A sequence of more then one item is not allowed as "
                   << (aPos + 1) << ". parameter.";
-    throwError(lErrorMessage.str(), XPTY0004);
+    throwError(lErrorMessage.str(), err::XPTY0004);
   }
   arg_iter->close();
   return lTmpBool;
@@ -368,7 +371,7 @@ ImageFunction::getStrokeWidthArg(const StatelessExternalFunction::Arguments_t& a
     std::stringstream lErrorMessage;
     lErrorMessage << "A sequence of more then one item is not allowed as "
                   << (aPos + 1) << ". parameter.";
-    throwError(lErrorMessage.str(), XPTY0004);
+    throwError(lErrorMessage.str(), err::XPTY0004);
   }
   arg_iter->close();
   return lTmpDouble;
