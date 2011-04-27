@@ -7,7 +7,7 @@
 import module namespace file = 'http://www.zorba-xquery.com/modules/file';
 import module namespace animation = 'http://www.zorba-xquery.com/modules/image/animation';
 
-declare variable $local:image-dir := fn:concat(file:dirname(fn:static-base-uri()), "/images/");
+declare variable $local:image-dir := fn:concat(file:dir-name(fn:static-base-uri()), "/images/");
 
 let $gif1 := file:read-binary(concat($local:image-dir, "bird.gif"))
 let $gif2 := file:read-binary(concat($local:image-dir, "bird2.gif"))

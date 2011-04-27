@@ -8,7 +8,7 @@ import module namespace basic = 'http://www.zorba-xquery.com/modules/image/basic
 import module namespace ani = 'http://www.zorba-xquery.com/modules/image/animation';
 import schema namespace image = 'http://www.zorba-xquery.com/modules/image/image';
 
-declare variable $local:image-dir := fn:concat(file:dirname(fn:static-base-uri()), "/images/");
+declare variable $local:image-dir := fn:concat(file:dir-name(fn:static-base-uri()), "/images/");
 
 
 (:~
@@ -21,7 +21,7 @@ declare function local:error($messages as xs:string*) as xs:string* {
   "
 ************************************************************************
 ERROR:
-  Location:", file:path-to-full-path("."), "
+  Location:", file:path-to-native("."), "
   Cause:",
   $messages,
   "
@@ -53,7 +53,7 @@ declare function local:test-create-morphed-gif() as xs:boolean {
 
 
 
-declare sequential function local:main() as xs:string* {
+declare %sequential function local:main() as xs:string* {
 
   let $a := local:test-create-animated-gif()
   return

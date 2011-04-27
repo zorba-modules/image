@@ -6,7 +6,7 @@
 import module namespace basic = 'http://www.zorba-xquery.com/modules/image/basic';
 import module namespace file = 'http://www.zorba-xquery.com/modules/file';
 
-declare variable $local:image-dir := fn:concat(file:dirname(fn:static-base-uri()), "/images/");
+declare variable $local:image-dir := fn:concat(file:dir-name(fn:static-base-uri()), "/images/");
 
 
 declare variable $local:png as xs:base64Binary := file:read-binary(concat($local:image-dir, "/bird.png"));
@@ -26,7 +26,7 @@ declare function local:error($messages as xs:string*) as xs:string* {
   "
 ************************************************************************
 ERROR:
-  Location:", file:path-to-full-path("."), "
+  Location:", file:path-to-native("."), "
   Cause:",
   $messages,
   "
@@ -116,7 +116,7 @@ declare function local:test-convert-svg() as xs:boolean {
     return basic:equals($svg-converted, $to-compare)
 };
 
-declare sequential function local:main() as xs:string* {
+declare %sequential function local:main() as xs:string* {
 
   let $a := local:test-width()
   return

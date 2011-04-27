@@ -8,7 +8,7 @@ import module namespace file = 'http://www.zorba-xquery.com/modules/file';
 import module namespace man = 'http://www.zorba-xquery.com/modules/image/manipulation';
 import schema namespace image = 'http://www.zorba-xquery.com/modules/image/image';
 
-declare variable $local:image-dir := fn:concat(file:dirname(fn:static-base-uri()), "/images/");
+declare variable $local:image-dir := fn:concat(file:dir-name(fn:static-base-uri()), "/images/");
 
 
 declare variable $local:gif as xs:base64Binary := file:read-binary(concat($local:image-dir, "bird.gif"));
@@ -25,7 +25,7 @@ declare function local:error($messages as xs:string*) as xs:string* {
   "
 ************************************************************************
 ERROR:
-  Location:", file:path-to-full-path("."), "
+  Location:", file:path-to-native("."), "
   Cause:",
   $messages,
   "
@@ -81,7 +81,7 @@ declare function local:test-contrast() as xs:boolean {
 };
 
 
-declare sequential function local:main() as xs:string* {
+declare %sequential function local:main() as xs:string* {
 
   let $a := local:test-stereo()
   return
