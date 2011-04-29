@@ -4,7 +4,7 @@
  : @author Daniel Thomas
  :)
 import module namespace basic = 'http://www.zorba-xquery.com/modules/image/basic';
-import module namespace file = 'http://www.zorba-xquery.com/modules/file';
+import module namespace file = 'http://expath.org/ns/file';
 
 declare variable $local:image-dir := fn:concat(file:dir-name(fn:static-base-uri()), "/images/");
 
