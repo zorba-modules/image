@@ -18,7 +18,7 @@
 
 
 #include <zorba/error_list.h>
-#include <zorba/xquery_exception.h>
+#include <zorba/user_exception.h>
 
 #include <cassert>
 #include <fstream>
@@ -343,8 +343,11 @@ bool
 DotFunction::LazyDotSequence::InternalIterator::next(Item& aItem)
 {
   if(!is_open)
-  {
-	throw XQUERY_EXCEPTION_VAR(zerr::ZXQP0019_INTERNAL_ERROR, ERROR_PARAMS("DotFunction::LazyDotSequence Iterator consumed without open"));
+  { 
+	  std::stringstream lSs;
+	  lSs << "DotFunction::LazyDotSequence Iterator consumed without open";
+	  Item lQName = GraphvizModule::getItemFactory()->createQName(GraphvizModule::theModule, "IMGV0001");
+	  throw USER_EXCEPTION( lQName, lSs.str());
   }
   Item          lItem;
   Agraph_t      *lGraph = 0;
@@ -442,8 +445,10 @@ GxlFunction::LazyGxlSequence::InternalIterator::next(Item& aItem)
 {
   if(!is_open)
   {
-	throw XQUERY_EXCEPTION_VAR(zerr::ZXQP0019_INTERNAL_ERROR, ERROR_PARAMS("GxlFunction::LazyGxlSequence Iterator consumed without open"));
-     
+	  std::stringstream lSs;
+	  lSs << "GxlFunction::LazyGxlSequence Iterator consumed without open";
+	  Item lQName = GraphvizModule::getItemFactory()->createQName(GraphvizModule::theModule, "IMGV0002");
+	  throw USER_EXCEPTION( lQName, lSs.str()); 
   }
   Item              lItem;
   Agraph_t          *lGraph = 0;
@@ -553,6 +558,7 @@ GxlFunction::evaluate(
  *****************************************************************************/
 ItemFactory* GraphvizModule::theFactory = 0;
 
+const char* GraphvizModule::theModule = "http://www.zorba-xquery.com/modules/image/graphviz";
 
 GraphvizModule::~GraphvizModule()
 {

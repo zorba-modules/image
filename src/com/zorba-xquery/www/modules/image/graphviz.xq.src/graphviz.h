@@ -179,6 +179,8 @@ protected:
   class ltstr
   {
   public:
+	
+
     bool operator()(const String& s1, const String& s2) const
     {
       return s1.compare(s2) < 0;
@@ -190,12 +192,15 @@ protected:
   FuncMap_t theFunctions;
 
 public:
+
+	static const char* theModule;
+
   virtual ~GraphvizModule();
 
   virtual String
   getURI() const
   {
-    return "http://www.zorba-xquery.com/modules/image/graphviz";
+    return theModule;
   }
 
   virtual StatelessExternalFunction*

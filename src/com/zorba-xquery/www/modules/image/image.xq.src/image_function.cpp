@@ -19,7 +19,7 @@
 #include <Magick++.h>
 #include <zorba/base64.h>
 #include <zorba/error_list.h>
-#include <zorba/xquery_exception.h>
+#include <zorba/user_exception.h>
 #include <zorba/empty_sequence.h>
 #include <zorba/singleton_item_sequence.h>
 #include "image_function.h"
@@ -61,10 +61,10 @@ ImageFunction::throwImageError(const DynamicContext* aDynamicContext, const char
   // if we have zero length image, then tell the user so
   if (std::string(aMessage).find("zero-length") != std::string::npos) {
     lErrorMessage << "The passed xs:base64Binary seems to be empty.";
-    error(lQName, lErrorMessage.str());
+    USER_EXCEPTION(lQName, lErrorMessage.str());
   } else {
     lErrorMessage << "Error while processing xs:base64Binary. Possibly not a valid image type.";
-    error(lQName, lErrorMessage.str());
+    USER_EXCEPTION(lQName, lErrorMessage.str());
   }
 }
 
@@ -74,7 +74,7 @@ ImageFunction::throwErrorWithQName (const DynamicContext* aDynamicContext, const
    Item lQName;
    Iterator_t lDummyIterator;
    aDynamicContext->getVariable(lNamespace, aLocalName, lQName, lDummyIterator);
-   error(lQName, aMessage); 
+   USER_EXCEPTION(lQName, aMessage); 
 }
 
 void
