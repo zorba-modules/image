@@ -18,7 +18,7 @@ PROJECT (zorba_image_module)
 ENABLE_TESTING ()
 INCLUDE (CTest)
 
-SET (CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake_modules")
+SET (CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake_modules")
 
 FIND_PACKAGE (Zorba REQUIRED HINTS "${ZORBA_BUILD_DIR}")
 INCLUDE ("${Zorba_USE_FILE}")
@@ -28,7 +28,7 @@ ADD_TEST_DIRECTORY("${CMAKE_SOURCE_DIR}/test")
 ADD_SUBDIRECTORY("src")
 
 
-# inlcude FindImageMagick.cmake if cmake version is smaller than 2.8
+# include FindImageMagick.cmake if cmake version is smaller than 2.8
 IF (${CMAKE_MAJOR_VERSION}.${CMAKE_MINOR_VERSION} LESS 2.8)
   MESSAGE(STATUS "Including FindImageMagick.cmake for cmake version < 2.8")
   INCLUDE(${CMAKE_SOURCE_DIR}/cmake_modules/FindImageMagick.cmake)     

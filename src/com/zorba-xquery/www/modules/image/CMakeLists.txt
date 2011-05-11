@@ -44,7 +44,7 @@ ENDIF (ImageMagick_FOUND)
 ########################################################################
 # Graphviz
 ########################################################################
-INCLUDE(${CMAKE_SOURCE_DIR}/cmake_modules/FindGraphviz.cmake)
+INCLUDE(${PROJECT_SOURCE_DIR}/cmake_modules/FindGraphviz.cmake)
 IF (GRAPHVIZ_FOUND)
   INCLUDE_DIRECTORIES(${GRAPHVIZ_INCLUDE_DIRS})
 
