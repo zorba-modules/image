@@ -46,7 +46,7 @@ ImageFunction::throwError(
         const std::string aErrorMessage,
         const Error& aErrorType)
 {
-  throw XQUERY_EXCEPTION_VAR(aErrorType, ERROR_PARAMS( aErrorMessage.c_str() ));
+  throw USER_EXCEPTION(aErrorType, aErrorMessage.c_str() );
 }
 
 void
