@@ -24,7 +24,7 @@ PaintModule::getExternalFunction(const String& aLocalname)
 {
   StatelessExternalFunction*& lFunc = theFunctions[aLocalname];
   if (!lFunc) {
-    if (aLocalname.equals("paint-impl")) {
+    if (aLocalname == "paint-impl") {
       lFunc = new PaintImplFunction(this);
     }   
   }

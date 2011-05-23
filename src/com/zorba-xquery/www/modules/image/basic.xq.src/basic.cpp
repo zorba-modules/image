@@ -116,7 +116,7 @@ ConvertSVGFunction::evaluate(
   String lType = ImageFunction::getOneStringArg(aArgs, 1);
   lImage.magick(lType.c_str());  
   String lEncodedContent = ImageFunction::getEncodedStringFromImage(aDynCtx, lImage);
-  Item lItem = theModule->getItemFactory()->createBase64Binary(lEncodedContent.c_str(), lEncodedContent.bytes());
+  Item lItem = theModule->getItemFactory()->createBase64Binary(lEncodedContent.c_str(), lEncodedContent.size());
 
   ImageFunction::checkIfItemIsNull(lItem);
   return ItemSequence_t(new SingletonItemSequence(lItem));
@@ -147,7 +147,7 @@ ConvertFunction::evaluate(
 
   lImage.magick(lType.c_str()); // Set output format 
   String lEncodedContent = ImageFunction::getEncodedStringFromImage(aDynCtx, lImage); 
-  Item lItem = theModule->getItemFactory()->createBase64Binary(lEncodedContent.c_str(), lEncodedContent.bytes());
+  Item lItem = theModule->getItemFactory()->createBase64Binary(lEncodedContent.c_str(), lEncodedContent.size());
 
   ImageFunction::checkIfItemIsNull(lItem);
   return ItemSequence_t(new SingletonItemSequence(lItem));
@@ -179,7 +179,7 @@ CompressFunction::evaluate(
   }
   lImage.quality(lQuality); // Set output format 
   String lEncodedContent = ImageFunction::getEncodedStringFromImage(aDynCtx, lImage);
-  Item lItem = theModule->getItemFactory()->createBase64Binary(lEncodedContent.c_str(), lEncodedContent.bytes());
+  Item lItem = theModule->getItemFactory()->createBase64Binary(lEncodedContent.c_str(), lEncodedContent.size());
   ImageFunction::checkIfItemIsNull(lItem);
   return ItemSequence_t(new SingletonItemSequence(lItem));
 
@@ -206,7 +206,7 @@ CreateFunction::evaluate(
   lBlankImage.magick(lType.c_str()); // Set output format 
 
   String lEncodedContent = ImageFunction::getEncodedStringFromImage(aDynCtx, lBlankImage); 
-  Item lItem = theModule->getItemFactory()->createBase64Binary(lEncodedContent.c_str(), lEncodedContent.bytes());
+  Item lItem = theModule->getItemFactory()->createBase64Binary(lEncodedContent.c_str(), lEncodedContent.size());
   ImageFunction::checkIfItemIsNull(lItem);
   return ItemSequence_t(new SingletonItemSequence(lItem));
                                                    

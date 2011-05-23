@@ -92,7 +92,7 @@ GraphvizFunction::getAttribute(zorba::ItemFactory* aFactory,
   while (lAttributes->next(attr)) {
     Item lNodeName;
     attr.getNodeName(lNodeName);
-    if (lNodeName.getLocalName().equals(lIdQName.getLocalName())) {
+    if (lNodeName.getLocalName() == lIdQName.getLocalName()) {
       return true;
     }
   }
@@ -123,7 +123,7 @@ GraphvizFunction::printTypeAndAttr(ItemFactory* aFactory,
     Item lNodeName;
     lItem.getNodeName(lNodeName);
     
-    if (lNodeName.getLocalName().equals(lAttrQName.getLocalName())) {
+    if (lNodeName.getLocalName() == lAttrQName.getLocalName()) {
       Item lNameAttr;
       if (!getAttribute(aFactory, "name", lItem, lNameAttr)) {
 		  throw USER_EXCEPTION(zerr::ZXQP0001_DYNAMIC_RUNTIME_ERROR, "GXL parse error: attr node does not have a name attribute");
@@ -150,7 +150,7 @@ GraphvizFunction::printTypeAndAttr(ItemFactory* aFactory,
 
       os << "\"" << std::endl;
       
-    } else if (lNodeName.getStringValue().equals(lTypeQName.getStringValue())) {
+    } else if (lNodeName.getStringValue() == lTypeQName.getStringValue()) {
       Item lHRefAttr;
       if (!getAttribute(aFactory, "href", lItem, lHRefAttr)) {
 		throw USER_EXCEPTION(zerr::ZXQP0001_DYNAMIC_RUNTIME_ERROR, "GXL parse error: type node does not have a href attribute");
@@ -237,9 +237,9 @@ GraphvizFunction::printGraph(ItemFactory* aFactory,
   while (lChildren->next(item)) {
     Item lNodeName;
     item.getNodeName(lNodeName);
-    if (lNodeName.getLocalName().equals(lNodeQName.getLocalName())) {
+    if (lNodeName.getLocalName() == lNodeQName.getLocalName()) {
       visitNode(aFactory, item, os);
-    } else if (lNodeName.getLocalName().equals(lEdgeQName.getLocalName())) {
+    } else if (lNodeName.getLocalName() == lEdgeQName.getLocalName()) {
       visitEdge(aFactory, item, os);
     } 
   }
@@ -262,7 +262,7 @@ GraphvizFunction::gxl2dot(ItemFactory* aFactory,
 
   Item lNodeName;
   in.getNodeName(lNodeName);
-  if (!lNodeName.getLocalName().equals(lGXLQName.getLocalName())) {
+  if (lNodeName.getLocalName() == lGXLQName.getLocalName()) {
     Item lNodeName;
     in.getNodeName(lNodeName);
 
@@ -283,7 +283,7 @@ GraphvizFunction::gxl2dot(ItemFactory* aFactory,
     }
 
     lGraph.getNodeName(lNodeName);
-    if (!lNodeName.getLocalName().equals(lGraphQName.getLocalName())) {
+    if (lNodeName.getLocalName() == lGraphQName.getLocalName()) {
       std::ostringstream lErrorMsg;
       Item lNodeName;
       lGraph.getNodeName(lNodeName);
@@ -575,10 +575,10 @@ GraphvizModule::getExternalFunction(const String& aLocalname)
   StatelessExternalFunction*& lFunc = theFunctions[aLocalname];
   if (!lFunc) {
     if (1 == 0) {}
-    else if (aLocalname.equals("dot"))
+    else if (aLocalname == "dot")
     {
       lFunc = new DotFunction(this);
-    } else if (aLocalname.equals("gxl"))
+    } else if (aLocalname == "gxl")
     {
       lFunc = new GxlFunction(this);
     }

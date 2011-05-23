@@ -26,23 +26,23 @@ BasicModule::getExternalFunction(const String& aLocalname)
   StatelessExternalFunction*& lFunc = theFunctions[aLocalname];
   if (!lFunc) {
     if (1 == 0) {
-    } else if (aLocalname.equals("width")) {
+    } else if (aLocalname == "width") {
       lFunc = new WidthFunction(this);
-    } else if (aLocalname.equals("height")) {
+    } else if (aLocalname == "height") {
       lFunc = new HeightFunction(this);
-    } else if (aLocalname.equals("type")) {
+    } else if (aLocalname == "type") {
       lFunc = new TypeFunction(this);
-    } else if (aLocalname.equals("convert-impl")) {
+    } else if (aLocalname == "convert-impl") {
       lFunc = new ConvertFunction(this);
-    } else if (aLocalname.equals("compress")) {
+    } else if (aLocalname == "compress") {
       lFunc = new CompressFunction(this);
-    } else if (aLocalname.equals("create-impl")) {
+    } else if (aLocalname == "create-impl") {
       lFunc = new CreateFunction(this); 
-    } else if (aLocalname.equals("equals")) {
+    } else if (aLocalname == "equals") {
       lFunc = new EqualsFunction(this);
-    } else if (aLocalname.equals("exif")) {
+    } else if (aLocalname == "exif") {
       lFunc = new ExifFunction(this);
-    } else if (aLocalname.equals("convert-svg-impl")) {
+    } else if (aLocalname == "convert-svg-impl") {
       lFunc = new ConvertSVGFunction(this);
     } 
   }

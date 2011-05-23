@@ -168,9 +168,9 @@ ImageFunction::getColorFromString(const String aColorString,
   int lRed = 0;
   int lGreen = 0;
   int lBlue = 0;
-  sscanf(aColorString.substring(1,2).c_str(), "%x", &lRed);
-  sscanf(aColorString.substring(3,2).c_str(), "%x", &lGreen);
-  sscanf(aColorString.substring(5,2).c_str(), "%x", &lBlue);
+  sscanf(aColorString.substr(1,2).c_str(), "%x", &lRed);
+  sscanf(aColorString.substr(3,2).c_str(), "%x", &lGreen);
+  sscanf(aColorString.substr(5,2).c_str(), "%x", &lBlue);
   aColor = Magick::ColorRGB((double)lRed/(double)255.0, (double)lGreen/(double)255.0, (double)lBlue/(double)255.0);
 
 }
@@ -323,7 +323,7 @@ void
 ImageFunction::getImageFromString(const DynamicContext* aDynamicContext, const String aString, Magick::Image& aImage) {
 
   String lDecodedContent = zorba::encoding::Base64::decode(aString);
-  Magick::Blob lBlob(lDecodedContent.c_str(), lDecodedContent.bytes());
+  Magick::Blob lBlob(lDecodedContent.c_str(), lDecodedContent.size());
 
   try {
     aImage.read(lBlob);
@@ -381,5 +381,3 @@ ImageFunction::getStrokeWidthArg(const StatelessExternalFunction::Arguments_t& a
 
 } // imagemodule 
 } // zorba
-
-

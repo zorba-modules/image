@@ -27,67 +27,67 @@ ManipulationModule::getExternalFunction(const String& aLocalname)
   StatelessExternalFunction*& lFunc = theFunctions[aLocalname];
   if (!lFunc) {
     if (1 == 0) {
-    } else if (aLocalname.equals("resize")) {
+    } else if (aLocalname == "resize") {
       lFunc = new ResizeFunction(this);
-    } else if (aLocalname.equals("zoom-by-width")) {
+    } else if (aLocalname == "zoom-by-width") {
       lFunc = new ZoomByWidthFunction(this);
-    } else if (aLocalname.equals("zoom-by-height")) {
+    } else if (aLocalname == "zoom-by-height") {
       lFunc = new ZoomByHeightFunction(this);
-    } else if (aLocalname.equals("zoom")) {
+    } else if (aLocalname == "zoom") {
       lFunc = new ZoomFunction(this);
-    } else if (aLocalname.equals("sub-image")) {
+    } else if (aLocalname == "sub-image") {
       lFunc = new SubImageFunction(this);
-    } else if (aLocalname.equals("overlay-impl")) {
+    } else if (aLocalname == "overlay-impl") {
       lFunc = new OverlayFunction(this);
-    } else if (aLocalname.equals("chop")) {
+    } else if (aLocalname == "chop") {
       lFunc = new ChopFunction(this);
-    } else if (aLocalname.equals("crop")) {
+    } else if (aLocalname == "crop") {
       lFunc = new CropFunction(this);
-    } else if (aLocalname.equals("rotate")) {
+    } else if (aLocalname == "rotate") {
       lFunc = new RotateFunction(this);
-    } else if (aLocalname.equals("erase")) {
+    } else if (aLocalname == "erase") {
       lFunc = new EraseFunction(this);
-    } else if (aLocalname.equals("flop")) {
+    } else if (aLocalname == "flop") {
       lFunc = new FlopFunction(this);
-    } else if (aLocalname.equals("flip")) {
+    } else if (aLocalname == "flip") {
       lFunc = new FlipFunction(this); 
-    } else if (aLocalname.equals("trim")) {
+    } else if (aLocalname == "trim") {
       lFunc = new TrimFunction(this);
-    } else if (aLocalname.equals("add-noise-impl")) {
+    } else if (aLocalname == "add-noise-impl") {
       lFunc = new AddNoiseFunction(this);
-    } else if (aLocalname.equals("blur")) {
+    } else if (aLocalname == "blur") {
       lFunc = new BlurFunction(this);
-    } else if (aLocalname.equals("despeckle")) {
+    } else if (aLocalname == "despeckle") {
       lFunc = new DespeckleFunction(this);
-    } else if (aLocalname.equals("enhance")) {
+    } else if (aLocalname == "enhance") {
       lFunc = new EnhanceFunction(this);
-    } else if (aLocalname.equals("equalize")) {
+    } else if (aLocalname == "equalize") {
       lFunc = new EqualizeFunction(this);
-    } else if (aLocalname.equals("edge")) {
+    } else if (aLocalname == "edge") {
       lFunc = new EdgeFunction(this);
-    } else if (aLocalname.equals("charcoal")) {
+    } else if (aLocalname == "charcoal") {
       lFunc = new CharcoalFunction(this);
-    } else if (aLocalname.equals("emboss")) {
+    } else if (aLocalname == "emboss") {
       lFunc = new EmbossFunction(this);
-    } else if (aLocalname.equals("solarize")) {
+    } else if (aLocalname == "solarize") {
       lFunc = new SolarizeFunction(this);
-    } else if (aLocalname.equals("stereo")) {
+    } else if (aLocalname == "stereo") {
       lFunc = new StereoFunction(this);
-    } else if (aLocalname.equals("transparent-impl")) {
+    } else if (aLocalname == "transparent-impl") {
       lFunc = new TransparentFunction(this);
-    } else if (aLocalname.equals("swirl")) {
+    } else if (aLocalname == "swirl") {
       lFunc = new SwirlFunction(this);
-    } else if (aLocalname.equals("reduce-noise")) {
+    } else if (aLocalname == "reduce-noise") {
       lFunc = new ReduceNoiseFunction(this);
-    } else if (aLocalname.equals("contrast")) {
+    } else if (aLocalname == "contrast") {
       lFunc = new ContrastFunction(this); 
-    } else if (aLocalname.equals("gamma")) {
+    } else if (aLocalname == "gamma") {
       lFunc = new GammaFunction(this);
-    } else if (aLocalname.equals("implode")) {
+    } else if (aLocalname == "implode") {
       lFunc = new ImplodeFunction(this);
-    } else if (aLocalname.equals("oil-paint")) {
+    } else if (aLocalname == "oil-paint") {
       lFunc = new OilPaintFunction(this); 
-    } else if (aLocalname.equals("watermark")) {
+    } else if (aLocalname == "watermark") {
       lFunc = new WaterMarkFunction(this);
     }  
   }   

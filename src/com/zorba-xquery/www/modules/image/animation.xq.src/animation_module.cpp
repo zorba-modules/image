@@ -28,9 +28,9 @@ AnimationModule::getExternalFunction(const String& aLocalname)
   StatelessExternalFunction*& lFunc = theFunctions[aLocalname];
   if (!lFunc) {
     if (1 == 0) {
-    } else if (aLocalname.equals("create-animated-gif")) {
+    } else if (aLocalname == "create-animated-gif") {
       lFunc = new CreateAnimatedGifFunction(this); 
-    } else if (aLocalname.equals("create-morphed-gif")) {
+    } else if (aLocalname == "create-morphed-gif") {
       lFunc = new CreateMorphedGifFunction(this);
     }
   }
