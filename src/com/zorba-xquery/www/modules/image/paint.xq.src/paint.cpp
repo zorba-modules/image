@@ -21,6 +21,7 @@
 #include <zorba/empty_sequence.h>
 #include <zorba/singleton_item_sequence.h>
 #include <zorba/zorba.h>
+#include <zorba/xquery_functions.h>
 #include "paint_module.h"
 #include "draw_in_c.h"
 #include <cstring>
@@ -88,23 +89,23 @@ PaintImplFunction::getCommonValues(Iterator_t& aChildIterator,
     aLastItemFound.getNodeName(lNodeName);
     String lName = lNodeName.getStringValue(); 
     
-    if (!lFoundStrokeWidth && lName.endsWith("Width")) {
+    if (!lFoundStrokeWidth && fn::ends_with(lName,"Width")) {
       *aStrokeWidth = getDoubleValue(aLastItemFound); 
       lFoundStrokeWidth = true;
       aChildIterator->next(aLastItemFound);
-    } else if (!lFoundStrokeColor && lName.endsWith("eColor")) {
+    } else if (!lFoundStrokeColor && fn::ends_with(lName,"eColor")) {
       aStrokeColor = aLastItemFound.getStringValue().c_str();
       lFoundStrokeColor = true;
       aChildIterator->next(aLastItemFound);
       if (i < 1) { i = 1; }
-    } else if (!lFoundFillColor && lName.endsWith("Color")) {
+    } else if (!lFoundFillColor && fn::ends_with(lName,"Color")) {
       aFillColor = aLastItemFound.getStringValue().c_str();
       lFoundFillColor = true;
       aChildIterator->next(aLastItemFound);
       if (i < 2) { i = 2; }
-    } else if (lName.endsWith("ing")) {
+    } else if (fn::ends_with(lName,"ing")) {
       String lAntiAliasingString = aLastItemFound.getStringValue();
-      if (lAntiAliasingString.endsWith("ue")) {
+      if (fn::ends_with(lAntiAliasingString,"ue")) {
         lAntiAliasing = true;
       } else {
         lAntiAliasing = false;
@@ -126,25 +127,25 @@ PaintImplFunction::applyShape(Magick::Blob& aBlob, Item& aShape) const {
     aShape.getNodeName(lNodeName);
     String lName = lNodeName.getStringValue();
     // removing the uri prefix
-    if (lName.endsWith("line")) {
+    if (fn::ends_with(lName,"line")) {
       applyLine(aBlob, aShape);
-    } else if (lName.endsWith("dPolyLine")) {
+    } else if (fn::ends_with(lName,"dPolyLine")) {
       applyStrokedPolyLine(aBlob, aShape);
-    }  else if (lName.endsWith("Line")) {
+    }  else if (fn::ends_with(lName,"Line")) {
       applyPolyLine(aBlob, aShape);
-    } else if (lName.endsWith("rectangle")) {
+    } else if (fn::ends_with(lName,"rectangle")) {
       applyRectangle(aBlob, aShape);
-    } else if (lName.endsWith("gle")) {
+    } else if (fn::ends_with(lName,"gle")) {
       applyRoundedRectangle(aBlob, aShape);
-    } else if (lName.endsWith("cle")) {
+    } else if (fn::ends_with(lName,"cle")) {
       applyCircle(aBlob, aShape);
-    } else if (lName.endsWith("se")) {
+    } else if (fn::ends_with(lName,"se")) {
       applyEllipse(aBlob, aShape);
-    } else if (lName.endsWith("c")) {
+    } else if (fn::ends_with(lName,"c")) {
       applyArc(aBlob, aShape);
-    } else if (lName.endsWith("n")) {
+    } else if (fn::ends_with(lName,"n")) {
       applyPolygon(aBlob, aShape);
-    } else if (lName.endsWith("t")) {
+    } else if (fn::ends_with(lName,"t")) {
       applyText(aBlob, aShape);
     }  
 }
@@ -287,7 +288,7 @@ PaintImplFunction::applyStrokedPolyLine(Magick::Blob& aBlob, Item& aLine) const 
       Item lNodeName;
       lPoint.getNodeName(lNodeName);
       String lName = lNodeName.getStringValue();
-      if (!lName.endsWith("oint")) {
+      if (!fn::ends_with(lName,"oint")) {
         break;
       }  
     }  
