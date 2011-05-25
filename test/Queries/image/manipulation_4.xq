@@ -86,41 +86,32 @@ declare %sequential function local:main() as xs:string* {
   let $a := local:test-stereo()
   return
     if (fn:not($a)) then
-      exit returning local:error(("Stereo of images failed."))
+      exit returning local:error(("Stereo of images failed."));
     else ();
     
     
   let $b := local:test-transparent()
   return
     if (fn:not($b)) then
-      exit returning local:error(("Making a color of an image tranparent failed."))
+      exit returning local:error(("Making a color of an image tranparent failed."));
     else ();  
     
      
   let $c := local:test-swirl()
   return
     if (fn:not($c)) then
-      exit returning local:error(("Swirl of image failed."))
+      exit returning local:error(("Swirl of image failed."));
     else ();  
     
    
   let $e := local:test-contrast()
   return
     if (fn:not($e)) then
-      exit returning local:error(("Contrasting image failed."))
+      exit returning local:error(("Contrasting image failed."));
     else ();  
-       
-    
     
   (: If all went well ... make sure the world knows! :)  
-  "SUCCESS";
-
-    
-
-
+  "SUCCESS"
 };
 
-local:main();
-
-
-
+local:main()

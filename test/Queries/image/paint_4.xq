@@ -115,62 +115,52 @@ declare %sequential function local:main() as xs:string* {
   let $a := local:test-draw-rectangle()
   return
     if (fn:not($a)) then
-      exit returning local:error(("Drawing a rectangle on an image failed."))
+      exit returning local:error(("Drawing a rectangle on an image failed."));
     else ();
     
   let $c := local:test-draw-rectangle-green()
   return
     if (fn:not($c)) then
-      exit returning local:error(("Drawing a green rectangle on an image failed."))
+      exit returning local:error(("Drawing a green rectangle on an image failed."));
     else ();    
   
    
   let $e := local:test-draw-rectangle-anti-aliased()
   return
     if (fn:not($e)) then
-      exit returning local:error(("Drawing a anti-aliased wide green rectangle filled with red on an image failed."))
+      exit returning local:error(("Drawing a anti-aliased wide green rectangle filled with red on an image failed."));
     else ();    
    
     
   let $f := local:test-draw-rounded-rectangle()
   return
     if (fn:not($f)) then
-      exit returning local:error(("Drawing a rounded rectangle on an image failed."))
+      exit returning local:error(("Drawing a rounded rectangle on an image failed."));
     else ();    
   
       
   let $g := local:test-draw-rounded-rectangle-blue()
   return
     if (fn:not($g)) then
-      exit returning local:error(("Drawing a blue rounded rectangle on an image failed."))
+      exit returning local:error(("Drawing a blue rounded rectangle on an image failed."));
     else ();          
     
   let $h := local:test-draw-rounded-rectangle-blue-green()
   return
     if (fn:not($h)) then
-      exit returning local:error(("Drawing a blue rounded rectangle filled with green on an image failed."))
+      exit returning local:error(("Drawing a blue rounded rectangle filled with green on an image failed."));
     else ();               
            
              
   let $j := local:test-draw-rounded-rectangle-anti-aliased()
   return
     if (fn:not($j)) then
-      exit returning local:error(("Drawing a blue rounded rectangle anti-aliased filled with green on an image failed."))
+      exit returning local:error(("Drawing a blue rounded rectangle anti-aliased filled with green on an image failed."));
     else ();               
-           
-              
-           
-  
     
   (: If all went well ... make sure the world knows! :)  
-  "SUCCESS";
-
-    
-
-
+  "SUCCESS"
 };
 
-local:main();
-
-
+local:main()
 

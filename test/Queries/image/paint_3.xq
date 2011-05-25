@@ -75,37 +75,30 @@ declare %sequential function local:main() as xs:string* {
   let $a := local:test-draw-stroked-poly-line()
   return
     if (fn:not($a)) then
-      exit returning local:error(("Drawing a stroked poly-line on an image failed."))
+      exit returning local:error(("Drawing a stroked poly-line on an image failed."));
     else ();
   
   let $b := local:test-draw-stroked-poly-line-blue()
   return
     if (fn:not($b)) then
-      exit returning local:error(("Drawing a blue stroked poly-line on an image failed."))
+      exit returning local:error(("Drawing a blue stroked poly-line on an image failed."));
     else ();
 
   let $c := local:test-draw-stroked-poly-line-wide()
   return
     if (fn:not($c)) then
-      exit returning local:error(("Drawing a wide stroked poly-line on an image failed."))
+      exit returning local:error(("Drawing a wide stroked poly-line on an image failed."));
     else ();
     
   let $d := local:test-draw-stroked-poly-line-anti-aliased()
   return
     if (fn:not($d)) then
-      exit returning local:error(("Drawing a anti-aliased stroked poly-line on an image failed."))
+      exit returning local:error(("Drawing a anti-aliased stroked poly-line on an image failed."));
     else ();
       
     
   (: If all went well ... make sure the world knows! :)  
-  "SUCCESS";
-
-    
-
-
+  "SUCCESS"
 };
 
-local:main();
-
-
-
+local:main()

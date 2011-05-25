@@ -58,24 +58,18 @@ declare %sequential function local:main() as xs:string* {
   let $a := local:test-create-animated-gif()
   return
     if (fn:not($a)) then
-      exit returning local:error(("Creating simple animated gif failed"))
+      exit returning local:error(("Creating simple animated gif failed"));
     else ();
   
   let $b := local:test-create-morphed-gif()
   return
     if (fn:not($b)) then
-      exit returning local:error(("Creating simple morphed gif failed"))
+      exit returning local:error(("Creating simple morphed gif failed"));
     else ();
-  (: If all went well ... make sure the world knows! :)  
-  "SUCCESS";
-
     
-
-
+  (: If all went well ... make sure the world knows! :)  
+  "SUCCESS"
 };
 
-local:main();
+local:main()
 
-
-
-            

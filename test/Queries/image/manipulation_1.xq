@@ -103,48 +103,44 @@ declare %sequential function local:main() as xs:string* {
   let $a := local:test-resize()
   return
     if (fn:not($a)) then
-      exit returning local:error(("Resizing of images failed."))
+      exit returning local:error(("Resizing of images failed."));
     else ();
     
     
   let $b := local:test-zoom()
   return
     if (fn:not($b)) then
-      exit returning local:error(("Zooming of image failed."))
+      exit returning local:error(("Zooming of image failed."));
     else ();   
     
     
   let $c := local:test-zoom-by-width()
   return
     if (fn:not($c)) then
-      exit returning local:error(("Zooming of image by width failed."))
+      exit returning local:error(("Zooming of image by width failed."));
     else ();
               
   let $d := local:test-zoom-by-height()
   return
     if (fn:not($d)) then
-      exit returning local:error(("Zooming of image by height failed."))
+      exit returning local:error(("Zooming of image by height failed."));
     else (); 
     
   let $f := local:test-sub-image()
   return
     if (fn:not($f)) then
-      exit returning local:error("Extracting sub image failed.")     
+      exit returning local:error("Extracting sub image failed.");
     else();
       
   let $g := local:test-overlay()
   return
     if (fn:not($g)) then
-      exit returning local:error("Overlaying of image failed.")     
+      exit returning local:error("Overlaying of image failed.");   
     else(); 
   (: If all went well ... make sure the world knows! :)  
-  "SUCCESS";
-
-    
-
+  "SUCCESS"
 
 };
 
-local:main();
-
+local:main()
 

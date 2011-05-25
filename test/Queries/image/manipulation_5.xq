@@ -87,44 +87,35 @@ declare %sequential function local:main() as xs:string* {
   let $a := local:test-gamma()
   return
     if (fn:not($a)) then
-      exit returning local:error(("Gamma correction of images failed."))
+      exit returning local:error(("Gamma correction of images failed."));
     else ();
     
   let $b := local:test-gamma-rgb()
   return
     if (fn:not($b)) then
-      exit returning local:error(("Gamma correction of images failed."))
+      exit returning local:error(("Gamma correction of images failed."));
     else ();  
  
   let $c := local:test-implode()
   return
     if (fn:not($c)) then
-      exit returning local:error(("Implode of images failed."))
+      exit returning local:error(("Implode of images failed."));
     else ();  
  
   let $d := local:test-oil-paint()
   return
     if (fn:not($d)) then
-      exit returning local:error(("Oil paint of images failed."))
+      exit returning local:error(("Oil paint of images failed."));
     else ();  
         
   let $e := local:test-watermark()
   return
     if (fn:not($e)) then
-      exit returning local:error(("Applying watermark to image failed."))
+      exit returning local:error(("Applying watermark to image failed."));
     else ();
-
-          
     
   (: If all went well ... make sure the world knows! :) 
-  "SUCCESS";
-
-    
-
-
+  "SUCCESS"
 };
 
-local:main();
-
-
-
+local:main()

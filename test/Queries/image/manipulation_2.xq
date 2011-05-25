@@ -99,51 +99,42 @@ declare %sequential function local:main() as xs:string* {
   let $a := local:test-rotate()
   return
     if (fn:not($a)) then
-      exit returning local:error(("Rotating of images failed."))
+      exit returning local:error(("Rotating of images failed."));
     else ();
     
   let $b := local:test-erase()
   return
     if (fn:not($b)) then
-      exit returning local:error(("Erasing of images failed."))
+      exit returning local:error(("Erasing of images failed."));
     else ();  
     
   let $c := local:test-flop()
   return
     if (fn:not($c)) then
-      exit returning local:error(("Flop of images failed."))
+      exit returning local:error(("Flop of images failed."));
     else ();  
         
   let $d := local:test-flip()
   return
     if (fn:not($d)) then
-      exit returning local:error(("Flip of images failed."))
+      exit returning local:error(("Flip of images failed."));
     else ();  
           
   let $e := local:test-trim()
   return
     if (fn:not($e)) then
-      exit returning local:error(("Trim of images failed."))
+      exit returning local:error(("Trim of images failed."));
     else ();  
     
            
   let $g := local:test-blur()
   return
     if (fn:not($g)) then
-      exit returning local:error(("Blurring of images failed."))
+      exit returning local:error(("Blurring of images failed."));
     else ();     
     
-  
-    
   (: If all went well ... make sure the world knows! :)  
-  "SUCCESS";
-
-    
-
-
+  "SUCCESS"
 };
 
-local:main();
-
-
-
+local:main()

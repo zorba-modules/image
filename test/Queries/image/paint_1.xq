@@ -79,41 +79,35 @@ declare %sequential function local:main() as xs:string* {
   let $a := local:test-draw-line()
   return
     if (fn:not($a)) then
-      exit returning local:error(("Drawing a line on an image failed."))
+      exit returning local:error(("Drawing a line on an image failed."));
     else ();
 
   let $b := local:test-draw-line-color-red()
   return
     if (fn:not($b)) then
-      exit returning local:error(("Drawing a red (#6F0000) line on an image failed."))
+      exit returning local:error(("Drawing a red (#6F0000) line on an image failed."));
     else ();
 
   let $c := local:test-draw-line-color-green()
   return
     if (fn:not($c)) then
-      exit returning local:error(("Drawing a green (#006F00) line on an image failed."))
+      exit returning local:error(("Drawing a green (#006F00) line on an image failed."));
     else ();
 
   let $d := local:test-draw-line-color-blue()
   return
     if (fn:not($d)) then
-      exit returning local:error(("Drawing a blue (#00006F) line on an image failed."))
+      exit returning local:error(("Drawing a blue (#00006F) line on an image failed."));
     else ();
 
   let $e := local:test-stroke-width()
   return
     if (fn:not($e)) then
-      exit returning local:error(("Setting stroke width of an image failed."))
+      exit returning local:error(("Setting stroke width of an image failed."));
     else ();
 
-
   (: If all went well ... make sure the world knows! :)
-  "SUCCESS";
-
-
+  "SUCCESS"
 };
 
-local:main();
-
-
-
+local:main()

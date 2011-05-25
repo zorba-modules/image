@@ -121,7 +121,7 @@ declare %sequential function local:main() as xs:string* {
   let $a := local:test-width()
   return
     if (fn:not($a)) then
-      exit returning local:error(("Determining width of images failed"))
+      exit returning local:error(("Determining width of images failed"));
     else ();
 
   (: ==================================================================== :)
@@ -129,7 +129,7 @@ declare %sequential function local:main() as xs:string* {
   let $b := local:test-height()
   return
     if (fn:not($b)) then
-      exit returning local:error(("Determining height of images failed"))
+      exit returning local:error(("Determining height of images failed"));
     else ();
 
   (: ==================================================================== :)
@@ -137,7 +137,7 @@ declare %sequential function local:main() as xs:string* {
   let $c := local:test-create()
   return
     if (fn:not($c)) then
-      exit returning local:error(("Creation of images failed"))
+      exit returning local:error(("Creation of images failed"));
     else ();
 
   (: ==================================================================== :) 
@@ -145,14 +145,14 @@ declare %sequential function local:main() as xs:string* {
   let $d := local:test-type()
   return
     if (fn:not($d)) then
-        exit returning local:error("Getting format of images failed")  
+        exit returning local:error("Getting format of images failed");
     else ();
   (: ==================================================================== :)
   
   let $e := local:test-convert()
   return
     if (fn:not($e)) then
-        exit returning local:error("Conversion of images failed")  
+        exit returning local:error("Conversion of images failed");
     else ();    
   
   (: ==================================================================== :)
@@ -160,7 +160,7 @@ declare %sequential function local:main() as xs:string* {
   let $f := local:test-compress()
   return
     if (fn:not($f)) then
-        exit returning local:error("Compression of images failed")
+        exit returning local:error("Compression of images failed");
     else ();   
   
   (: ==================================================================== :)
@@ -168,25 +168,20 @@ declare %sequential function local:main() as xs:string* {
   let $g := local:test-equals()
   return 
     if (fn:not($g)) then
-      exit returning local:error("Equals function not working properly")
+      exit returning local:error("Equals function not working properly");
     else ();  
 
 
   let $h := local:test-exif()
   return 
     if (fn:not($h)) then
-      exit returning local:error("Reading out exif information not working properly")
+      exit returning local:error("Reading out exif information not working properly");
     else ();
- 
-
    
 
   (: If all went well ... make sure the world knows! :)  
-  "SUCCESS";
-
+  "SUCCESS"
 };
 
-local:main();
-
-
+local:main()
 

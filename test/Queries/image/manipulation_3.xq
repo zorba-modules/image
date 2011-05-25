@@ -81,31 +81,24 @@ declare %sequential function local:main() as xs:string* {
   let $a := local:test-despeckle()
   return
     if (fn:not($a)) then
-      exit returning local:error(("Despecle of images failed."))
+      exit returning local:error(("Despecle of images failed."));
     else ();
     
   let $b := local:test-enhance()
   return
     if (fn:not($b)) then
-      exit returning local:error(("Enhancing of images failed."))
+      exit returning local:error(("Enhancing of images failed."));
     else ();
     
     
   let $g := local:test-solarize()
   return
     if (fn:not($g)) then
-      exit returning local:error(("Solarize of images failed."))
+      exit returning local:error(("Solarize of images failed."));
     else ();    
     
   (: If all went well ... make sure the world knows! :)  
-  "SUCCESS";
-
-    
-
-
+  "SUCCESS"
 };
 
-local:main();
-
-
-
+local:main()

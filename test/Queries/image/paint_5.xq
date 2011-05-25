@@ -109,56 +109,50 @@ declare  %sequential function local:main() as xs:string* {
   let $a := local:test-draw-circle()
   return
     if (fn:not($a)) then
-      exit returning local:error(("Drawing a circle on an image failed."))
+      exit returning local:error(("Drawing a circle on an image failed."));
     else ();
     
   let $b := local:test-draw-ellipse()
   return
     if (fn:not($b)) then
-      exit returning local:error(("Drawing an ellipse on an image failed."))
+      exit returning local:error(("Drawing an ellipse on an image failed."));
     else ();  
               
     
   let $c := local:test-draw-arc()
   return
     if (fn:not($c)) then
-      exit returning local:error(("Drawing an arc on an image failed."))
+      exit returning local:error(("Drawing an arc on an image failed."));
     else ();  
                          
   let $d := local:test-draw-red-arc()
   return
     if (fn:not($d)) then
-      exit returning local:error(("Drawing a red arc on an image failed."))
+      exit returning local:error(("Drawing a red arc on an image failed."));
     else ();  
     
   let $e := local:test-draw-red-green-arc()
   return
     if (fn:not($e)) then
-      exit returning local:error(("Drawing a red arc with green background on an image failed."))
+      exit returning local:error(("Drawing a red arc with green background on an image failed."));
     else ();  
   
   let $f := local:test-draw-wide-arc()
   return
     if (fn:not($f)) then
-      exit returning local:error(("Drawing an arc with wide strokes on an image failed."))
+      exit returning local:error(("Drawing an arc with wide strokes on an image failed."));
     else ();    
       
   let $g := local:test-draw-anti-aliased-arc()
   return
     if (fn:not($g)) then
-      exit returning local:error(("Drawing an anti-aliased arc with wide strokes on an image failed."))
+      exit returning local:error(("Drawing an anti-aliased arc with wide strokes on an image failed."));
     else ();    
       
-      
   (: If all went well ... make sure the world knows! :)  
-  "SUCCESS";
-
-    
-
+  "SUCCESS"
 
 };
 
-local:main();
-
-
+local:main()
 
