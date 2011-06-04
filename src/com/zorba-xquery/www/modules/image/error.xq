@@ -18,6 +18,7 @@
  : This module describes the errors for the image modules.
  :
  : @author Daniel Thomas
+ : @project image
  :)
 module namespace err = 'http://www.zorba-xquery.com/modules/image/error';
 

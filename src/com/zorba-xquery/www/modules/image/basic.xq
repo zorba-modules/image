@@ -10,6 +10,7 @@
  :
  : @author Daniel Thomas
  : @library <a href="http://www.imagemagick.org/Magick++/">Magick++ C++ Library</a>
+ : @project image
  :
  :)
 module namespace basic = 'http://www.zorba-xquery.com/modules/image/basic';
