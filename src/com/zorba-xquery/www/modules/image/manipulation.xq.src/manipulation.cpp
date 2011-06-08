@@ -32,7 +32,7 @@ ResizeFunction::ResizeFunction(const ImageModule* aModule) : ImageFunction(aModu
 
 ItemSequence_t
 ResizeFunction::evaluate(
-  const StatelessExternalFunction::Arguments_t& aArgs,
+  const ExternalFunction::Arguments_t& aArgs,
   const StaticContext*                          aSctxCtx,
   const DynamicContext*                         aDynCtx) const
 {
@@ -56,7 +56,7 @@ ZoomByWidthFunction::ZoomByWidthFunction(const ImageModule* aModule) : ImageFunc
 
 ItemSequence_t
 ZoomByWidthFunction::evaluate(
-  const StatelessExternalFunction::Arguments_t& aArgs,
+  const ExternalFunction::Arguments_t& aArgs,
   const StaticContext*                          aSctxCtx,
   const DynamicContext*                         aDynCtx) const
 {
@@ -82,7 +82,7 @@ ZoomByHeightFunction::ZoomByHeightFunction(const ImageModule* aModule) : ImageFu
 
 ItemSequence_t
 ZoomByHeightFunction::evaluate(
-  const StatelessExternalFunction::Arguments_t& aArgs,
+  const ExternalFunction::Arguments_t& aArgs,
   const StaticContext*                          aSctxCtx,
   const DynamicContext*                         aDynCtx) const
 {
@@ -110,7 +110,7 @@ ZoomFunction::ZoomFunction(const ImageModule* aModule) : ImageFunction(aModule)
 
 ItemSequence_t
 ZoomFunction::evaluate(
-  const StatelessExternalFunction::Arguments_t& aArgs,
+  const ExternalFunction::Arguments_t& aArgs,
   const StaticContext*                          aSctxCtx,
   const DynamicContext*                         aDynCtx) const
 {
@@ -133,7 +133,7 @@ SubImageFunction::SubImageFunction(const ImageModule* aModule) : ImageFunction(a
 
 ItemSequence_t
 SubImageFunction::evaluate(
-  const StatelessExternalFunction::Arguments_t& aArgs,
+  const ExternalFunction::Arguments_t& aArgs,
   const StaticContext*                          aSctxCtx,
   const DynamicContext*                         aDynCtx) const
 {
@@ -165,7 +165,7 @@ OverlayFunction::OverlayFunction(const ImageModule* aModule) : ImageFunction(aMo
 
 ItemSequence_t
 OverlayFunction::evaluate(
-  const StatelessExternalFunction::Arguments_t& aArgs,
+  const ExternalFunction::Arguments_t& aArgs,
   const StaticContext*                          aSctxCtx,
   const DynamicContext*                         aDynCtx) const
 {
@@ -215,7 +215,7 @@ ChopFunction::ChopFunction(const ImageModule* aModule) : ImageFunction(aModule)
 
 ItemSequence_t
 ChopFunction::evaluate(
-  const StatelessExternalFunction::Arguments_t& aArgs,
+  const ExternalFunction::Arguments_t& aArgs,
   const StaticContext*                          aSctxCtx,
   const DynamicContext*                         aDynCtx) const
 {
@@ -240,7 +240,7 @@ CropFunction::CropFunction(const ImageModule* aModule) : ImageFunction(aModule)
 
 ItemSequence_t
 CropFunction::evaluate(
-  const StatelessExternalFunction::Arguments_t& aArgs,
+  const ExternalFunction::Arguments_t& aArgs,
   const StaticContext*                          aSctxCtx,
   const DynamicContext*                         aDynCtx) const
 {
@@ -265,7 +265,7 @@ RotateFunction::RotateFunction(const ImageModule* aModule) : ImageFunction(aModu
 
 ItemSequence_t
 RotateFunction::evaluate(
-  const StatelessExternalFunction::Arguments_t& aArgs,
+  const ExternalFunction::Arguments_t& aArgs,
   const StaticContext*                          aSctxCtx,
   const DynamicContext*                         aDynCtx) const
 {
@@ -287,7 +287,7 @@ EraseFunction::EraseFunction(const ImageModule* aModule) : ImageFunction(aModule
 
 ItemSequence_t
 EraseFunction::evaluate(
-  const StatelessExternalFunction::Arguments_t& aArgs,
+  const ExternalFunction::Arguments_t& aArgs,
   const StaticContext*                          aSctxCtx,
   const DynamicContext*                         aDynCtx) const
 {
@@ -309,7 +309,7 @@ FlopFunction::FlopFunction(const ImageModule* aModule) : ImageFunction(aModule)
 
 ItemSequence_t
 FlopFunction::evaluate(
-  const StatelessExternalFunction::Arguments_t& aArgs,
+  const ExternalFunction::Arguments_t& aArgs,
   const StaticContext*                          aSctxCtx,
   const DynamicContext*                         aDynCtx) const
 {
@@ -331,7 +331,7 @@ FlipFunction::FlipFunction(const ImageModule* aModule) : ImageFunction(aModule)
 
 ItemSequence_t
 FlipFunction::evaluate(
-  const StatelessExternalFunction::Arguments_t& aArgs,
+  const ExternalFunction::Arguments_t& aArgs,
   const StaticContext*                          aSctxCtx,
   const DynamicContext*                         aDynCtx) const
 {
@@ -352,7 +352,7 @@ TrimFunction::TrimFunction(const ImageModule* aModule) : ImageFunction(aModule)
 
 ItemSequence_t
 TrimFunction::evaluate(
-  const StatelessExternalFunction::Arguments_t& aArgs,
+  const ExternalFunction::Arguments_t& aArgs,
   const StaticContext*                          aSctxCtx,
   const DynamicContext*                         aDynCtx) const
 {
@@ -373,7 +373,7 @@ AddNoiseFunction::AddNoiseFunction(const ImageModule* aModule) : ImageFunction(a
 
 ItemSequence_t
 AddNoiseFunction::evaluate(
-  const StatelessExternalFunction::Arguments_t& aArgs,
+  const ExternalFunction::Arguments_t& aArgs,
   const StaticContext*                          aSctxCtx,
   const DynamicContext*                         aDynCtx) const
 {
@@ -415,7 +415,7 @@ BlurFunction::BlurFunction(const ImageModule* aModule) : ImageFunction(aModule)
 
 ItemSequence_t
 BlurFunction::evaluate(
-  const StatelessExternalFunction::Arguments_t& aArgs,
+  const ExternalFunction::Arguments_t& aArgs,
   const StaticContext*                          aSctxCtx,
   const DynamicContext*                         aDynCtx) const
 {
@@ -441,7 +441,7 @@ DespeckleFunction::DespeckleFunction(const ImageModule* aModule) : ImageFunction
 
 ItemSequence_t
 DespeckleFunction::evaluate(
-  const StatelessExternalFunction::Arguments_t& aArgs,
+  const ExternalFunction::Arguments_t& aArgs,
   const StaticContext*                          aSctxCtx,
   const DynamicContext*                         aDynCtx) const
 {
@@ -463,7 +463,7 @@ EnhanceFunction::EnhanceFunction(const ImageModule* aModule) : ImageFunction(aMo
 
 ItemSequence_t
 EnhanceFunction::evaluate(
-  const StatelessExternalFunction::Arguments_t& aArgs,
+  const ExternalFunction::Arguments_t& aArgs,
   const StaticContext*                          aSctxCtx,
   const DynamicContext*                         aDynCtx) const
 {
@@ -484,7 +484,7 @@ EqualizeFunction::EqualizeFunction(const ImageModule* aModule) : ImageFunction(a
 
 ItemSequence_t
 EqualizeFunction::evaluate(
-  const StatelessExternalFunction::Arguments_t& aArgs,
+  const ExternalFunction::Arguments_t& aArgs,
   const StaticContext*                          aSctxCtx,
   const DynamicContext*                         aDynCtx) const
 {
@@ -506,7 +506,7 @@ EdgeFunction::EdgeFunction(const ImageModule* aModule) : ImageFunction(aModule)
 
 ItemSequence_t
 EdgeFunction::evaluate(
-  const StatelessExternalFunction::Arguments_t& aArgs,
+  const ExternalFunction::Arguments_t& aArgs,
   const StaticContext*                          aSctxCtx,
   const DynamicContext*                         aDynCtx) const
 {
@@ -530,7 +530,7 @@ CharcoalFunction::CharcoalFunction(const ImageModule* aModule) : ImageFunction(a
 
 ItemSequence_t
 CharcoalFunction::evaluate(
-  const StatelessExternalFunction::Arguments_t& aArgs,
+  const ExternalFunction::Arguments_t& aArgs,
   const StaticContext*                          aSctxCtx,
   const DynamicContext*                         aDynCtx) const
 {
@@ -555,7 +555,7 @@ EmbossFunction::EmbossFunction(const ImageModule* aModule) : ImageFunction(aModu
 
 ItemSequence_t
 EmbossFunction::evaluate(
-  const StatelessExternalFunction::Arguments_t& aArgs,
+  const ExternalFunction::Arguments_t& aArgs,
   const StaticContext*                          aSctxCtx,
   const DynamicContext*                         aDynCtx) const
 {
@@ -580,7 +580,7 @@ SolarizeFunction::SolarizeFunction(const ImageModule* aModule) : ImageFunction(a
 
 ItemSequence_t
 SolarizeFunction::evaluate(
-  const StatelessExternalFunction::Arguments_t& aArgs,
+  const ExternalFunction::Arguments_t& aArgs,
   const StaticContext*                          aSctxCtx,
   const DynamicContext*                         aDynCtx) const
 {
@@ -604,7 +604,7 @@ StereoFunction::StereoFunction(const ImageModule* aModule) : ImageFunction(aModu
 
 ItemSequence_t
 StereoFunction::evaluate(
-  const StatelessExternalFunction::Arguments_t& aArgs,
+  const ExternalFunction::Arguments_t& aArgs,
   const StaticContext*                          aSctxCtx,
   const DynamicContext*                         aDynCtx) const
 {
@@ -631,7 +631,7 @@ TransparentFunction::TransparentFunction(const ImageModule* aModule) : ImageFunc
 
 ItemSequence_t
 TransparentFunction::evaluate(
-  const StatelessExternalFunction::Arguments_t& aArgs,
+  const ExternalFunction::Arguments_t& aArgs,
   const StaticContext*                          aSctxCtx,
   const DynamicContext*                         aDynCtx) const
 {
@@ -666,7 +666,7 @@ SwirlFunction::SwirlFunction(const ImageModule* aModule) : ImageFunction(aModule
 
 ItemSequence_t
 SwirlFunction::evaluate(
-  const StatelessExternalFunction::Arguments_t& aArgs,
+  const ExternalFunction::Arguments_t& aArgs,
   const StaticContext*                          aSctxCtx,
   const DynamicContext*                         aDynCtx) const
 {
@@ -689,7 +689,7 @@ ReduceNoiseFunction::ReduceNoiseFunction(const ImageModule* aModule) : ImageFunc
 
 ItemSequence_t
 ReduceNoiseFunction::evaluate(
-  const StatelessExternalFunction::Arguments_t& aArgs,
+  const ExternalFunction::Arguments_t& aArgs,
   const StaticContext*                          aSctxCtx,
   const DynamicContext*                         aDynCtx) const
 {
@@ -713,7 +713,7 @@ ContrastFunction::ContrastFunction(const ImageModule* aModule) : ImageFunction(a
 
 ItemSequence_t
 ContrastFunction::evaluate(
-  const StatelessExternalFunction::Arguments_t& aArgs,
+  const ExternalFunction::Arguments_t& aArgs,
   const StaticContext*                          aSctxCtx,
   const DynamicContext*                         aDynCtx) const
 {
@@ -737,7 +737,7 @@ GammaFunction::GammaFunction(const ImageModule* aModule) : ImageFunction(aModule
 
 ItemSequence_t
 GammaFunction::evaluate(
-  const StatelessExternalFunction::Arguments_t& aArgs,
+  const ExternalFunction::Arguments_t& aArgs,
   const StaticContext*                          aSctxCtx,
   const DynamicContext*                         aDynCtx) const
 {
@@ -768,7 +768,7 @@ ImplodeFunction::ImplodeFunction(const ImageModule* aModule) : ImageFunction(aMo
 
 ItemSequence_t
 ImplodeFunction::evaluate(
-  const StatelessExternalFunction::Arguments_t& aArgs,
+  const ExternalFunction::Arguments_t& aArgs,
   const StaticContext*                          aSctxCtx,
   const DynamicContext*                         aDynCtx) const
 {
@@ -792,7 +792,7 @@ OilPaintFunction::OilPaintFunction(const ImageModule* aModule) : ImageFunction(a
 
 ItemSequence_t
 OilPaintFunction::evaluate(
-  const StatelessExternalFunction::Arguments_t& aArgs,
+  const ExternalFunction::Arguments_t& aArgs,
   const StaticContext*                          aSctxCtx,
   const DynamicContext*                         aDynCtx) const
 {
@@ -816,7 +816,7 @@ WaterMarkFunction::WaterMarkFunction(const ImageModule* aModule) : ImageFunction
 
 ItemSequence_t
 WaterMarkFunction::evaluate(
-  const StatelessExternalFunction::Arguments_t& aArgs,
+  const ExternalFunction::Arguments_t& aArgs,
   const StaticContext*                          aSctxCtx,
   const DynamicContext*                         aDynCtx) const
 {

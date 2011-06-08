@@ -19,10 +19,10 @@
 
 namespace zorba { namespace imagemodule { namespace paintmodule {
 
-StatelessExternalFunction*
+ExternalFunction*
 PaintModule::getExternalFunction(const String& aLocalname)
 {
-  StatelessExternalFunction*& lFunc = theFunctions[aLocalname];
+  ExternalFunction*& lFunc = theFunctions[aLocalname];
   if (!lFunc) {
     if (aLocalname == "paint-impl") {
       lFunc = new PaintImplFunction(this);

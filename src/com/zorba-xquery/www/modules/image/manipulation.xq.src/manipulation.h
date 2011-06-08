@@ -36,7 +36,7 @@ class ResizeFunction : public ImageFunction
       virtual String getLocalName() const { return "resize"; }
 
       virtual ItemSequence_t
-      evaluate(const StatelessExternalFunction::Arguments_t& args,
+      evaluate(const ExternalFunction::Arguments_t& args,
                const StaticContext* aSctxCtx,
                const DynamicContext* aDynCtx) const;
 
@@ -52,7 +52,7 @@ class ZoomByWidthFunction : public ImageFunction
       virtual String getLocalName() const { return "zoom-by-width"; }
 
       virtual ItemSequence_t
-      evaluate(const StatelessExternalFunction::Arguments_t& args,
+      evaluate(const ExternalFunction::Arguments_t& args,
                const StaticContext* aSctxCtx,
                const DynamicContext* aDynCtx) const;
 
@@ -69,7 +69,7 @@ class ZoomByHeightFunction : public ImageFunction
       virtual String getLocalName() const { return "zoom-by-height"; }
 
       virtual ItemSequence_t
-      evaluate(const StatelessExternalFunction::Arguments_t& args,
+      evaluate(const ExternalFunction::Arguments_t& args,
                const StaticContext* aSctxCtx,
                const DynamicContext* aDynCtx) const;
 
@@ -86,7 +86,7 @@ class ZoomFunction : public ImageFunction
       virtual String getLocalName() const { return "zoom";}
 
       virtual ItemSequence_t
-      evaluate(const StatelessExternalFunction::Arguments_t& args,
+      evaluate(const ExternalFunction::Arguments_t& args,
                const StaticContext* aSctxCtx,
                const DynamicContext* aDynCtx) const;
 
@@ -102,7 +102,7 @@ class SubImageFunction : public ImageFunction
       virtual String getLocalName() const { return "sub-image";}
 
       virtual ItemSequence_t
-      evaluate(const StatelessExternalFunction::Arguments_t& args,
+      evaluate(const ExternalFunction::Arguments_t& args,
                const StaticContext* aSctxCtx,
                const DynamicContext* aDynCtx) const;
 
@@ -118,7 +118,7 @@ class OverlayFunction : public ImageFunction
       virtual String getLocalName() const { return "overlay-impl";}
 
       virtual ItemSequence_t
-      evaluate(const StatelessExternalFunction::Arguments_t& args,
+      evaluate(const ExternalFunction::Arguments_t& args,
                const StaticContext* aSctxCtx,
                const DynamicContext* aDynCtx) const;
 
@@ -134,7 +134,7 @@ class ChopFunction : public ImageFunction
       virtual String getLocalName() const { return "chop";}
 
       virtual ItemSequence_t
-      evaluate(const StatelessExternalFunction::Arguments_t& args,
+      evaluate(const ExternalFunction::Arguments_t& args,
                const StaticContext* aSctxCtx,
                const DynamicContext* aDynCtx) const;
 
@@ -150,7 +150,7 @@ class CropFunction : public ImageFunction
       virtual String getLocalName() const { return "crop";}
 
       virtual ItemSequence_t
-      evaluate(const StatelessExternalFunction::Arguments_t& args,
+      evaluate(const ExternalFunction::Arguments_t& args,
                const StaticContext* aSctxCtx,
                const DynamicContext* aDynCtx) const;
 
@@ -166,7 +166,7 @@ class RotateFunction : public ImageFunction
       virtual String getLocalName() const { return "rotate";}
 
       virtual ItemSequence_t
-      evaluate(const StatelessExternalFunction::Arguments_t& args,
+      evaluate(const ExternalFunction::Arguments_t& args,
                const StaticContext* aSctxCtx,
                const DynamicContext* aDynCtx) const;
 
@@ -182,7 +182,7 @@ class EraseFunction : public ImageFunction
       virtual String getLocalName() const { return "erase";}
       
       virtual ItemSequence_t
-      evaluate(const StatelessExternalFunction::Arguments_t& args,
+      evaluate(const ExternalFunction::Arguments_t& args,
                const StaticContext* aSctxCtx,
                const DynamicContext* aDynCtx) const;
     
@@ -199,7 +199,7 @@ class  FlopFunction : public ImageFunction
       virtual String getLocalName() const { return "flop";}
 
       virtual ItemSequence_t
-      evaluate(const StatelessExternalFunction::Arguments_t& args,
+      evaluate(const ExternalFunction::Arguments_t& args,
                const StaticContext* aSctxCtx,
                const DynamicContext* aDynCtx) const;
 
@@ -215,7 +215,7 @@ class FlipFunction : public ImageFunction
       virtual String getLocalName() const { return "flip";}
 
       virtual ItemSequence_t
-      evaluate(const StatelessExternalFunction::Arguments_t& args,
+      evaluate(const ExternalFunction::Arguments_t& args,
                const StaticContext* aSctxCtx,
                const DynamicContext* aDynCtx) const;
 
@@ -231,7 +231,7 @@ class TrimFunction : public ImageFunction
       virtual String getLocalName() const { return "trim";}
 
       virtual ItemSequence_t
-      evaluate(const StatelessExternalFunction::Arguments_t& args,
+      evaluate(const ExternalFunction::Arguments_t& args,
                const StaticContext* aSctxCtx,
                const DynamicContext* aDynCtx) const;
 
@@ -247,7 +247,7 @@ class AddNoiseFunction : public ImageFunction
       virtual String getLocalName() const { return "add-noise-impl";}
 
       virtual ItemSequence_t
-      evaluate(const StatelessExternalFunction::Arguments_t& args,
+      evaluate(const ExternalFunction::Arguments_t& args,
                const StaticContext* aSctxCtx,
                const DynamicContext* aDynCtx) const;
 
@@ -263,7 +263,7 @@ class BlurFunction : public ImageFunction
       virtual String getLocalName() const { return "blur";}
 
       virtual ItemSequence_t
-      evaluate(const StatelessExternalFunction::Arguments_t& args,
+      evaluate(const ExternalFunction::Arguments_t& args,
                const StaticContext* aSctxCtx,
                const DynamicContext* aDynCtx) const;
 
@@ -279,7 +279,7 @@ class DespeckleFunction : public ImageFunction
       virtual String getLocalName() const { return "despeckle";}
 
       virtual ItemSequence_t
-      evaluate(const StatelessExternalFunction::Arguments_t& args,
+      evaluate(const ExternalFunction::Arguments_t& args,
                const StaticContext* aSctxCtx,
                const DynamicContext* aDynCtx) const;
 
@@ -295,7 +295,7 @@ class EnhanceFunction : public ImageFunction
       virtual String getLocalName() const { return "enhance";}
 
       virtual ItemSequence_t
-      evaluate(const StatelessExternalFunction::Arguments_t& args,
+      evaluate(const ExternalFunction::Arguments_t& args,
                const StaticContext* aSctxCtx,
                const DynamicContext* aDynCtx) const;
 
@@ -311,7 +311,7 @@ class EqualizeFunction : public ImageFunction
       virtual String getLocalName() const { return "equalize";}
 
       virtual ItemSequence_t
-      evaluate(const StatelessExternalFunction::Arguments_t& args,
+      evaluate(const ExternalFunction::Arguments_t& args,
                const StaticContext* aSctxCtx,
                const DynamicContext* aDynCtx) const;
 
@@ -327,7 +327,7 @@ class EdgeFunction : public ImageFunction
       virtual String getLocalName() const { return "edge";}
 
       virtual ItemSequence_t
-      evaluate(const StatelessExternalFunction::Arguments_t& args,
+      evaluate(const ExternalFunction::Arguments_t& args,
                const StaticContext* aSctxCtx,
                const DynamicContext* aDynCtx) const;
 
@@ -343,7 +343,7 @@ class CharcoalFunction : public ImageFunction
       virtual String getLocalName() const { return "charcoal";}
 
       virtual ItemSequence_t
-      evaluate(const StatelessExternalFunction::Arguments_t& args,
+      evaluate(const ExternalFunction::Arguments_t& args,
                const StaticContext* aSctxCtx,
                const DynamicContext* aDynCtx) const;
 
@@ -359,7 +359,7 @@ class EmbossFunction : public ImageFunction
       virtual String getLocalName() const { return "emboss";}
 
       virtual ItemSequence_t
-      evaluate(const StatelessExternalFunction::Arguments_t& args,
+      evaluate(const ExternalFunction::Arguments_t& args,
                const StaticContext* aSctxCtx,
                const DynamicContext* aDynCtx) const;
 
@@ -375,7 +375,7 @@ class SolarizeFunction : public ImageFunction
       virtual String getLocalName() const { return "solarize";}
 
       virtual ItemSequence_t
-      evaluate(const StatelessExternalFunction::Arguments_t& args,
+      evaluate(const ExternalFunction::Arguments_t& args,
                const StaticContext* aSctxCtx,
                const DynamicContext* aDynCtx) const;
 
@@ -391,7 +391,7 @@ class StereoFunction : public ImageFunction
       virtual String getLocalName() const { return "stereo";}
 
       virtual ItemSequence_t
-      evaluate(const StatelessExternalFunction::Arguments_t& args,
+      evaluate(const ExternalFunction::Arguments_t& args,
                const StaticContext* aSctxCtx,
                const DynamicContext* aDynCtx) const;
 
@@ -407,7 +407,7 @@ class TransparentFunction : public ImageFunction
       virtual String getLocalName() const { return "transparent-impl";}
 
       virtual ItemSequence_t
-      evaluate(const StatelessExternalFunction::Arguments_t& args,
+      evaluate(const ExternalFunction::Arguments_t& args,
                const StaticContext* aSctxCtx,
                const DynamicContext* aDynCtx) const;
 
@@ -423,7 +423,7 @@ class SwirlFunction : public ImageFunction
       virtual String getLocalName() const { return "swirl";}
 
       virtual ItemSequence_t
-      evaluate(const StatelessExternalFunction::Arguments_t& args,
+      evaluate(const ExternalFunction::Arguments_t& args,
                const StaticContext* aSctxCtx,
                const DynamicContext* aDynCtx) const;
 
@@ -439,7 +439,7 @@ class ReduceNoiseFunction : public ImageFunction
       virtual String getLocalName() const { return "reduce-noise";}
 
       virtual ItemSequence_t
-      evaluate(const StatelessExternalFunction::Arguments_t& args,
+      evaluate(const ExternalFunction::Arguments_t& args,
                const StaticContext* aSctxCtx,
                const DynamicContext* aDynCtx) const;
 
@@ -455,7 +455,7 @@ class ContrastFunction : public ImageFunction
       virtual String getLocalName() const { return "contrast";}
 
       virtual ItemSequence_t
-      evaluate(const StatelessExternalFunction::Arguments_t& args,
+      evaluate(const ExternalFunction::Arguments_t& args,
                const StaticContext* aSctxCtx,
                const DynamicContext* aDynCtx) const;
 
@@ -471,7 +471,7 @@ class GammaFunction : public ImageFunction
       virtual String getLocalName() const { return "gamma";}
 
       virtual ItemSequence_t
-      evaluate(const StatelessExternalFunction::Arguments_t& args,
+      evaluate(const ExternalFunction::Arguments_t& args,
                const StaticContext* aSctxCtx,
                const DynamicContext* aDynCtx) const;
 
@@ -488,7 +488,7 @@ class ImplodeFunction : public ImageFunction
       virtual String getLocalName() const { return "implode";}
 
       virtual ItemSequence_t
-      evaluate(const StatelessExternalFunction::Arguments_t& args,
+      evaluate(const ExternalFunction::Arguments_t& args,
                const StaticContext* aSctxCtx,
                const DynamicContext* aDynCtx) const;
 
@@ -504,7 +504,7 @@ class OilPaintFunction : public ImageFunction
       virtual String getLocalName() const { return "oil-paint";}
 
       virtual ItemSequence_t
-      evaluate(const StatelessExternalFunction::Arguments_t& args,
+      evaluate(const ExternalFunction::Arguments_t& args,
                const StaticContext* aSctxCtx,
                const DynamicContext* aDynCtx) const;
 
@@ -520,7 +520,7 @@ class WaterMarkFunction : public ImageFunction
       virtual String getLocalName() const { return "watermark";}
 
       virtual ItemSequence_t
-      evaluate(const StatelessExternalFunction::Arguments_t& args,
+      evaluate(const ExternalFunction::Arguments_t& args,
                const StaticContext* aSctxCtx,
                const DynamicContext* aDynCtx) const;
 

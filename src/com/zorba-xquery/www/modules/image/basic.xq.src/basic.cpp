@@ -38,7 +38,7 @@ WidthFunction::WidthFunction(const ImageModule* aModule) : ImageFunction(aModule
 
 ItemSequence_t
 WidthFunction::evaluate(
-  const StatelessExternalFunction::Arguments_t& aArgs,
+  const ExternalFunction::Arguments_t& aArgs,
   const StaticContext*                          aSctxCtx,
   const DynamicContext*                         aDynCtx) const
 {
@@ -59,7 +59,7 @@ HeightFunction::HeightFunction(const ImageModule* aModule) : ImageFunction(aModu
 
 ItemSequence_t
 HeightFunction::evaluate(
-  const StatelessExternalFunction::Arguments_t& aArgs,
+  const ExternalFunction::Arguments_t& aArgs,
   const StaticContext*                          aSctxCtx,
   const DynamicContext*                         aDynCtx) const
 {
@@ -80,7 +80,7 @@ TypeFunction::TypeFunction(const ImageModule* aModule) : ImageFunction(aModule)
 
 ItemSequence_t
 TypeFunction::evaluate(
-  const StatelessExternalFunction::Arguments_t& aArgs,
+  const ExternalFunction::Arguments_t& aArgs,
   const StaticContext*                          aSctxCtx,
   const DynamicContext*                         aDynCtx) const
 {
@@ -104,7 +104,7 @@ ConvertSVGFunction::ConvertSVGFunction(const ImageModule* aModule) : ImageFuncti
 
 ItemSequence_t
 ConvertSVGFunction::evaluate(
-  const StatelessExternalFunction::Arguments_t& aArgs,
+  const ExternalFunction::Arguments_t& aArgs,
   const StaticContext*                          aSctxCtx,
   const DynamicContext*                         aDynCtx) const
 {
@@ -133,7 +133,7 @@ ConvertFunction::ConvertFunction(const ImageModule* aModule) : ImageFunction(aMo
 
 ItemSequence_t
 ConvertFunction::evaluate(
-  const StatelessExternalFunction::Arguments_t& aArgs,
+  const ExternalFunction::Arguments_t& aArgs,
   const StaticContext*                          aSctxCtx,
   const DynamicContext*                         aDynCtx) const
 {
@@ -163,7 +163,7 @@ CompressFunction::CompressFunction(const ImageModule* aModule) : ImageFunction(a
 
 ItemSequence_t
 CompressFunction::evaluate(
-  const StatelessExternalFunction::Arguments_t& aArgs,
+  const ExternalFunction::Arguments_t& aArgs,
   const StaticContext*                          aSctxCtx,
   const DynamicContext*                         aDynCtx) const
 {
@@ -194,7 +194,7 @@ CreateFunction::CreateFunction(const ImageModule* aModule) : ImageFunction(aModu
 
 ItemSequence_t
 CreateFunction::evaluate(
-  const StatelessExternalFunction::Arguments_t& aArgs,
+  const ExternalFunction::Arguments_t& aArgs,
   const StaticContext*                          aSctxCtx,
   const DynamicContext*                         aDynCtx) const
 {
@@ -221,7 +221,7 @@ EqualsFunction::EqualsFunction(const ImageModule* aModule) : ImageFunction(aModu
 
 ItemSequence_t
 EqualsFunction::evaluate(
-  const StatelessExternalFunction::Arguments_t& aArgs,
+  const ExternalFunction::Arguments_t& aArgs,
   const StaticContext*                          aSctxCtx,
   const DynamicContext*                         aDynCtx) const
 {
@@ -246,7 +246,7 @@ ExifFunction::ExifFunction(const ImageModule* aModule) : ImageFunction(aModule)
 
 ItemSequence_t
 ExifFunction::evaluate(
-  const StatelessExternalFunction::Arguments_t& aArgs,
+  const ExternalFunction::Arguments_t& aArgs,
   const StaticContext*                          aSctxCtx,
   const DynamicContext*                         aDynCtx) const
 {

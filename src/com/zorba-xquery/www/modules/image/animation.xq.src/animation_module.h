@@ -28,7 +28,7 @@ namespace zorba {  namespace imagemodule { namespace animationmodule {
 class AnimationModule : public ImageModule 
 {
 
-  virtual StatelessExternalFunction*
+  virtual ExternalFunction*
   getExternalFunction(const String& aLocalname);
  
 

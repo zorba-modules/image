@@ -39,7 +39,7 @@ class PaintImplFunction : public zorba::imagemodule::ImageFunction
       virtual String getLocalName() const { return "paint-impl";}
 
       virtual ItemSequence_t
-      evaluate(const StatelessExternalFunction::Arguments_t& args,
+      evaluate(const ExternalFunction::Arguments_t& args,
                const StaticContext* aSctxCtx,
                const DynamicContext* aDynCtx) const;
       

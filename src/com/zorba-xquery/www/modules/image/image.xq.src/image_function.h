@@ -18,7 +18,7 @@
 #define ZORBA_IMAGEMODULE_IMAGE_FUNCTION_H
 
 #include <zorba/error.h>
-#include <zorba/external_function.h>
+#include <zorba/function.h>
 #include <zorba/item.h>
 #include <zorba/iterator.h>
 #include <zorba/options.h>
@@ -29,7 +29,7 @@ namespace zorba { namespace imagemodule {
 
   class ImageModule;
 
-  class ImageFunction : public NonePureStatelessExternalFunction
+  class ImageFunction : public ContextualExternalFunction
   {
 
     public:
@@ -59,52 +59,52 @@ namespace zorba { namespace imagemodule {
 
     static String
     getOneStringArg(
-          const StatelessExternalFunction::Arguments_t& args,
+          const ExternalFunction::Arguments_t& args,
           int pos);
 
 
     static bool
     getOneBoolArg(
-            const StatelessExternalFunction::Arguments_t& args,
+            const ExternalFunction::Arguments_t& args,
             int pos);
 
 
       static void
           getOneImageArg(
             const DynamicContext* aDynamicContext,
-            const StatelessExternalFunction::Arguments_t& aArgs,
+            const ExternalFunction::Arguments_t& aArgs,
             int aPos,
             Magick::Image& aImage);
 
       static void
          getOneOrMoreImageArg(
               const DynamicContext* aDynamicContext,
-              const StatelessExternalFunction::Arguments_t& aArgs,
+              const ExternalFunction::Arguments_t& aArgs,
               int aPos,
               std::list<Magick::Image>& aImages,
               const unsigned int aDelay,
               const unsigned int aIterations);
 
      static unsigned int
-          getOneUnsignedIntArg(const StatelessExternalFunction::Arguments_t& aArgs,
+          getOneUnsignedIntArg(const ExternalFunction::Arguments_t& aArgs,
           int aPos);
 
       static int getOneIntArg(
-          const StatelessExternalFunction::Arguments_t& args,
+          const ExternalFunction::Arguments_t& args,
           int pos);
 
 
       static double  getOneDoubleArg(
-          const StatelessExternalFunction::Arguments_t& args,
+          const ExternalFunction::Arguments_t& args,
           int pos);
 
       static double  getOneOrNullDoubleArg (
-          const StatelessExternalFunction::Arguments_t& args,
+          const ExternalFunction::Arguments_t& args,
           int pos);
 
 
       static void getOneColorArg(
-           const StatelessExternalFunction::Arguments_t& aArgs,
+           const ExternalFunction::Arguments_t& aArgs,
            int aPos,
            Magick::ColorRGB& aColor);
 
@@ -123,11 +123,11 @@ namespace zorba { namespace imagemodule {
       static void checkIfItemIsNull(Item& aItem);
 
       static bool getAntiAliasingArg(
-          const StatelessExternalFunction::Arguments_t& aArgs,
+          const ExternalFunction::Arguments_t& aArgs,
           int aPos);
 
       static double getStrokeWidthArg(
-          const StatelessExternalFunction::Arguments_t& aArgs,
+          const ExternalFunction::Arguments_t& aArgs,
           int aPos);
 
   };

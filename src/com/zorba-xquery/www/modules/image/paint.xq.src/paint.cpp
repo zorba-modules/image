@@ -39,7 +39,7 @@ PaintImplFunction::PaintImplFunction(const ImageModule* aModule) : ImageFunction
 
 ItemSequence_t
 PaintImplFunction::evaluate(
-  const StatelessExternalFunction::Arguments_t& aArgs,
+  const ExternalFunction::Arguments_t& aArgs,
   const StaticContext*                          aSctxCtx,
   const DynamicContext*                         aDynCtx) const 
 {

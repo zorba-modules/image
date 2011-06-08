@@ -22,10 +22,10 @@ namespace zorba { namespace imagemodule { namespace animationmodule {
 
 
   
-StatelessExternalFunction*
+ExternalFunction*
 AnimationModule::getExternalFunction(const String& aLocalname)
 {
-  StatelessExternalFunction*& lFunc = theFunctions[aLocalname];
+  ExternalFunction*& lFunc = theFunctions[aLocalname];
   if (!lFunc) {
     if (1 == 0) {
     } else if (aLocalname == "create-animated-gif") {

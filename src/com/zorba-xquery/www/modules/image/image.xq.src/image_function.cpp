@@ -87,7 +87,7 @@ ImageFunction::checkIfItemIsNull(Item& aItem) {
 }
 String
 ImageFunction::getOneStringArg(
-    const StatelessExternalFunction::Arguments_t& aArgs,
+    const ExternalFunction::Arguments_t& aArgs,
     int aPos)
 {
   Item lItem;
@@ -112,7 +112,7 @@ ImageFunction::getOneStringArg(
 
 bool
 ImageFunction::getOneBoolArg(
-    const StatelessExternalFunction::Arguments_t& aArgs,
+    const ExternalFunction::Arguments_t& aArgs,
     int aPos)
 {
   Item lItem;
@@ -137,7 +137,7 @@ ImageFunction::getOneBoolArg(
 
 void
 ImageFunction::getOneColorArg(
-     const StatelessExternalFunction::Arguments_t& aArgs,
+     const ExternalFunction::Arguments_t& aArgs,
      int aPos,
      Magick::ColorRGB& aColor)
 {
@@ -177,7 +177,7 @@ ImageFunction::getColorFromString(const String aColorString,
 
 int
 ImageFunction::getOneIntArg(
-    const StatelessExternalFunction::Arguments_t& aArgs,
+    const ExternalFunction::Arguments_t& aArgs,
     int aPos)
 {
   Item lItem;
@@ -202,7 +202,7 @@ ImageFunction::getOneIntArg(
 }
 
 unsigned int
-ImageFunction::getOneUnsignedIntArg(const StatelessExternalFunction::Arguments_t& aArgs,
+ImageFunction::getOneUnsignedIntArg(const ExternalFunction::Arguments_t& aArgs,
                                     int aPos)
 {
   Item lItem;
@@ -228,7 +228,7 @@ ImageFunction::getOneUnsignedIntArg(const StatelessExternalFunction::Arguments_t
 
 double
 ImageFunction::getOneDoubleArg(
-    const StatelessExternalFunction::Arguments_t& aArgs,
+    const ExternalFunction::Arguments_t& aArgs,
     int aPos)
 {
   Item lItem;
@@ -278,7 +278,7 @@ ImageFunction::getEncodedStringFromImage(const DynamicContext* aDynamicContext, 
 
 void
 ImageFunction::getOneImageArg(const DynamicContext* aDynamicContext,
-                              const StatelessExternalFunction::Arguments_t& aArgs,
+                              const ExternalFunction::Arguments_t& aArgs,
                               int aPos,
                               Magick::Image& aImage)
 {
@@ -289,7 +289,7 @@ ImageFunction::getOneImageArg(const DynamicContext* aDynamicContext,
 
 void
 ImageFunction::getOneOrMoreImageArg(const DynamicContext* aDynamicContext,
-                                     const StatelessExternalFunction::Arguments_t& aArgs,
+                                     const ExternalFunction::Arguments_t& aArgs,
                                      int aPos,
                                      std::list<Magick::Image>& aImages,
                                      const unsigned int aDelay,
@@ -336,7 +336,7 @@ ImageFunction::getImageFromString(const DynamicContext* aDynamicContext, const S
 
 bool
 ImageFunction::getAntiAliasingArg(
-    const StatelessExternalFunction::Arguments_t& aArgs,
+    const ExternalFunction::Arguments_t& aArgs,
     int aPos)
 {
   Item lItem;
@@ -357,7 +357,7 @@ ImageFunction::getAntiAliasingArg(
 }
 
 double
-ImageFunction::getStrokeWidthArg(const StatelessExternalFunction::Arguments_t& aArgs,
+ImageFunction::getStrokeWidthArg(const ExternalFunction::Arguments_t& aArgs,
                                  int aPos)
 {
   Item lItem;

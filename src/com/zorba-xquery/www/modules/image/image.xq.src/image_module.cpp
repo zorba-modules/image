@@ -15,7 +15,7 @@
  */
 
 #include "image_module.h"
-#include <zorba/external_function.h>
+#include <zorba/function.h>
 
 
 namespace zorba { namespace imagemodule { 
@@ -31,10 +31,10 @@ ImageModule::~ImageModule()
   theFunctions.clear();
 }
 
-StatelessExternalFunction*
+ExternalFunction*
 ImageModule::getExternalFunction(const String& aLocalname)
 {
-  StatelessExternalFunction*& lFunc = theFunctions[aLocalname];
+  ExternalFunction*& lFunc = theFunctions[aLocalname];
   return lFunc;
 }
 

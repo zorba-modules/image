@@ -40,7 +40,7 @@ CreateAnimatedGifFunction::CreateAnimatedGifFunction(const ImageModule* aModule)
 
 ItemSequence_t
 CreateAnimatedGifFunction::evaluate(
-  const StatelessExternalFunction::Arguments_t& aArgs,
+  const ExternalFunction::Arguments_t& aArgs,
   const StaticContext*                          aSctxCtx,
   const DynamicContext*                         aDynCtx) const
 {
@@ -72,7 +72,7 @@ CreateMorphedGifFunction::CreateMorphedGifFunction(const ImageModule* aModule) :
 
 ItemSequence_t
 CreateMorphedGifFunction::evaluate(
-  const StatelessExternalFunction::Arguments_t& aArgs,
+  const ExternalFunction::Arguments_t& aArgs,
   const StaticContext*                          aSctxCtx,
   const DynamicContext*                         aDynCtx) const
 {

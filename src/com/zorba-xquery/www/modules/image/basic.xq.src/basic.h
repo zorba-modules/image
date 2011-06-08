@@ -35,7 +35,7 @@ class WidthFunction : public zorba::imagemodule::ImageFunction
       virtual String getLocalName() const { return "width";}
 
       virtual ItemSequence_t
-      evaluate(const StatelessExternalFunction::Arguments_t& args,
+      evaluate(const ExternalFunction::Arguments_t& args,
                const StaticContext* aSctxCtx,
                const DynamicContext* aDynCtx) const;
 
@@ -53,7 +53,7 @@ class HeightFunction : public zorba::imagemodule::ImageFunction
       virtual String getLocalName() const { return "height";}
 
       virtual ItemSequence_t
-      evaluate(const StatelessExternalFunction::Arguments_t& args,
+      evaluate(const ExternalFunction::Arguments_t& args,
                const StaticContext* aSctxCtx,
                const DynamicContext* aDynCtx) const;
 
@@ -70,7 +70,7 @@ class HeightFunction : public zorba::imagemodule::ImageFunction
       virtual String getLocalName() const { return "type"; }
 
       virtual ItemSequence_t
-      evaluate(const StatelessExternalFunction::Arguments_t& args,
+      evaluate(const ExternalFunction::Arguments_t& args,
                const StaticContext* aSctxCtx,
                const DynamicContext* aDynCtx) const;
 
@@ -86,7 +86,7 @@ class ConvertFunction : public zorba::imagemodule::ImageFunction
       virtual String getLocalName() const { return "convert-impl"; }
 
       virtual ItemSequence_t
-      evaluate(const StatelessExternalFunction::Arguments_t& args,
+      evaluate(const ExternalFunction::Arguments_t& args,
                const StaticContext* aSctxCtx,
                const DynamicContext* aDynCtx) const;
 
@@ -102,7 +102,7 @@ class CompressFunction : public zorba::imagemodule::ImageFunction
       virtual String getLocalName() const { return "compress"; }
 
       virtual ItemSequence_t
-      evaluate(const StatelessExternalFunction::Arguments_t& args,
+      evaluate(const ExternalFunction::Arguments_t& args,
                const StaticContext* aSctxCtx,
                const DynamicContext* aDynCtx) const;
 
@@ -117,7 +117,7 @@ class CreateFunction : public zorba::imagemodule::ImageFunction
       virtual String getLocalName() const { return "create-impl"; }
 
       virtual ItemSequence_t
-      evaluate(const StatelessExternalFunction::Arguments_t& args,
+      evaluate(const ExternalFunction::Arguments_t& args,
                const StaticContext* aSctxCtx,
                const DynamicContext* aDynCtx) const;
 
@@ -132,7 +132,7 @@ class EqualsFunction : public zorba::imagemodule::ImageFunction
       virtual String getLocalName() const { return "equals"; }
 
       virtual ItemSequence_t
-      evaluate(const StatelessExternalFunction::Arguments_t& args,
+      evaluate(const ExternalFunction::Arguments_t& args,
                const StaticContext* aSctxCtx,
                const DynamicContext* aDynCtx) const;
 
@@ -149,7 +149,7 @@ class ExifFunction : public zorba::imagemodule::ImageFunction
       virtual String getLocalName() const { return "exif"; }
 
       virtual ItemSequence_t
-      evaluate(const StatelessExternalFunction::Arguments_t& args,
+      evaluate(const ExternalFunction::Arguments_t& args,
                const StaticContext* aSctxCtx,
                const DynamicContext* aDynCtx) const;
 
@@ -165,7 +165,7 @@ class ConvertSVGFunction : public zorba::imagemodule::ImageFunction
       virtual String getLocalName() const { return "convert-svg-impl"; }
 
       virtual ItemSequence_t
-      evaluate(const StatelessExternalFunction::Arguments_t& args,
+      evaluate(const ExternalFunction::Arguments_t& args,
                const StaticContext* aSctxCtx,
                const DynamicContext* aDynCtx) const;
 

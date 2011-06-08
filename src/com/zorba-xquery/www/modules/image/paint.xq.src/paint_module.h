@@ -36,7 +36,7 @@ public:
   virtual String
   getURI() const { return "http://www.zorba-xquery.com/modules/image/paint"; }
   
-  virtual StatelessExternalFunction*
+  virtual ExternalFunction*
   getExternalFunction(const String& aLocalname);
 
     
