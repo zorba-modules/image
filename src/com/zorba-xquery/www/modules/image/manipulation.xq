@@ -34,7 +34,7 @@ import schema namespace image = 'http://www.zorba-xquery.com/modules/image/image
  : @param $height is the new height for the image.
  : @return A new image with the specified width and height.
  : @error IM001 If the passed xs:base64Binary is not a valid image.
- : @example rbkt/Queries/zorba/image/manipulation_resize.xq
+ : @example test/Queries/image/manipulation_resize.xq
  :)
 declare function man:resize($image as xs:base64Binary, $width as xs:unsignedInt, $height as xs:unsignedInt) as xs:base64Binary external; 
 
@@ -50,7 +50,7 @@ declare function man:resize($image as xs:base64Binary, $width as xs:unsignedInt,
  : @param $ratio is the ratio for which to zoom by.
  : @return A new image with the specified width and the height changed accordingly.
  : @error IM001 If the passed xs:base64Binary is not a valid image.
- : @example rbkt/Queries/zorba/image/manipulation_zoom.xq
+ : @example test/Queries/image/manipulation_zoom.xq
  :)
 declare function man:zoom($image as xs:base64Binary, $ratio as xs:double) as xs:base64Binary external; 
 
@@ -64,7 +64,7 @@ declare function man:zoom($image as xs:base64Binary, $ratio as xs:double) as xs:
  : @param $width is the new width for the image in pixels.
  : @return A new image with the specified width and the height changed accordingly.
  : @error IM001 If the passed xs:base64Binary is not a valid image.
- : @example rbkt/Queries/zorba/image/manipulation_zoom_width.xq
+ : @example test/Queries/image/manipulation_zoom_width.xq
  :)
 declare function man:zoom-by-width($image as xs:base64Binary, $width as xs:unsignedInt) as xs:base64Binary external; 
 
@@ -77,7 +77,7 @@ declare function man:zoom-by-width($image as xs:base64Binary, $width as xs:unsig
  : @param $height is the new height for the image in pixels.
  : @return A new image with the specified width and the height changed accordingly.
  : @error IM001 If the passed xs:base64Binary is not a valid image.
- : @example rbkt/Queries/zorba/image/manipulation_zoom_height.xq
+ : @example test/Queries/image/manipulation_zoom_height.xq
  :)
 declare function man:zoom-by-height($image as xs:base64Binary, $height as xs:unsignedInt) as xs:base64Binary external; 
 
@@ -94,7 +94,7 @@ declare function man:zoom-by-height($image as xs:base64Binary, $height as xs:uns
  : @param $height is the height which the sub-image should have.
  : @return A new image containing the specified rectangle of the passed image.
  : @error IM001 If the passed xs:base64Binary is not a valid image.
- : @example rbkt/Queries/zorba/image/manipulation_sub_image.xq
+ : @example test/Queries/image/manipulation_sub_image.xq
  :)
 declare function man:sub-image($image as xs:base64Binary, $left-upper-x as xs:unsignedInt, $left-upper-y as xs:unsignedInt, 
                                 $width as xs:unsignedInt, $height as xs:unsignedInt) as xs:base64Binary external; 
@@ -126,7 +126,7 @@ declare function man:sub-image($image as xs:base64Binary, $left-upper-x as xs:un
  : @return A new image which consisting of $image overlayed with $overlay-image.
  : @error IM001 If the passed xs:base64Binary is not a valid image. 
  : @error If an unsupported operator is passed.
- : @example rbkt/Queries/zorba/image/manipulation_overlay.xq
+ : @example test/Queries/image/manipulation_overlay.xq
  :)
 declare function man:overlay($image as xs:base64Binary, $overlay-image as xs:base64Binary, $overlay-upper-left-x as xs:unsignedInt,
                                 $overlay-upper-left-y as xs:unsignedInt, $operator as xs:string) as xs:base64Binary {
@@ -142,7 +142,7 @@ declare function man:overlay($image as xs:base64Binary, $overlay-image as xs:bas
  : @param $upper-left-y is the y value of the upper left corner of the part we want to chop out.
  : @return A new image choped to the desired size.
  : @error IM001 If the passed xs:base64Binary is not a valid image.
- : @example rbkt/Queries/zorba/image/manipulation_chop.xq
+ : @example test/Queries/image/manipulation_chop.xq
  :)
 declare function man:chop($image as xs:base64Binary, $upper-left-x as xs:unsignedInt, $upper-left-y as xs:unsignedInt) as xs:base64Binary external; 
 
@@ -154,7 +154,7 @@ declare function man:chop($image as xs:base64Binary, $upper-left-x as xs:unsigne
  : @param $lower-right-y is the y value of the lower right corner of the part we want to crop out.
  : @return A new image choped to the desired size.
  : @error If the passed xs:base64Binary is not a valid image.
- : @example rbkt/Queries/zorba/image/manipulation_crop.xq
+ : @example test/Queries/image/manipulation_crop.xq
  :)
 declare function man:crop($image as xs:base64Binary, $lower-right-x as xs:unsignedInt, $lower-right-y as xs:unsignedInt) as xs:base64Binary external; 
 
@@ -167,7 +167,7 @@ declare function man:crop($image as xs:base64Binary, $lower-right-x as xs:unsign
  : @param $angle should be a value between -360 to 360 degrees. Other values will be used modulo 360.
  : @return The passed image rotated by the specified angle.
  : @error IM001 If the passed xs:base64Binary is not a valid image.
- : @example rbkt/Queries/zorba/image/manipulation_rotate.xq
+ : @example test/Queries/image/manipulation_rotate.xq
  :)
 declare function man:rotate($image as xs:base64Binary, $angle as xs:int) as xs:base64Binary external; 
 
@@ -179,7 +179,7 @@ declare function man:rotate($image as xs:base64Binary, $angle as xs:int) as xs:b
  : @param $image Is the image to erase.
  : @return A new image with all pixels set to the current background color.
  : @error IM001 If the passed xs:base64Binary is not a valid image.
- : @example rbkt/Queries/zorba/image/manipulation_erase.xq
+ : @example test/Queries/image/manipulation_erase.xq
  :)
 declare function man:erase($image as xs:base64Binary) as xs:base64Binary external; 
 
@@ -190,7 +190,7 @@ declare function man:erase($image as xs:base64Binary) as xs:base64Binary externa
  : @param $image Is the image to flop.
  : @return A new image with which is the flopped version of the passed image.
  : @error IM001 If the passed xs:base64Binary is not a valid image.
- : @example rbkt/Queries/zorba/image/manipulation_flop.xq
+ : @example test/Queries/image/manipulation_flop.xq
  :)
 declare function man:flop($image as xs:base64Binary) as xs:base64Binary external; 
   
@@ -201,7 +201,7 @@ declare function man:flop($image as xs:base64Binary) as xs:base64Binary external
  : @param $image Is the image to flip.
  : @return A new image with which is the flipped version of the passed image.
  : @error IM001 If the passed xs:base64Binary is not a valid image. 
- : @example rbkt/Queries/zorba/image/manipulation_flip.xq
+ : @example test/Queries/image/manipulation_flip.xq
  :)
 declare function man:flip($image as xs:base64Binary) as xs:base64Binary external; 
 
@@ -210,7 +210,7 @@ declare function man:flip($image as xs:base64Binary) as xs:base64Binary external
  : @param $image is the image to trim.
  : @return A new image which is the trimmed image of the passed image.
  : @error IM001 If the passed xs:base64Binary is not a valid image.
- : @example rbkt/Queries/zorba/image/manipulation_trim.xq
+ : @example test/Queries/image/manipulation_trim.xq
  :)
 declare function man:trim($image as xs:base64Binary) as xs:base64Binary external; 
 
@@ -232,7 +232,7 @@ declare function man:trim($image as xs:base64Binary) as xs:base64Binary external
  : @return a new image which is the passed image with added noise.
  : @error IM001 If the passed xs:base64Binary is not a valid image.
  : @error If the an unsupported noise type is passed.
- : @example rbkt/Queries/zorba/image/manipulation_add_noise.xq
+ : @example test/Queries/image/manipulation_add_noise.xq
  :)
 declare function man:add-noise($image as xs:base64Binary, $noise-type as xs:string) as xs:base64Binary {
   man:add-noise-impl($image, image:noiseType($noise-type)) 
@@ -247,7 +247,7 @@ declare function man:add-noise($image as xs:base64Binary, $noise-type as xs:stri
  : @param $sigma is the standard deviation of the Laplacian in pixels.
  : @return A blurred version of the passed image.
  : @error IM001 If the passed xs:base64Binary is not a valid image.
- : @example rbkt/Queries/zorba/image/manipulation_blur.xq
+ : @example test/Queries/image/manipulation_blur.xq
  :)
 declare function man:blur($image as xs:base64Binary, $radius as xs:int, $sigma as xs:int) as xs:base64Binary external; 
 
@@ -258,7 +258,7 @@ declare function man:blur($image as xs:base64Binary, $radius as xs:int, $sigma a
  : @param $image is the image to dispeckle.
  : @return A despeckled version of the passed image.
  : @error IM001 If the passed xs:base64Binary is not a valid image.
- : @example rbkt/Queries/zorba/image/manipulation_despeckle.xq
+ : @example test/Queries/image/manipulation_despeckle.xq
  :)
 declare function man:despeckle($image as xs:base64Binary) as xs:base64Binary external; 
 
@@ -269,7 +269,7 @@ declare function man:despeckle($image as xs:base64Binary) as xs:base64Binary ext
  : @param $image is the image to enhance.
  : @return A enhanced version of the passed image.
  : @error IM001 If the passed xs:base64Binary is not a valid image.
- : @example rbkt/Queries/zorba/image/manipulation_enhance.xq
+ : @example test/Queries/image/manipulation_enhance.xq
  :) 
 declare function man:enhance($image as xs:base64Binary) as xs:base64Binary external; 
 
@@ -280,7 +280,7 @@ declare function man:enhance($image as xs:base64Binary) as xs:base64Binary exter
  : @param $image is the image to equalize.
  : @return A equalized version of the passed image.
  : @error IM001 If the passed xs:base64Binary is not a valid image.
- : @example rbkt/Queries/zorba/image/manipulation_equalize.xq
+ : @example test/Queries/image/manipulation_equalize.xq
  :) 
 declare function man:equalize($image as xs:base64Binary) as xs:base64Binary external; 
 
@@ -295,7 +295,7 @@ declare function man:equalize($image as xs:base64Binary) as xs:base64Binary exte
  : @param $radius specifies the radius of the pixel neighborhood, specify a radius of 0 for automatic radius selection.
  : @return A edged version of the passed image.
  : @error IM001 If the passed xs:base64Binary is not a valid image.
- : @example rbkt/Queries/zorba/image/manipulation_edge.xq
+ : @example test/Queries/image/manipulation_edge.xq
  :) 
 declare function man:edge($image as xs:base64Binary, $radius as xs:unsignedInt) as xs:base64Binary external; 
  
@@ -310,7 +310,7 @@ declare function man:edge($image as xs:base64Binary, $radius as xs:unsignedInt) 
  : @param $sigma specifies the standard deviation of the Laplacian in pixels.
  : @return A charcoaled version of the passed image.
  : @error IM001 If the passed xs:base64Binary is not a valid image.
- : @example rbkt/Queries/zorba/image/manipulation_charcoal.xq
+ : @example test/Queries/image/manipulation_charcoal.xq
  :)
 declare function man:charcoal($image as xs:base64Binary, $radius as xs:double, $sigma as xs:double) as xs:base64Binary external; 
 
@@ -323,7 +323,7 @@ declare function man:charcoal($image as xs:base64Binary, $radius as xs:double, $
  : @param $sigma specifies the standard deviation of the Laplacian in pixels.
  : @return A embossed version of the passed image.
  : @error IM001 If the passed xs:base64Binary is not a valid image.
- : @example rbkt/Queries/zorba/image/manipulation_emboss.xq
+ : @example test/Queries/image/manipulation_emboss.xq
  :) 
 declare function man:emboss($image as xs:base64Binary, $radius as xs:double, $sigma as xs:double) as xs:base64Binary external; 
 
@@ -335,7 +335,7 @@ declare function man:emboss($image as xs:base64Binary, $radius as xs:double, $si
  : @param $factor specifies the strength of the solarization.
  : @return A solarized version of the passed image.
  : @error IM001 If the passed xs:base64Binary is not a valid image.
- : @example rbkt/Queries/zorba/image/manipulation_solarize.xq
+ : @example test/Queries/image/manipulation_solarize.xq
  :)
 declare function man:solarize($image as xs:base64Binary, $factor as xs:double) as xs:base64Binary external; 
 
@@ -348,7 +348,7 @@ declare function man:solarize($image as xs:base64Binary, $factor as xs:double) a
  : @param $right-image is the right image for the stereo image.
  : @return A new image that is the stereo version of both passed images.
  : @error IM001 If eighter of the passed xs:base64Binary is not a valid image.
- : @example rbkt/Queries/zorba/image/manipulation_stereo.xq
+ : @example test/Queries/image/manipulation_stereo.xq
  :)
 declare function man:stereo($left-image as xs:base64Binary, $right-image as xs:base64Binary) as xs:base64Binary external; 
 
@@ -361,7 +361,7 @@ declare function man:stereo($left-image as xs:base64Binary, $right-image as xs:b
  : @param $color is the color to make transparent (e.g. '#FFFFFF')
  : @return A version of the passed image with the specified color made transparent.
  : @error IM001 If the passed xs:base64Binary is not a valid image.
- : @example rbkt/Queries/zorba/image/manipulation_transparent.xq
+ : @example test/Queries/image/manipulation_transparent.xq
  :)
 declare function man:transparent($image as xs:base64Binary, $color as xs:string) as xs:base64Binary {
   man:transparent-impl($image, image:colorType($color))
@@ -376,7 +376,7 @@ declare function man:transparent($image as xs:base64Binary, $color as xs:string)
  : @param $degrees specifies by how much the image is to be swirled.
  : @return A swirled version of the passed image.
  : @error IM001 If the passed xs:base64Binary is not a valid image.
- : @example rbkt/Queries/zorba/image/manipulation_swirl.xq
+ : @example test/Queries/image/manipulation_swirl.xq
  :)
 declare function man:swirl($image as xs:base64Binary, $degrees as xs:double) as xs:base64Binary external; 
 
@@ -389,7 +389,7 @@ declare function man:swirl($image as xs:base64Binary, $degrees as xs:double) as 
  : @param $order defines how much the noise is reduced.
  : @return A version of the passed image with reduced noise.
  : @error IM001 If the passed xs:base64Binary is not a valid image.
- : @example rbkt/Queries/zorba/image/manipulation_reduce_noise.xq
+ : @example test/Queries/image/manipulation_reduce_noise.xq
  :)
 declare function man:reduce-noise($image as xs:base64Binary, $order as xs:double) as xs:base64Binary external; 
   
@@ -401,7 +401,7 @@ declare function man:reduce-noise($image as xs:base64Binary, $order as xs:double
  : @param $sharpen defines how much the image should be contrasted.
  : @return A new version of the passed image with the given contrast.
  : @error IM001 If the passed xs:base64Binary is not a valid image.
- : @example rbkt/Queries/zorba/image/manipulation_contrast.xq
+ : @example test/Queries/image/manipulation_contrast.xq
  :)
 declare function man:contrast($image as xs:base64Binary, $sharpen as xs:double) as xs:base64Binary external;
 
@@ -413,7 +413,7 @@ declare function man:contrast($image as xs:base64Binary, $sharpen as xs:double) 
  : @param $gamma-value is the value for which to gamma correct the image.
  : @return A new, gamma correction version of the passed image.
  : @error IM001 If the passed xs:base64Binary is not a valid image.
- : @example rbkt/Queries/zorba/image/manipulation_gamma.xq
+ : @example test/Queries/image/manipulation_gamma.xq
  :)
 declare function man:gamma($image as xs:base64Binary, $gamma-value as xs:double) as xs:base64Binary external;
 
@@ -428,7 +428,7 @@ declare function man:gamma($image as xs:base64Binary, $gamma-value as xs:double)
  : @param $gamma-blue is the value for which to gamma correct the blue channel of the image.
  : @return A new, gamma correction version of the passed image.
  : @error IM001 If the passed xs:base64Binary is not a valid image.
- : @example rbkt/Queries/zorba/image/manipulation_gamma2.xq
+ : @example test/Queries/image/manipulation_gamma2.xq
  :)
 declare function man:gamma($image as xs:base64Binary, $gamma-red as xs:double, $gamma-green as xs:double, $gamma-blue as xs:double) as xs:base64Binary external; 
 
@@ -440,7 +440,7 @@ declare function man:gamma($image as xs:base64Binary, $gamma-red as xs:double, $
  : @param $factor is the factor to implode to.
  : @return A imploded version of the passed image.
  : @error IM001 If the passed xs:base64Binary is not a valid image.
- : @example rbkt/Queries/zorba/image/manipulation_implode.xq 
+ : @example test/Queries/image/manipulation_implode.xq 
  :)
 declare function man:implode($image as xs:base64Binary, $factor as xs:double) as xs:base64Binary external; 
 
@@ -452,7 +452,7 @@ declare function man:implode($image as xs:base64Binary, $factor as xs:double) as
  : @param $radius is the radius with which to oil paint.
  : @return A oil painted version of the passed image.
  : @error IM001 If the passed xs:base64Binary is not a valid image.
- : @example rbkt/Queries/zorba/image/manipulation_oil_paint.xq
+ : @example test/Queries/image/manipulation_oil_paint.xq
  :)
 declare function man:oil-paint($image as xs:base64Binary, $radius as xs:double) as xs:base64Binary external; 
  
@@ -464,7 +464,7 @@ declare function man:oil-paint($image as xs:base64Binary, $radius as xs:double) 
  : @param $watermark is the image which contains the watermark data.
  : @return A version of $image with a digital watermark in form of $watermark.
  : @error IM001 If the passed xs:base64Binary is not a valid image.
- : @example rbkt/Queries/zorba/image/manipulation_watermark.xq
+ : @example test/Queries/image/manipulation_watermark.xq
  :)
 declare function man:watermark($image as xs:base64Binary, $watermark as xs:base64Binary) as xs:base64Binary external; 
 
