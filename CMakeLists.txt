@@ -61,3 +61,5 @@ ADD_SUBDIRECTORY("src")
 #  separate the graphviz module out entirely. This only works at the
 #  moment because there are no graphviz tests (!).
 ADD_TEST_DIRECTORY("${PROJECT_SOURCE_DIR}/test")
+
+SETUP_EXTERNAL_MODULE()
