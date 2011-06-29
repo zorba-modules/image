@@ -14,8 +14,8 @@ module namespace anim = 'http://www.zorba-xquery.com/modules/image/animation';
  :)
 import module namespace error = 'http://www.zorba-xquery.com/modules/image/error';
 
-
-
+declare namespace ver = "http://www.zorba-xquery.com/options/versioning";
+declare option ver:module-version "1.0";
 
 (:~
  : Creates an animated GIF image from the passed $images. The width and height of the first passed image will be used.

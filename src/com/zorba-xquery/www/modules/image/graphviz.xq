@@ -48,6 +48,9 @@ module namespace gr = "http://www.zorba-xquery.com/modules/image/graphviz";
  :)
 import schema namespace gxl="http://www.gupro.de/GXL/gxl-1.0.xsd";
 
+declare namespace ver = "http://www.zorba-xquery.com/options/versioning";
+declare option ver:module-version "1.0";
+
 (:~
  : Layout one ore more graphs given in the DOT language and render
  : them as SVG. For example,

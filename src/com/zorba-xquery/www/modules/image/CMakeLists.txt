@@ -23,14 +23,14 @@ IF (ImageMagick_FOUND)
   TARGET_LINK_LIBRARIES(image_commons ${ImageMagick_LIBRARIES})
   INCLUDE_DIRECTORIES("image.xq.src")
   INCLUDE_DIRECTORIES("image_c.src")
-  GENERATE_MODULE_LIBRARY(basic
-    "image_c;image_commons;${ImageMagick_LIBRARIES}")
-  GENERATE_MODULE_LIBRARY(manipulation
-    "image_commons;${ImageMagick_LIBRARIES}")
-  GENERATE_MODULE_LIBRARY(paint
-    "image_c;image_commons;${ImageMagick_LIBRARIES}")
-  GENERATE_MODULE_LIBRARY(animation
-    "image_commons;${ImageMagick_LIBRARIES}")
+  DECLARE_ZORBA_MODULE("http://www.zorba-xquery.com/modules/image/basic"
+    1.0 "basic.xq" "image_c;image_commons;${ImageMagick_LIBRARIES}")
+  DECLARE_ZORBA_MODULE("http://www.zorba-xquery.com/modules/image/manipulation"
+    1.0 "manipulation.xq" "image_commons;${ImageMagick_LIBRARIES}")
+  DECLARE_ZORBA_MODULE("http://www.zorba-xquery.com/modules/image/paint"
+    1.0 "paint.xq" "image_c;image_commons;${ImageMagick_LIBRARIES}")
+  DECLARE_ZORBA_MODULE("http://www.zorba-xquery.com/modules/image/animation"
+    1.0 "animation.xq" "image_commons;${ImageMagick_LIBRARIES}")
 ENDIF (ImageMagick_FOUND)
 
 ########################################################################
@@ -38,5 +38,5 @@ ENDIF (ImageMagick_FOUND)
 ########################################################################
 IF (Graphiz_FOUND)
   INCLUDE_DIRECTORIES("graphviz.xq.src")
-  GENERATE_MODULE_LIBRARY(graphviz "${GRAPHVIZ_LIBRARIES}")
+  DECLARE_ZORBA_MODULE("http://www.zorba-xquery.com/modules/graphviz" 1.0 "${GRAPHVIZ_LIBRARIES}")
 ENDIF (Graphiz_FOUND)

@@ -21,6 +21,8 @@ import module namespace error = 'http://www.zorba-xquery.com/modules/image/error
  :)
 import schema namespace image = 'http://www.zorba-xquery.com/modules/image/image';
 
+declare namespace ver = "http://www.zorba-xquery.com/options/versioning";
+declare option ver:module-version "1.0";
 
 
 (:~

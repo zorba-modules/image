@@ -33,6 +33,9 @@ module namespace paint = 'http://www.zorba-xquery.com/modules/image/paint';
  :)
 import schema namespace image = 'http://www.zorba-xquery.com/modules/image/image';
 
+declare namespace ver = "http://www.zorba-xquery.com/options/versioning";
+declare option ver:module-version "1.0";
+
 
 (:~
  : Paints a sequence of paintable shapes to the passed image.<br></br>

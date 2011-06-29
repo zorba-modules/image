@@ -20,12 +20,13 @@ module namespace basic = 'http://www.zorba-xquery.com/modules/image/basic';
  :)
 import module namespace error = 'http://www.zorba-xquery.com/modules/image/error';
 
-
 (:~
  : Contains the definitions of the possible image types.
   :)
 import schema namespace image = 'http://www.zorba-xquery.com/modules/image/image';
 
+declare namespace ver = "http://www.zorba-xquery.com/options/versioning";
+declare option ver:module-version "1.0";
 
 (:~
  : Returns the width (in pixels) of the passed image.
