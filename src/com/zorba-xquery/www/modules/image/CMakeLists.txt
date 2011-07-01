@@ -23,14 +23,20 @@ IF (ImageMagick_FOUND)
   TARGET_LINK_LIBRARIES(image_commons ${ImageMagick_LIBRARIES})
   INCLUDE_DIRECTORIES("image.xq.src")
   INCLUDE_DIRECTORIES("image_c.src")
-  DECLARE_ZORBA_MODULE("http://www.zorba-xquery.com/modules/image/basic"
-    1.0 "basic.xq" "image_c;image_commons;${ImageMagick_LIBRARIES}")
-  DECLARE_ZORBA_MODULE("http://www.zorba-xquery.com/modules/image/manipulation"
-    1.0 "manipulation.xq" "image_commons;${ImageMagick_LIBRARIES}")
-  DECLARE_ZORBA_MODULE("http://www.zorba-xquery.com/modules/image/paint"
-    1.0 "paint.xq" "image_c;image_commons;${ImageMagick_LIBRARIES}")
-  DECLARE_ZORBA_MODULE("http://www.zorba-xquery.com/modules/image/animation"
-    1.0 "animation.xq" "image_commons;${ImageMagick_LIBRARIES}")
+  DECLARE_ZORBA_SCHEMA(FILE image.xsd
+    URI "http://www.zorba-xquery.com/modules/image/image")
+  DECLARE_ZORBA_MODULE(URI "http://www.zorba-xquery.com/modules/image/basic"
+    VERSION 1.0 FILE "basic.xq"
+    LINK_LIBRARIES image_c image_commons ${ImageMagick_LIBRARIES})
+  DECLARE_ZORBA_MODULE(VERSION 1.0 FILE "manipulation.xq"
+    URI "http://www.zorba-xquery.com/modules/image/manipulation"
+    LINK_LIBRARIES image_commons ${ImageMagick_LIBRARIES})
+  DECLARE_ZORBA_MODULE(VERSION 1.0 FILE "paint.xq"
+    URI "http://www.zorba-xquery.com/modules/image/paint"
+    LINK_LIBRARIES image_c image_commons ${ImageMagick_LIBRARIES})
+  DECLARE_ZORBA_MODULE(VERSION 1.0 FILE "animation.xq"
+    URI "http://www.zorba-xquery.com/modules/image/animation"
+    LINK_LIBRARIES image_commons ${ImageMagick_LIBRARIES})
 ENDIF (ImageMagick_FOUND)
 
 ########################################################################
@@ -38,5 +44,5 @@ ENDIF (ImageMagick_FOUND)
 ########################################################################
 IF (Graphiz_FOUND)
   INCLUDE_DIRECTORIES("graphviz.xq.src")
-  DECLARE_ZORBA_MODULE("http://www.zorba-xquery.com/modules/graphviz" 1.0 "${GRAPHVIZ_LIBRARIES}")
+  DECLARE_ZORBA_MODULE (URI "http://www.zorba-xquery.com/modules/graphviz" VERSION 1.0 FILE LINK_LIBRARIES "${GRAPHVIZ_LIBRARIES}")
 ENDIF (Graphiz_FOUND)
