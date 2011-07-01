@@ -38,7 +38,7 @@ ERROR:
 (:~
  : @return true if the man:despecle function works.
  :)
-declare function local:test-despeckle() as xs:boolean {
+declare %nondeterministic function local:test-despeckle() as xs:boolean {
     let $despeckled := man:despeckle($local:jpg)
     let $despeckled-ref :=  file:read-binary(concat($local:image-dir, "manipulation/despeckledBird.jpg"))
     return basic:equals($despeckled, $despeckled-ref)
@@ -48,7 +48,7 @@ declare function local:test-despeckle() as xs:boolean {
 (:~
  : @return true if the man:despecle function works.
  :)
-declare function local:test-enhance() as xs:boolean {
+declare %nondeterministic function local:test-enhance() as xs:boolean {
     let $enhanced := man:enhance(man:enhance($local:jpg))
     let $enhanced-ref :=  file:read-binary(concat($local:image-dir, "manipulation/enhancedBird.jpg"))
     return basic:equals($enhanced, $enhanced-ref)
@@ -59,7 +59,7 @@ declare function local:test-enhance() as xs:boolean {
 (:~
  : @return true if the man:charcoal function works.
  :)
-declare function local:test-charcoal() as xs:boolean {
+declare %nondeterministic function local:test-charcoal() as xs:boolean {
     let $charcoaled := man:charcoal($local:jpg, 0.5, 0.5)
     let $charcoaled-ref :=  file:read-binary(concat($local:image-dir, "manipulation/charcoaledBird.jpg"))
     return basic:equals($charcoaled, $charcoaled-ref)
@@ -69,14 +69,14 @@ declare function local:test-charcoal() as xs:boolean {
 (:~
  : @return true if the man:solarize function works.
  :)
-declare function local:test-solarize() as xs:boolean {
+declare %nondeterministic function local:test-solarize() as xs:boolean {
     let $solarized := man:solarize($local:jpg, 0.3)
     let $solarized-ref :=  file:read-binary(concat($local:image-dir, "manipulation/solarizedBird.jpg"))
     return basic:equals($solarized, $solarized-ref)
 };
 
 
-declare %sequential function local:main() as xs:string* {
+declare %nondeterministic %sequential function local:main() as xs:string* {
 
   let $a := local:test-despeckle()
   return

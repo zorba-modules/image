@@ -36,7 +36,7 @@ ERROR:
 (:~
  : @return true if the man:stereo function works.
  :)
-declare function local:test-stereo() as xs:boolean {
+declare %nondeterministic function local:test-stereo() as xs:boolean {
     let $right-image := man:zoom($local:jpg, 0.9)
     let $stereod := man:stereo($local:jpg, $right-image)
     let $stereod-ref := file:read-binary(concat($local:image-dir, "manipulation/stereodBird.jpg"))
@@ -46,7 +46,7 @@ declare function local:test-stereo() as xs:boolean {
 (:~
  : @return true if the man:transparent function works.
  :)
-declare function local:test-transparent() as xs:boolean {
+declare %nondeterministic function local:test-transparent() as xs:boolean {
     let $transparented := man:transparent($local:gif, "#000000")
     let $transparented-ref := file:read-binary(concat($local:image-dir, "manipulation/transparentedBird.gif"))
     return basic:equals($transparented, $transparented-ref)
@@ -55,7 +55,7 @@ declare function local:test-transparent() as xs:boolean {
 (:~
  : @return true if the man:swirl function works.
  :)
-declare function local:test-swirl() as xs:boolean {
+declare %nondeterministic function local:test-swirl() as xs:boolean {
     let $swirled := man:swirl($local:gif, -500)
     let $swirled-ref := file:read-binary(concat($local:image-dir, "manipulation/swirledBird.gif"))
     return basic:equals($swirled, $swirled-ref)
@@ -64,7 +64,7 @@ declare function local:test-swirl() as xs:boolean {
 (:~
  : @return true if the man:reduce-noise function works.
  :)
-declare function local:test-reduce-noise() as xs:boolean {
+declare %nondeterministic function local:test-reduce-noise() as xs:boolean {
     let $reduced := man:reduce-noise($local:gif, -0.4)
     let $reduced-ref := file:read-binary(concat($local:image-dir, "manipulation/reducedBird.gif"))
     return basic:equals($reduced, $reduced-ref)
@@ -74,14 +74,14 @@ declare function local:test-reduce-noise() as xs:boolean {
 (:~
  : @return true if the man:contrast function works.
  :)
-declare function local:test-contrast() as xs:boolean {
+declare %nondeterministic function local:test-contrast() as xs:boolean {
     let $contrasted := man:contrast($local:gif, 0.8)
     let $contrasted-ref := file:read-binary(concat($local:image-dir, "manipulation/contrastedBird.gif"))
     return basic:equals($contrasted, $contrasted-ref)
 };
 
 
-declare %sequential function local:main() as xs:string* {
+declare %nondeterministic %sequential function local:main() as xs:string* {
 
   let $a := local:test-stereo()
   return

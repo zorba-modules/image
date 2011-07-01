@@ -38,7 +38,7 @@ ERROR:
 (:~
  : @return true if the man:resize function works.
  :)
-declare function local:test-resize() as xs:boolean {
+declare %nondeterministic function local:test-resize() as xs:boolean {
     let $resized := man:resize($local:gif, xs:unsignedInt(500), xs:unsignedInt(600))
     let $resized-ref as xs:base64Binary := file:read-binary(concat($local:image-dir, "manipulation/bigBird.gif"))
     return basic:equals($resized, $resized-ref)
@@ -49,7 +49,7 @@ declare function local:test-resize() as xs:boolean {
 (:~
  : @return true if the man:zoom function works.
  :)
-declare function local:test-zoom() as xs:boolean {
+declare %nondeterministic function local:test-zoom() as xs:boolean {
     let $zoomed := man:zoom($local:jpg, 2)
     let $ref-zoomed := file:read-binary(concat($local:image-dir, "manipulation/zoomedBird.jpg"))
     return basic:equals($zoomed, $ref-zoomed)
@@ -61,7 +61,7 @@ declare function local:test-zoom() as xs:boolean {
 (:~
  : @return true if the man:zoom-by-width function works.
  :)
-declare function local:test-zoom-by-width() as xs:boolean {
+declare %nondeterministic function local:test-zoom-by-width() as xs:boolean {
     let $zoomed := man:zoom-by-width($local:jpg, xs:unsignedInt(268))
     let $ref-zoomed := file:read-binary(concat($local:image-dir, "manipulation/zoomedBird.jpg"))
     return basic:equals($zoomed, $ref-zoomed)
@@ -70,7 +70,7 @@ declare function local:test-zoom-by-width() as xs:boolean {
 (:~
  : @return true if the man:zoom-by-height function works.
  :)
-declare function local:test-zoom-by-height() as xs:boolean {
+declare %nondeterministic function local:test-zoom-by-height() as xs:boolean {
     let $zoomed := man:zoom-by-height($local:jpg, xs:unsignedInt(320))
     let $ref-zoomed := file:read-binary(concat($local:image-dir, "manipulation/zoomedBird.jpg"))
     return basic:equals($zoomed, $ref-zoomed)
@@ -79,7 +79,7 @@ declare function local:test-zoom-by-height() as xs:boolean {
 (:~
  : @return true if the man:sub-image function works.
  :)
-declare function local:test-sub-image() as xs:boolean {
+declare %nondeterministic function local:test-sub-image() as xs:boolean {
     let $sub := man:sub-image($local:jpg, xs:unsignedInt(20), xs:unsignedInt(20), xs:unsignedInt(200), xs:unsignedInt(30))
     let $ref-sub := file:read-binary(concat($local:image-dir, "manipulation/subBird.jpg"))
     return basic:equals($sub, $ref-sub)
@@ -88,7 +88,7 @@ declare function local:test-sub-image() as xs:boolean {
 (:~
  : @return true if the man:overlay function works.
  :)
-declare function local:test-overlay() {
+declare %nondeterministic function local:test-overlay() {
     let $ref-overlay:= file:read-binary(concat($local:image-dir, "manipulation/overlayBird.jpg"))
     let $ref-zoomed := file:read-binary(concat($local:image-dir, "manipulation/zoomedBird.jpg"))
     return basic:equals(man:overlay($ref-zoomed, $local:png, xs:unsignedInt(50), xs:unsignedInt(50), 
@@ -98,7 +98,7 @@ declare function local:test-overlay() {
 
 
 
-declare %sequential function local:main() as xs:string* {
+declare %nondeterministic %sequential function local:main() as xs:string* {
 
   let $a := local:test-resize()
   return

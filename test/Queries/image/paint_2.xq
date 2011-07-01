@@ -33,34 +33,37 @@ ERROR:
 };
 
 
-declare function local:test-draw-poly-line() as xs:boolean {
-    let $draw := paint:paint($local:gif, <image:polyLine><point><x>10</x><y>10</y></point><point><x>40</x><y>80</y></point><point><x>50</x><y>30</y></point><point><x>200</x><y>200</y></point></image:polyLine>)
-    let $draw-ref := file:read-binary(concat($local:image-dir, "paint/polyLine.gif"))
-    return basic:equals($draw, $draw-ref)
+declare %nondeterministic function local:test-draw-poly-line() as xs:boolean 
+{
+  let $draw := paint:paint($local:gif, <image:polyLine><point><x>10</x><y>10</y></point><point><x>40</x><y>80</y></point><point><x>50</x><y>30</y></point><point><x>200</x><y>200</y></point></image:polyLine>)
+  let $draw-ref := file:read-binary(concat($local:image-dir, "paint/polyLine.gif"))
+  return basic:equals($draw, $draw-ref)
 };
 
-declare function local:test-draw-poly-line-anti-aliased() as xs:boolean {
-    
-    let $draw := paint:paint($local:gif, <image:polyLine><antiAliasing>true</antiAliasing><point><x>10</x><y>10</y></point><point><x>40</x><y>80</y></point><point><x>50</x><y>30</y></point></image:polyLine>)
-    let $draw-ref := file:read-binary(concat($local:image-dir, "paint/polyLineAntiAliased.gif"))
-    return basic:equals($draw,  $draw-ref)
+declare %nondeterministic function local:test-draw-poly-line-anti-aliased() as xs:boolean
+{
+  let $draw := paint:paint($local:gif, <image:polyLine><antiAliasing>true</antiAliasing><point><x>10</x><y>10</y></point><point><x>40</x><y>80</y></point><point><x>50</x><y>30</y></point></image:polyLine>)
+  let $draw-ref := file:read-binary(concat($local:image-dir, "paint/polyLineAntiAliased.gif"))
+  return basic:equals($draw,  $draw-ref)
 };
 
 
 (:~
  : @return true if the man:draw-poly-line function works.
  :)
-declare function local:test-draw-poly-line-red() as xs:boolean {
+declare %nondeterministic function local:test-draw-poly-line-red() as xs:boolean 
+{
     let $draw := paint:paint($local:gif, <image:polyLine><strokeColor>#FF0000</strokeColor><antiAliasing>true</antiAliasing><point><x>10</x><y>10</y></point><point><x>40</x><y>80</y></point><point><x>50</x><y>30</y></point></image:polyLine>)
     
     let $draw-ref := file:read-binary(concat($local:image-dir, "paint/polyLineRed.gif"))
     return basic:equals($draw, $draw-ref)
 };
 
+
 (:~
  : @return true if the man:draw-poly-line function works.
  :)
-declare function local:test-draw-poly-line-wide() as xs:boolean {
+declare %nondeterministic function local:test-draw-poly-line-wide() as xs:boolean {
      let $draw := paint:paint($local:gif, <image:polyLine><strokeWidth>5</strokeWidth><antiAliasing>true</antiAliasing><point><x>10</x><y>10</y></point><point><x>40</x><y>80</y></point><point><x>50</x><y>30</y></point></image:polyLine>)
     
     let $draw-ref := file:read-binary(concat($local:image-dir, "paint/polyLineWide.gif"))
@@ -69,7 +72,7 @@ declare function local:test-draw-poly-line-wide() as xs:boolean {
 
 
 
-declare %sequential function local:main() as xs:string* {
+declare %nondeterministic %sequential function local:main() as xs:string* {
 
 
   let $a := local:test-draw-poly-line()

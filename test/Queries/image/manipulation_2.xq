@@ -35,7 +35,7 @@ ERROR:
 (:~
  : @return true if the man:rotate function works.
  :)
-declare function local:test-rotate() as xs:boolean {
+declare %nondeterministic function local:test-rotate() as xs:boolean {
     let $rotated := man:rotate($local:jpg, xs:int(180))
     let $rotated-ref := file:read-binary(concat($local:image-dir, "manipulation/rotatedBird.jpg"))
     return basic:equals($rotated, $rotated-ref)
@@ -46,7 +46,7 @@ declare function local:test-rotate() as xs:boolean {
 (:~
  : @return true if the man:rotate function works.
  :)
-declare function local:test-erase() as xs:boolean {
+declare %nondeterministic function local:test-erase() as xs:boolean {
     let $erased := man:erase($local:jpg)
     let $erased-ref := file:read-binary(concat($local:image-dir, "manipulation/erased.jpg"))
     return basic:equals($erased, $erased-ref)
@@ -55,7 +55,7 @@ declare function local:test-erase() as xs:boolean {
 (:~
  : @return true if the man:flop function works.
  :)
-declare function local:test-flop() as xs:boolean {
+declare %nondeterministic function local:test-flop() as xs:boolean {
     let $flopped := man:flop($local:jpg)
     let $flopped-ref := file:read-binary(concat($local:image-dir, "manipulation/floppedBird.jpg"))
     return basic:equals($flopped, $flopped-ref)
@@ -65,7 +65,7 @@ declare function local:test-flop() as xs:boolean {
 (:~
  : @return true if the man:flip function works.
  :)
-declare function local:test-flip() as xs:boolean {
+declare %nondeterministic function local:test-flip() as xs:boolean {
     let $flipped := man:flip($local:jpg)
     let $flipped-ref := file:read-binary(concat($local:image-dir, "manipulation/flippedBird.jpg"))
     return basic:equals($flipped, $flipped-ref)
@@ -74,7 +74,7 @@ declare function local:test-flip() as xs:boolean {
 (:~
  : @return true if the man:trim function works.
  :)
-declare function local:test-trim() as xs:boolean {
+declare %nondeterministic function local:test-trim() as xs:boolean {
     let $trimmed := man:trim($local:jpg)
     let $trimmed-ref := file:read-binary(concat($local:image-dir, "manipulation/trimmedBird.jpg"))
     return basic:equals($trimmed, $trimmed-ref)
@@ -85,7 +85,7 @@ declare function local:test-trim() as xs:boolean {
 (:~
  : @return true if the man:blur function works.
  :)
-declare function local:test-blur() as xs:boolean {
+declare %nondeterministic function local:test-blur() as xs:boolean {
     let $blurred := man:blur($local:jpg, xs:int(8), xs:int(-4))
     let $blurred-ref := file:read-binary(concat($local:image-dir, "manipulation/blurredBird.jpg"))
     return basic:equals($blurred, $blurred-ref)
@@ -94,7 +94,7 @@ declare function local:test-blur() as xs:boolean {
 
 
 
-declare %sequential function local:main() as xs:string* {
+declare %nondeterministic %sequential function local:main() as xs:string* {
 
   let $a := local:test-rotate()
   return
