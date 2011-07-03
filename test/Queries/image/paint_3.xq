@@ -8,6 +8,8 @@ import module namespace file = 'http://expath.org/ns/file';
 import module namespace paint = 'http://www.zorba-xquery.com/modules/image/paint';
 import schema namespace image = 'http://www.zorba-xquery.com/modules/image/image';
 
+declare namespace ann = "http://www.zorba-xquery.com/annotations";
+
 declare variable $local:image-dir := fn:concat(file:dir-name(fn:static-base-uri()), "/images/");
 
 
@@ -36,7 +38,7 @@ ERROR:
 (:~
  : @return true if the man:draw-stroked-poly-line function works.
  :)
-declare %nondeterministic function local:test-draw-stroked-poly-line() as xs:boolean {
+declare %ann:nondeterministic function local:test-draw-stroked-poly-line() as xs:boolean {
     let $draw := paint:paint($local:gif, <image:strokedPolyLine><point><x>10</x><y>10</y></point><point><x>40</x><y>80</y></point><point><x>50</x><y>30</y></point><strokeLength>5</strokeLength><gapLength>2</gapLength></image:strokedPolyLine>)
     let $draw-ref := file:read-binary(concat($local:image-dir, "paint/polyLineStroked.gif"))
     return basic:equals($draw, $draw-ref)
@@ -46,7 +48,7 @@ declare %nondeterministic function local:test-draw-stroked-poly-line() as xs:boo
 (:~
  : @return true if the man:draw-stroked-poly-line function works.
  :)
-declare %nondeterministic function local:test-draw-stroked-poly-line-blue() as xs:boolean {
+declare %ann:nondeterministic function local:test-draw-stroked-poly-line-blue() as xs:boolean {
     let $draw := paint:paint($local:gif, <image:strokedPolyLine><strokeColor>#0000FF</strokeColor><point><x>10</x><y>10</y></point><point><x>40</x><y>80</y></point><point><x>50</x><y>30</y></point><strokeLength>5</strokeLength><gapLength>2</gapLength></image:strokedPolyLine>)
     let $draw-ref := file:read-binary(concat($local:image-dir, "paint/polyLineStrokedBlue.gif"))
     return basic:equals($draw, $draw-ref)
@@ -55,7 +57,7 @@ declare %nondeterministic function local:test-draw-stroked-poly-line-blue() as x
 (:~
  : @return true if the man:draw-stroked-poly-line function works.
  :)
-declare %nondeterministic function local:test-draw-stroked-poly-line-wide() as xs:boolean {
+declare %ann:nondeterministic function local:test-draw-stroked-poly-line-wide() as xs:boolean {
     let $draw := paint:paint($local:gif, <image:strokedPolyLine><strokeWidth>4</strokeWidth><point><x>10</x><y>10</y></point><point><x>40</x><y>80</y></point><point><x>50</x><y>30</y></point><strokeLength>5</strokeLength><gapLength>2</gapLength></image:strokedPolyLine>)
     let $draw-ref := file:read-binary(concat($local:image-dir, "paint/polyLineStrokedWide.gif"))
     return basic:equals($draw, $draw-ref)
@@ -64,13 +66,13 @@ declare %nondeterministic function local:test-draw-stroked-poly-line-wide() as x
 (:~
  : @return true if the man:draw-stroked-poly-line function works.
  :)
-declare %nondeterministic function local:test-draw-stroked-poly-line-anti-aliased() as xs:boolean {
+declare %ann:nondeterministic function local:test-draw-stroked-poly-line-anti-aliased() as xs:boolean {
     let $draw := paint:paint($local:gif, <image:strokedPolyLine><antiAliasing>true</antiAliasing><point><x>10</x><y>10</y></point><point><x>40</x><y>80</y></point><point><x>50</x><y>30</y></point><strokeLength>5</strokeLength><gapLength>2</gapLength></image:strokedPolyLine>)
     let $draw-ref := file:read-binary(concat($local:image-dir, "paint/polyLineStrokedAntiAliased.gif"))
     return basic:equals($draw, $draw-ref)
 };
 
-declare %nondeterministic %sequential function local:main() as xs:string* {
+declare %ann:nondeterministic %ann:sequential function local:main() as xs:string* {
 
   let $a := local:test-draw-stroked-poly-line()
   return

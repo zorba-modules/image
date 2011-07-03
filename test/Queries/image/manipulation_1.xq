@@ -8,6 +8,8 @@ import module namespace file = 'http://expath.org/ns/file';
 import module namespace man = 'http://www.zorba-xquery.com/modules/image/manipulation';
 import schema namespace image = 'http://www.zorba-xquery.com/modules/image/image';
 
+declare namespace ann = "http://www.zorba-xquery.com/annotations";
+
 declare variable $local:image-dir := fn:concat(file:dir-name(fn:static-base-uri()), "/images/");
 
 
@@ -38,7 +40,7 @@ ERROR:
 (:~
  : @return true if the man:resize function works.
  :)
-declare %nondeterministic function local:test-resize() as xs:boolean {
+declare %ann:nondeterministic function local:test-resize() as xs:boolean {
     let $resized := man:resize($local:gif, xs:unsignedInt(500), xs:unsignedInt(600))
     let $resized-ref as xs:base64Binary := file:read-binary(concat($local:image-dir, "manipulation/bigBird.gif"))
     return basic:equals($resized, $resized-ref)
@@ -49,7 +51,7 @@ declare %nondeterministic function local:test-resize() as xs:boolean {
 (:~
  : @return true if the man:zoom function works.
  :)
-declare %nondeterministic function local:test-zoom() as xs:boolean {
+declare %ann:nondeterministic function local:test-zoom() as xs:boolean {
     let $zoomed := man:zoom($local:jpg, 2)
     let $ref-zoomed := file:read-binary(concat($local:image-dir, "manipulation/zoomedBird.jpg"))
     return basic:equals($zoomed, $ref-zoomed)
@@ -61,7 +63,7 @@ declare %nondeterministic function local:test-zoom() as xs:boolean {
 (:~
  : @return true if the man:zoom-by-width function works.
  :)
-declare %nondeterministic function local:test-zoom-by-width() as xs:boolean {
+declare %ann:nondeterministic function local:test-zoom-by-width() as xs:boolean {
     let $zoomed := man:zoom-by-width($local:jpg, xs:unsignedInt(268))
     let $ref-zoomed := file:read-binary(concat($local:image-dir, "manipulation/zoomedBird.jpg"))
     return basic:equals($zoomed, $ref-zoomed)
@@ -70,7 +72,7 @@ declare %nondeterministic function local:test-zoom-by-width() as xs:boolean {
 (:~
  : @return true if the man:zoom-by-height function works.
  :)
-declare %nondeterministic function local:test-zoom-by-height() as xs:boolean {
+declare %ann:nondeterministic function local:test-zoom-by-height() as xs:boolean {
     let $zoomed := man:zoom-by-height($local:jpg, xs:unsignedInt(320))
     let $ref-zoomed := file:read-binary(concat($local:image-dir, "manipulation/zoomedBird.jpg"))
     return basic:equals($zoomed, $ref-zoomed)
@@ -79,7 +81,7 @@ declare %nondeterministic function local:test-zoom-by-height() as xs:boolean {
 (:~
  : @return true if the man:sub-image function works.
  :)
-declare %nondeterministic function local:test-sub-image() as xs:boolean {
+declare %ann:nondeterministic function local:test-sub-image() as xs:boolean {
     let $sub := man:sub-image($local:jpg, xs:unsignedInt(20), xs:unsignedInt(20), xs:unsignedInt(200), xs:unsignedInt(30))
     let $ref-sub := file:read-binary(concat($local:image-dir, "manipulation/subBird.jpg"))
     return basic:equals($sub, $ref-sub)
@@ -88,7 +90,7 @@ declare %nondeterministic function local:test-sub-image() as xs:boolean {
 (:~
  : @return true if the man:overlay function works.
  :)
-declare %nondeterministic function local:test-overlay() {
+declare %ann:nondeterministic function local:test-overlay() {
     let $ref-overlay:= file:read-binary(concat($local:image-dir, "manipulation/overlayBird.jpg"))
     let $ref-zoomed := file:read-binary(concat($local:image-dir, "manipulation/zoomedBird.jpg"))
     return basic:equals(man:overlay($ref-zoomed, $local:png, xs:unsignedInt(50), xs:unsignedInt(50), 
@@ -98,7 +100,7 @@ declare %nondeterministic function local:test-overlay() {
 
 
 
-declare %nondeterministic %sequential function local:main() as xs:string* {
+declare %ann:nondeterministic %ann:sequential function local:main() as xs:string* {
 
   let $a := local:test-resize()
   return

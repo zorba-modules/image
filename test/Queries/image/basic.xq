@@ -6,6 +6,8 @@
 import module namespace basic = 'http://www.zorba-xquery.com/modules/image/basic';
 import module namespace file = 'http://expath.org/ns/file';
 
+declare namespace ann = "http://www.zorba-xquery.com/annotations";
+
 declare variable $local:image-dir := fn:concat(file:dir-name(fn:static-base-uri()), "/images/");
 
 
@@ -53,7 +55,7 @@ declare function local:test-height() as xs:boolean {
 (:~
  : @return true if the basic:create function works.
  :)
-declare %nondeterministic function local:test-create() as xs:boolean {
+declare %ann:nondeterministic function local:test-create() as xs:boolean {
   let $blank-gif := basic:create(xs:unsignedInt(10), xs:unsignedInt(20), "GIF")
   let $blank-png := basic:create(xs:unsignedInt(10), xs:unsignedInt(20), "PNG")
   let $blank-jpg := basic:create(xs:unsignedInt(10), xs:unsignedInt(20), "JPEG")
@@ -87,7 +89,7 @@ declare function local:test-convert() as xs:boolean {
 (:~
  : @return true if the basic:compress function works.
  :) 
-declare %nondeterministic function local:test-compress() as xs:boolean {
+declare %ann:nondeterministic function local:test-compress() as xs:boolean {
     let $uncompressed := file:read-binary(concat($local:image-dir, "uncompressed.jpg"))
     let $compressed := basic:compress($uncompressed, xs:unsignedInt(20))
     let $compressed-ref := file:read-binary(concat($local:image-dir, "compressed.jpg")) 
@@ -97,7 +99,7 @@ declare %nondeterministic function local:test-compress() as xs:boolean {
 (:~
  : @return true if the basic:equals function works.
  :)
-declare %nondeterministic function local:test-equals() as xs:boolean {
+declare %ann:nondeterministic function local:test-equals() as xs:boolean {
   (basic:equals($local:gif, $local:gif) and (not (basic:equals($local:gif, file:read-binary(concat($local:image-dir, "manipulation/gamma1Bird.gif"))))))
 };
 
@@ -105,20 +107,20 @@ declare %nondeterministic function local:test-equals() as xs:boolean {
 (:~
  : @return true if the basic:exif function works.
  :)
-declare %nondeterministic function local:test-exif() as xs:boolean {
+declare %ann:nondeterministic function local:test-exif() as xs:boolean {
     let $exif := file:read-binary(concat($local:image-dir, "exif.jpg"))
    return ((basic:exif($exif, "ExifImageWidth") eq "20") and fn:empty(basic:exif($exif, "supercalifragilisticexpialidocious")))
 };
 
 
-declare %nondeterministic function local:test-convert-svg() as xs:boolean {
+declare %ann:nondeterministic function local:test-convert-svg() as xs:boolean {
     let $svg-converted := basic:convert-svg(file:read-binary(concat($local:image-dir, "test.svg")), "JPEG")
     let $to-compare := file:read-binary(concat($local:image-dir, "test.jpeg"))
     return basic:equals($svg-converted, $to-compare)
 };
 
 
-declare %nondeterministic %sequential function local:main() as xs:string* {
+declare %ann:nondeterministic %ann:sequential function local:main() as xs:string* {
 
   let $a := local:test-width()
   return
