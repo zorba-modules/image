@@ -46,7 +46,7 @@ module namespace gr = "http://www.zorba-xquery.com/modules/image/graphviz";
  : GXL (1.0) 
  : Document Type Definition
  :)
-import schema namespace gxl="http://www.gupro.de/GXL/gxl-1.0.xsd";
+(:import schema namespace gxl="http://www.gupro.de/GXL/gxl-1.0.xsd"; :)
 
 declare namespace ver = "http://www.zorba-xquery.com/options/versioning";
 declare option ver:module-version "1.0";

@@ -21,7 +21,7 @@
 
 #include <zorba/iterator.h>
 #include <zorba/zorba.h>
-#include <zorba/external_function.h>
+#include <zorba/function.h>
 #include <zorba/external_module.h>
 
 namespace zorba
@@ -31,7 +31,7 @@ namespace zorba
     class GraphvizModule;
 /******************************************************************************
  *****************************************************************************/
-class GraphvizFunction : public NonePureStatelessExternalFunction
+class GraphvizFunction : public ContextualExternalFunction
 {
   protected:
     const GraphvizModule* theModule;
@@ -40,7 +40,7 @@ class GraphvizFunction : public NonePureStatelessExternalFunction
     : theModule(aModule) {}
 
     static std::string
-    getGraphvizTmpFileName();
+    getGraphvizTmpFileName(const zorba::DynamicContext*  aDctx);
 
     static bool
     getAttribute(zorba::ItemFactory* aFactory,
@@ -49,24 +49,35 @@ class GraphvizFunction : public NonePureStatelessExternalFunction
         zorba::Item& attr);
 
     static void
-    printTypeAndAttr(zorba::ItemFactory* aFactory,
-        const zorba::Item& in, std::fstream& os);
+    printTypeAndAttr(const zorba::DynamicContext*  aDctx,
+                     zorba::ItemFactory* aFactory,
+                     const zorba::Item& in,
+                     std::fstream& os);
 
     static void
-    visitNode(zorba::ItemFactory* aFactory,
-        const zorba::Item& in, std::fstream& os);
+    visitNode(const zorba::DynamicContext*  aDctx,
+              zorba::ItemFactory* aFactory,
+              const zorba::Item& in, std::fstream& os);
 
     static void
-    visitEdge(zorba::ItemFactory* aFactory,
-        const zorba::Item& in, std::fstream& os);
+    visitEdge(const zorba::DynamicContext*  aDctx,
+              zorba::ItemFactory* aFactory,
+              const zorba::Item& in, std::fstream& os);
 
     static void
-    printGraph(zorba::ItemFactory* aFactory,
-        const zorba::Item& in, std::fstream& os);
+    printGraph(const zorba::DynamicContext*  aDctx,
+               zorba::ItemFactory* aFactory,
+               const zorba::Item& in, std::fstream& os);
 
     static void
-    gxl2dot(zorba::ItemFactory* aFactory,
-        const zorba::Item& in, std::fstream& os);
+    gxl2dot(const zorba::DynamicContext*  aDctx,
+            zorba::ItemFactory* aFactory,
+            const zorba::Item& in, std::fstream& os);
+
+    static void
+    throwErrorWithQName (const DynamicContext* aDynamicContext,
+                         const String& aLocalName,
+                         const String& aMessage);
 
   public:
 
@@ -111,13 +122,17 @@ protected:
     };
     public:
       LazyDotSequence(const DotFunction*,
-                      ItemSequence* aArg);
+                      ItemSequence* aArg,
+                      const zorba::DynamicContext*  aDctx);
 
       virtual Iterator_t    getIterator();
 
+      const zorba::DynamicContext* getDctx() {return theDctx;};
+
     protected:
-      const DotFunction* theFunc;
-      ItemSequence*      theArg;
+      const DotFunction*            theFunc;
+      ItemSequence*                 theArg;
+      const zorba::DynamicContext*  theDctx;
   };
 };
 
@@ -158,13 +173,17 @@ protected:
     };
     public:
       LazyGxlSequence(const GxlFunction*,
-                      ItemSequence* aArg);
+                      ItemSequence* aArg,
+                      const zorba::DynamicContext*  aDctx);
 
       Iterator_t  getIterator();
 
+      const zorba::DynamicContext* getDctx() {return theDctx;};
+
     protected:
-      const GxlFunction* theFunc;
-      ItemSequence*      theArg;
+      const GxlFunction*            theFunc;
+      ItemSequence*                 theArg;
+      const zorba::DynamicContext*  theDctx;
   };
 };
 
@@ -187,7 +206,7 @@ protected:
     }
   };
 
-  typedef std::map<String, StatelessExternalFunction*, ltstr> FuncMap_t;
+  typedef std::map<String, ExternalFunction*, ltstr> FuncMap_t;
 
   FuncMap_t theFunctions;
 
@@ -203,7 +222,7 @@ public:
     return theModule;
   }
 
-  virtual StatelessExternalFunction*
+  virtual ExternalFunction*
   getExternalFunction(const String& aLocalname);
 
   virtual void

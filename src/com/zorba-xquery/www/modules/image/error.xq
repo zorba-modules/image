@@ -42,3 +42,7 @@ declare variable $err:IM001 as xs:QName := fn:QName($err:errorNS, 'err:IM001');
  :)
 declare variable $err:IM002 as xs:QName := fn:QName($err:errorNS, 'err:IM002');
 
+(:~
+ : GXL error
+ :)
+declare variable $err:IM003 as xs:QName := fn:QName($err:errorNS, 'err:IM003');
