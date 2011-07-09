@@ -17,26 +17,26 @@
 # ImageMagick
 ########################################################################
 IF (ImageMagick_FOUND)
-  ADD_LIBRARY(image_commons STATIC image.xq.src/image_function.cpp
-    image.xq.src/image_module.cpp) 
-  ADD_LIBRARY(image_c STATIC image_c.src/draw_in_c.cpp) 
-  TARGET_LINK_LIBRARIES(image_commons ${ImageMagick_LIBRARIES})
-  INCLUDE_DIRECTORIES("image.xq.src")
-  INCLUDE_DIRECTORIES("image_c.src")
+  INCLUDE_DIRECTORIES("image_commons")
+  INCLUDE_DIRECTORIES("image_draw")
   DECLARE_ZORBA_SCHEMA(FILE image.xsd
     URI "http://www.zorba-xquery.com/modules/image/image")
   DECLARE_ZORBA_MODULE(URI "http://www.zorba-xquery.com/modules/image/basic"
     VERSION 1.0 FILE "basic.xq"
-    LINK_LIBRARIES image_c image_commons ${ImageMagick_LIBRARIES})
+    EXTRA_SOURCES image_commons image_draw
+    LINK_LIBRARIES ${ImageMagick_LIBRARIES})
   DECLARE_ZORBA_MODULE(VERSION 1.0 FILE "manipulation.xq"
     URI "http://www.zorba-xquery.com/modules/image/manipulation"
-    LINK_LIBRARIES image_commons ${ImageMagick_LIBRARIES})
+    EXTRA_SOURCES image_commons
+    LINK_LIBRARIES ${ImageMagick_LIBRARIES})
   DECLARE_ZORBA_MODULE(VERSION 1.0 FILE "paint.xq"
     URI "http://www.zorba-xquery.com/modules/image/paint"
-    LINK_LIBRARIES image_c image_commons ${ImageMagick_LIBRARIES})
+    EXTRA_SOURCES image_draw image_commons
+    LINK_LIBRARIES ${ImageMagick_LIBRARIES})
   DECLARE_ZORBA_MODULE(VERSION 1.0 FILE "animation.xq"
     URI "http://www.zorba-xquery.com/modules/image/animation"
-    LINK_LIBRARIES image_commons ${ImageMagick_LIBRARIES})
+    EXTRA_SOURCES image_commons
+    LINK_LIBRARIES ${ImageMagick_LIBRARIES})
 
   ADD_TEST_DIRECTORY("${PROJECT_SOURCE_DIR}/test")
   
