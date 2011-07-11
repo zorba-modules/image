@@ -47,12 +47,8 @@ ENDIF (ImageMagick_FOUND)
 ########################################################################
 IF (GRAPHVIZ_FOUND)
   INCLUDE_DIRECTORIES("graphviz.xq.src")
-  DECLARE_ZORBA_SCHEMA (URI "http://www.gupro.de/GXL/gxl-1.0.dtd"
-    FILE gxl-1.0.xsd)
   DECLARE_ZORBA_MODULE (VERSION 1.0 FILE "graphviz.xq"
     URI "http://www.zorba-xquery.com/modules/image/graphviz"
     LINK_LIBRARIES "${GRAPHVIZ_LIBRARIES}")
   ADD_TEST_DIRECTORY("${PROJECT_SOURCE_DIR}/test_graphviz")
-
-  EXPECTED_FAILURE(zorba_image_module/dot.xq 3360108)
 ENDIF (GRAPHVIZ_FOUND)
