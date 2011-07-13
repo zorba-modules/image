@@ -18,7 +18,7 @@
 #include <zorba/zorba.h>
 #include <Magick++.h>
 #include <zorba/base64.h>
-#include <zorba/error_list.h>
+#include <zorba/diagnostic_list.h>
 #include <zorba/user_exception.h>
 #include <zorba/empty_sequence.h>
 #include <zorba/singleton_item_sequence.h>
