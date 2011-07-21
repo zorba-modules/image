@@ -16,10 +16,9 @@
  :       <li> arc: <code>&lt;image:arc&gt;&lt;origin&gt;&lt;x&gt;50&lt;/x&gt;&lt;y&gt;50&lt;/y&gt;&lt;/origin&gt;&lt;perimeterX&gt;10&lt;/perimeterX&gt;&lt;perimeterY&gt;20&lt;/perimeterY&gt;&lt;startDegrees&gt;180&lt;/startDegrees&gt;&lt;endDegrees&gt;270&lt;/endDegrees&gt;&lt;/image:arc&gt;</code></li>
  :       <li> polygon: <code>&lt;image:polygon&gt;&lt;point&gt;&lt;x&gt;10&lt;/x&gt;&lt;y&gt;10&lt;/y&gt;&lt;/point&gt;&lt;point&gt;&lt;x&gt;40&lt;/x&gt;&lt;y&gt;80&lt;/y&gt;&lt;/point&gt;&lt;point&gt;&lt;x&gt;50&lt;/x&gt;&lt;y&gt;30&lt;/y&gt;&lt;/point&gt;&lt;/image:polygon&gt;</code></li>
  :       <li> text: <code>&lt;image:text&gt;&lt;origin&gt;&lt;x&gt;20&lt;/x&gt;&lt;y&gt;20&lt;/y&gt;&lt;/origin&gt;&lt;text&gt;Hello Zorba&lt;/text&gt;&lt;font&gt;&lt;/font&gt;&lt;font-size&gt;12&lt;/font-size&gt;&lt;/image:text&gt;</code></li>
- :
  :     </ul>
  :    </li>
- :  </ul>  
+ :  </ul>
  :
  : @author Daniel Thomas
  : @library <a href="http://www.imagemagick.org/Magick++/">Magick++ C++ Library</a>
@@ -27,6 +26,11 @@
  :
  :)
 module namespace paint = 'http://www.zorba-xquery.com/modules/image/paint';
+
+(:~
+ : Specifies the possible errors.
+ :)
+import module namespace error = 'http://www.zorba-xquery.com/modules/image/error';
 
 (:~
  : Contains the definitions of the possible image types.
@@ -45,7 +49,7 @@ declare option ver:module-version "1.0";
  : @param $image is the image to paint to.
  : @param $shapes is a sequence of shapes that should be painted to the image.
  : @return The passed image with the specified shapes painted.
- : @error IM001 If the passed xs:base64Binary is not a valid image type.
+ : @error $error:IM001 If the passed xs:base64Binary is not a valid image type.
  : @error If an item of the shapes sequence is not valid.
  : @example test/Queries/image/paint_different_lines.xq
  : @example test/Queries/image/paint_polyline.xq
@@ -65,7 +69,7 @@ declare function paint:paint($image as xs:base64Binary, $shapes as element()*) a
  : Paints a sequence of paintable shapes to the passed image.
  :
  : @param $image is the image to paint to.
- : @param $shapes is a sequence of shapes that should be painted to the image.
+ : @param $shapes is a sequence of shapes that should be painted to the image. This parameters have to be validated against "http://www.zorba-xquery.com/modules/image/image" schema.
  : @return The passed image with the specified shapes painted.
  : @error If the passed xs:base64Binary is not a valid image type.
  : @error If an item of the shapes sequence is not valid.

@@ -33,7 +33,7 @@ declare option ver:module-version "1.0";
  : 
  : @param $image is the image for which we want to know the width.
  : @return The width of the passed image.
- : @error IM001 If the passed xs:base64Binary is not a valid image.
+ : @error $error:IM001 If the passed xs:base64Binary is not a valid image.
  : @example test/Queries/image/basic_width.xq
  :)
 declare function basic:width($image as xs:base64Binary) as xs:unsignedInt external; 
@@ -43,7 +43,7 @@ declare function basic:width($image as xs:base64Binary) as xs:unsignedInt extern
  : 
  : @param $image is the image for which we want to know the width.
  : @return The height of the passed image.
- : @error IM001 If the passed xs:base64Binary is not a valid image.
+ : @error $error:IM001 If the passed xs:base64Binary is not a valid image.
  : @example test/Queries/image/basic_height.xq
  :)
 declare function basic:height($image as xs:base64Binary) as xs:unsignedInt external; 
@@ -56,7 +56,7 @@ declare function basic:height($image as xs:base64Binary) as xs:unsignedInt exter
  : @param $image is the image for which we want to set the quality.
  : @param $quality is the new quality for the image (a value from 0 to 100 with default 75)
  : @return A new image with the quality set accordingly. 
- : @error IM001 If the passed xs:base64Binary is not a valid image.
+ : @error $error:IM001 If the passed xs:base64Binary is not a valid image.
  : @example test/Queries/image/basic_compress.xq
  :)
 declare function basic:compress($image as xs:base64Binary, $quality as xs:unsignedInt) as xs:base64Binary external; 
@@ -75,9 +75,9 @@ declare function basic:compress($image as xs:base64Binary, $quality as xs:unsign
  :  <li>BMP</li>
  : </ul>
  : @param $image is the image to convert.
- : @param $format is the format in which to convert the image.
+ : @param $format is the format in which to convert the image. This parameter has to be validated against "http://www.zorba-xquery.com/modules/image/image" schema.
  : @return A new image with the same content as the passed image but with the specified file format.
- : @error IM001 If the passed xs:base64Binary is not a valid image.
+ : @error $error:IM001 If the passed xs:base64Binary is not a valid image.
  : @error If an unsupported image format was passed. 
  : @example test/Queries/image/basic_convert.xq
  :)
@@ -92,7 +92,7 @@ declare function basic:convert($image as xs:base64Binary, $format as xs:string) 
  :
  : @param $image is the image for which the type is requested.
  : @return The type of the passed image. 
- : @error IM001 If the passed xs:base64Binary is not a valid image.
+ : @error $error:IM001 If the passed xs:base64Binary is not a valid image.
  : @example test/Queries/image/basic_type.xq
  :)
 declare function basic:type($image as xs:base64Binary) as xs:string external; 
@@ -111,7 +111,7 @@ declare function basic:type($image as xs:base64Binary) as xs:string external;
  :
  : @param $width is the width of the new image.
  : @param $height is the height of the new image.
- : @param $format is the format of the new image.
+ : @param $format is the format of the new image. This parameter has to be validated against "http://www.zorba-xquery.com/modules/image/image" schema.
  : @return A new and empty image with the specified type.
  : @error If an unsupported image format was passed. 
  : @example test/Queries/image/basic_create.xq
@@ -127,7 +127,7 @@ declare function basic:create($width as xs:unsignedInt, $height as xs:unsignedIn
  : @param $image is the image from which we want to read the exif information.
  : @param $tag is the field name of the tag we want to search for (e.g. DateTime).
  : @return A string containing the content of the matched exif tag or an empty sequence if no such information was found.
- : @error IM001 If the passed xs:base64Binary is not a valid image.
+ : @error $error:IM001 If the passed xs:base64Binary is not a valid image.
  : @example test/Queries/image/basic_exif.xq
  :)
 declare function basic:exif($image as xs:base64Binary, $tag as xs:string) as xs:string? external; 
@@ -138,7 +138,7 @@ declare function basic:exif($image as xs:base64Binary, $tag as xs:string) as xs:
  : @param $image is the image we want to compare $other to.
  : @param $other is the image we want to compare $image with.
  : @return True if the images are the same.
- : @error IM001 If either of the passed xs:base64Binary is not a valid image.
+ : @error $error:IM001 If either of the passed xs:base64Binary is not a valid image.
  : @example test/Queries/image/basic_equals.xq
  :)
 declare function basic:equals($image as xs:base64Binary, $other as xs:base64Binary) as xs:boolean external; 
@@ -147,8 +147,8 @@ declare function basic:equals($image as xs:base64Binary, $other as xs:base64Bina
 (:~
  : Converts an SVG image to any supported image type.
  : @param $image is the image we want to convert, it has to be of type SVG.
- : @param $format is the new format for the SVG image.
- : @error IM002 If the passed xs:base64Binary is not a valid SVG image.
+ : @param $type is the new format for the SVG image. This parameter has to be validated against "http://www.zorba-xquery.com/modules/image/image" schema.
+ : @error $error:IM002 If the passed xs:base64Binary is not a valid SVG image.
  : @return The passed SVG image converted to an other type.
  : @example test/Queries/image/basic_svg.xq
  :)
@@ -160,7 +160,7 @@ declare function basic:convert-svg($image as xs:base64Binary, $type as xs:string
  : Converts an SVG image to any supported image type.
  : @param $image is the image we want to convert, it has to be of type SVG.
  : @param $format is the new format for the SVG image.
- : @error IM002 If the passed xs:base64Binary is not a valid SVG image.
+ : @error $error:IM002 If the passed xs:base64Binary is not a valid SVG image.
  : @return The passed SVG image converted to an other type.
  :)
 declare function basic:convert-svg-impl($image as xs:base64Binary, $type as xs:string) as xs:base64Binary external;
