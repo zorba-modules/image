@@ -32,9 +32,9 @@
   #define GetCurrentDir getcwd
 #endif
 
-#include <graphviz/types.h>
-#include <graphviz/graph.h>
-#include <graphviz/gvc.h>
+#include <types.h>
+#include <graph.h>
+#include <gvc.h>
 
 #include <zorba/diagnostic_list.h>
 #include <zorba/user_exception.h>
