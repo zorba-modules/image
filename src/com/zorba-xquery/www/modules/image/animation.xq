@@ -1,3 +1,5 @@
+xquery version "1.0";
+
 (:~
  : This module provides functions to handle animations of images. 
  : Please note that all images passed back by these functions described here are required to be written to disc as GIF.

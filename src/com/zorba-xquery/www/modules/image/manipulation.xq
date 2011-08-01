@@ -1,3 +1,5 @@
+xquery version "3.0";
+
 (:~
  : This module provides functions to handle image manipulations like resizing, zooming, special effects etc.
  :

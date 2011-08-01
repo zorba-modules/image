@@ -1,3 +1,5 @@
+xquery version "3.0";
+
 (:~
  : This module provides basic functions for handling images including conversion between different formats.
  : Supported image formats are:
