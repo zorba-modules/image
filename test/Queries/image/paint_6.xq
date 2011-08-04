@@ -11,7 +11,7 @@ import schema namespace image = 'http://www.zorba-xquery.com/modules/image/image
 declare namespace ann = "http://www.zorba-xquery.com/annotations";
 
 declare variable $local:image-dir := fn:concat(file:dir-name(fn:static-base-uri()), "/images/");
-declare variable $local:jpg as xs:base64Binary := basic:create(xs:unsignedInt(100), xs:unsignedInt(100), image:imageType("JPEG"));
+declare variable $local:jpg as xs:base64Binary := basic:create(xs:unsignedInt(100), xs:unsignedInt(100), image:imageFormat("JPEG"));
 
 
 (:~

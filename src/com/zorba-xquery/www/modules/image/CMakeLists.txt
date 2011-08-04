@@ -47,8 +47,6 @@ ELSE(ZORBA_SUPPRESS_ImageMagick)
       URI "http://www.zorba-xquery.com/modules/image/animation"
       EXTRA_SOURCES image_commons
       LINK_LIBRARIES ${ImageMagick_LIBRARIES})
-    DECLARE_ZORBA_MODULE(VERSION 1.0 FILE "error.xq"
-      URI "http://www.zorba-xquery.com/modules/image/error")
     ADD_TEST_DIRECTORY("${PROJECT_SOURCE_DIR}/test")  
   ELSE (ImageMagick_FOUND)
     MESSAGE(STATUS "Magick++   component found: ${ImageMagick_Magick++_FOUND}")

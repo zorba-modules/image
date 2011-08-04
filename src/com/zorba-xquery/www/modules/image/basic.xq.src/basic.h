@@ -63,11 +63,11 @@ class HeightFunction : public zorba::imagemodule::ImageFunction
 //*****************************************************************************
 
 
-  class TypeFunction : public zorba::imagemodule::ImageFunction 
+  class FormatFunction : public zorba::imagemodule::ImageFunction 
   {
     public:
-      TypeFunction(const ImageModule* aModule);
-      virtual String getLocalName() const { return "type"; }
+      FormatFunction(const ImageModule* aModule);
+      virtual String getLocalName() const { return "format"; }
 
       virtual ItemSequence_t
       evaluate(const ExternalFunction::Arguments_t& args,

@@ -30,8 +30,8 @@ BasicModule::getExternalFunction(const String& aLocalname)
       lFunc = new WidthFunction(this);
     } else if (aLocalname == "height") {
       lFunc = new HeightFunction(this);
-    } else if (aLocalname == "type") {
-      lFunc = new TypeFunction(this);
+    } else if (aLocalname == "format") {
+      lFunc = new FormatFunction(this);
     } else if (aLocalname == "convert-impl") {
       lFunc = new ConvertFunction(this);
     } else if (aLocalname == "compress") {

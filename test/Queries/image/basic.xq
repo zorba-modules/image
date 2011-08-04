@@ -68,11 +68,11 @@ declare %ann:nondeterministic function local:test-create() as xs:boolean {
 };
 
 (:~
- : @return true if the basic:type function works.
+ : @return true if the basic:format function works.
  :)
-declare function local:test-type() as xs:boolean {
-    ((basic:type($local:png) eq "PNG") and (basic:type($local:gif) eq "GIF") 
-    and (basic:type($local:tiff) eq "TIFF") and (basic:type($local:jpg) eq "JPEG"))
+declare function local:test-format() as xs:boolean {
+    ((basic:format($local:png) eq "PNG") and (basic:format($local:gif) eq "GIF") 
+    and (basic:format($local:tiff) eq "TIFF") and (basic:format($local:jpg) eq "JPEG"))
 };
 
 
@@ -146,7 +146,7 @@ declare %ann:nondeterministic %ann:sequential function local:main() as xs:string
 
   (: ==================================================================== :) 
 
-  let $d := local:test-type()
+  let $d := local:test-format()
   return
     if (fn:not($d)) then
         exit returning local:error("Getting format of images failed");

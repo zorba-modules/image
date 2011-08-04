@@ -12,10 +12,10 @@
         </documentation>
     </annotation>
     
-    <simpleType name="imageType">
+    <simpleType name="imageFormat">
         <annotation xml:lang="en">
             <documentation>
-                This type defines the different names that are allowed for image types.
+                Fully supported image formats.
             </documentation>
         </annotation>
         <restriction base="string">

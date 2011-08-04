@@ -74,12 +74,12 @@ HeightFunction::evaluate(
 
 //*****************************************************************************
 
-TypeFunction::TypeFunction(const ImageModule* aModule) : ImageFunction(aModule)
+FormatFunction::FormatFunction(const ImageModule* aModule) : ImageFunction(aModule)
 {
 }
 
 ItemSequence_t
-TypeFunction::evaluate(
+FormatFunction::evaluate(
   const ExternalFunction::Arguments_t& aArgs,
   const StaticContext*                          aSctxCtx,
   const DynamicContext*                         aDynCtx) const
