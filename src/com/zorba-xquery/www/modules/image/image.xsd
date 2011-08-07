@@ -3,7 +3,7 @@
     xmlns="http://www.w3.org/2001/XMLSchema" 
     targetNamespace="http://www.zorba-xquery.com/modules/image/image"
     xmlns:image="http://www.zorba-xquery.com/modules/image/image"
-    >
+    elementFormDefault="qualified">
 
 <!--
 :: Copyright 2006-2008 The FLWOR Foundation.

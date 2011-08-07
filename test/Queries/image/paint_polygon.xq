@@ -11,7 +11,7 @@ import schema namespace image = 'http://www.zorba-xquery.com/modules/image/image
 let $new-image :=  basic:create(xs:unsignedInt(100), xs:unsignedInt(100), "GIF")
 
 (: paint an anti-aliased polyline which goes through the points (0,0) (30, 70), (20, 18), (89, 33) :)
-let $image-with-polygon := paint:paint($new-image, <image:polygon><antiAliasing>true</antiAliasing><point><x>0</x><y>0</y></point><point><x>30</x><y>70</y></point><point><x>20</x><y>18</y></point><point><x>89</x><y>33</y></point></image:polygon>)
+let $image-with-polygon := paint:paint($new-image, <image:polygon><image:antiAliasing>true</image:antiAliasing><image:point><image:x>0</image:x><image:y>0</image:y></image:point><image:point><image:x>30</image:x><image:y>70</image:y></image:point><image:point><image:x>20</image:x><image:y>18</image:y></image:point><image:point><image:x>89</image:x><image:y>33</image:y></image:point></image:polygon>)
 
 return not(empty($image-with-polygon)) 
 

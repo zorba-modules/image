@@ -10,6 +10,6 @@ let $new-image := basic:create(xs:unsignedInt(200), xs:unsignedInt(100), "GIF")
 
 (: write a really important message to the image :)
 
-let $image-with-text := paint:paint($new-image, <image:text><origin><x>10</x><y>40</y></origin><text>Zorba really rocks!</text><font>Arial</font><font-size>12</font-size></image:text>)
+let $image-with-text := paint:paint($new-image, <image:text><image:origin><image:x>10</image:x><image:y>40</image:y></image:origin><image:text>Zorba really rocks!</image:text><image:font>Arial</image:font><image:font-size>12</image:font-size></image:text>)
 
 return not(empty($image-with-text)) 

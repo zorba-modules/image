@@ -39,20 +39,20 @@ ERROR:
  : @return true if the man:draw-line function works.
  :)
 declare %ann:nondeterministic function local:test-draw-line() as xs:boolean {
-    let $draw := paint:paint($local:gif, <image:line><start><x>-20</x><y>-20</y></start><end><x>80</x><y>80</y></end></image:line>) 
+    let $draw := paint:paint($local:gif, <image:line><image:start><image:x>-20</image:x><image:y>-20</image:y></image:start><image:end><image:x>80</image:x><image:y>80</image:y></image:end></image:line>) 
     let $draw-ref := file:read-binary(concat($local:image-dir,"paint/line.gif"))
     return basic:equals($draw, $draw-ref)
 };
 
 declare %ann:nondeterministic function local:test-draw-line-color-red() {
-    let $draw := paint:paint($local:gif, <image:line><strokeColor>#6F0000</strokeColor><start><x>0</x><y>0</y></start><end><x>80</x><y>80</y></end></image:line>) 
+    let $draw := paint:paint($local:gif, <image:line><image:strokeColor>#6F0000</image:strokeColor><image:start><image:x>0</image:x><image:y>0</image:y></image:start><image:end><image:x>80</image:x><image:y>80</image:y></image:end></image:line>) 
     let $draw-ref := file:read-binary(concat($local:image-dir,"paint/redLine.gif"))
     return basic:equals($draw, $draw-ref)
 
 };
 
 declare %ann:nondeterministic function local:test-draw-line-color-green() {
-    let $draw := paint:paint($local:gif, <image:line><strokeColor>#006F00</strokeColor><start><x>0</x><y>0</y></start><end><x>80</x><y>80</y></end></image:line>)
+    let $draw := paint:paint($local:gif, <image:line><image:strokeColor>#006F00</image:strokeColor><image:start><image:x>0</image:x><image:y>0</image:y></image:start><image:end><image:x>80</image:x><image:y>80</image:y></image:end></image:line>)
 
     let $draw-ref := file:read-binary(concat($local:image-dir,"paint/greenLine.gif"))
     return basic:equals($draw, $draw-ref)
@@ -60,14 +60,14 @@ declare %ann:nondeterministic function local:test-draw-line-color-green() {
 };
 
 declare %ann:nondeterministic function local:test-draw-line-color-blue() {
-    let $draw := paint:paint($local:gif, <image:line><strokeColor>#00006F</strokeColor><start><x>0</x><y>0</y></start><end><x>80</x><y>80</y></end></image:line>) 
+    let $draw := paint:paint($local:gif, <image:line><image:strokeColor>#00006F</image:strokeColor><image:start><image:x>0</image:x><image:y>0</image:y></image:start><image:end><image:x>80</image:x><image:y>80</image:y></image:end></image:line>) 
     let $draw-ref := file:read-binary(concat($local:image-dir,"paint/blueLine.gif"))
     return basic:equals($draw, $draw-ref)
 
 };
 
 declare %ann:nondeterministic function local:test-stroke-width() {
-    let $draw := paint:paint($local:gif, (<image:line><strokeWidth>10</strokeWidth><strokeColor>#000000</strokeColor><start><x>0</x><y>0</y></start><end><x>80</x><y>80</y></end></image:line>,<image:line><strokeColor>#FF00FF</strokeColor><start><x>30</x><y>0</y></start><end><x>70</x><y>90</y></end></image:line>))
+    let $draw := paint:paint($local:gif, (<image:line><image:strokeWidth>10</image:strokeWidth><image:strokeColor>#000000</image:strokeColor><image:start><image:x>0</image:x><image:y>0</image:y></image:start><image:end><image:x>80</image:x><image:y>80</image:y></image:end></image:line>,<image:line><image:strokeColor>#FF00FF</image:strokeColor><image:start><image:x>30</image:x><image:y>0</image:y></image:start><image:end><image:x>70</image:x><image:y>90</image:y></image:end></image:line>))
     let $draw-ref := file:read-binary(concat($local:image-dir,"paint/wideLine.gif"))
     return basic:equals($draw, $draw-ref)
 

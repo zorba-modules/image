@@ -38,7 +38,7 @@ xquery version "3.0";
  :)
 module namespace paint = 'http://www.zorba-xquery.com/modules/image/paint';
 
-import schema namespace image = 'http://www.zorba-xquery.com/modules/image/image';
+import schema namespace img = 'http://www.zorba-xquery.com/modules/image/image';
 
 declare namespace err = "http://www.w3.org/2005/xqt-errors";
 declare namespace ierr = "http://www.zorba-xquery.com/modules/image/error";
@@ -53,88 +53,88 @@ declare option ver:module-version "1.0";
  :    <ul>
  :      <li> line: 
  :        <pre class="brush: xml">
- :          &lt;image:line&gt;
- :            &lt;start&gt;&lt;x&gt;-20&lt;/x&gt;&lt;y&gt;-20&lt;/y&gt;&lt;/start&gt;
- :            &lt;end&gt;&lt;x&gt;80&lt;/x&gt;&lt;y&gt;80&lt;/y&gt;&lt;/end&gt;
- :          &lt;/image:line&gt;</pre>
+ :          &lt;img:line&gt;
+ :            &lt;img:start&gt;&lt;img:x&gt;-20&lt;/img:x&gt;&lt;img:y&gt;-20&lt;/img:y&gt;&lt;/img:start&gt;
+ :            &lt;img:end&gt;&lt;img:x&gt;80&lt;/img:x&gt;&lt;img:y&gt;80&lt;/img:y&gt;&lt;/img:end&gt;
+ :          &lt;/img:line&gt;</pre>
  :      </li> 
  :       <li> polyline: 
  :         <pre class="brush: xml">
- :           &lt;image:polyLine&gt;
- :             &lt;point&gt;&lt;x&gt;10&lt;/x&gt;&lt;y&gt;10&lt;/y&gt;&lt;/point&gt;
- :             &lt;point&gt;&lt;x&gt;40&lt;/x&gt;&lt;y&gt;80&lt;/y&gt;&lt;/point&gt;
- :             &lt;point&gt;&lt;x&gt;50&lt;/x&gt;&lt;y&gt;30&lt;/y&gt;&lt;/point&gt;
- :             &lt;point&gt;&lt;x&gt;200&lt;/x&gt;&lt;y&gt;200&lt;/y&gt;&lt;/point&gt;
- :           &lt;/image:polyLine&gt; 
+ :           &lt;img:polyLine&gt;
+ :             &lt;img:point&gt;&lt;img:x&gt;10&lt;/img:x&gt;&lt;img:y&gt;10&lt;/img:y&gt;&lt;/img:point&gt;
+ :             &lt;img:point&gt;&lt;img:x&gt;40&lt;/img:x&gt;&lt;img:y&gt;80&lt;/img:y&gt;&lt;/point&gt;
+ :             &lt;img:point&gt;&lt;img:x&gt;50&lt;/img:x&gt;&lt;img:y&gt;30&lt;/img:y&gt;&lt;/point&gt;
+ :             &lt;img:point&gt;&lt;img:x&gt;200&lt;/img:x&gt;&lt;img:y&gt;200&lt;/img:y&gt;&lt;/point&gt;
+ :           &lt;/img:polyLine&gt; 
  :         </pre>
  :       </li>
  :       <li> stroked polyline: 
  :         <pre class="brush: xml">
- :           &lt;image:strokedPolyLine&gt;
- :             &lt;point&gt;&lt;x&gt;10&lt;/x&gt;&lt;y&gt;10&lt;/y&gt;&lt;/point&gt;
- :             &lt;point&gt;&lt;x&gt;40&lt;/x&gt;&lt;y&gt;80&lt;/y&gt;&lt;/point&gt;
- :             &lt;point&gt;&lt;x&gt;50&lt;/x&gt;&lt;y&gt;30&lt;/y&gt;&lt;/point&gt;
- :             &lt;strokeLength&gt;5&lt;/strokeLength&gt;&lt;gapLength&gt;2&lt;/gapLength&gt;
- :           &lt;/image:strokedPolyLine&gt;
+ :           &lt;img:strokedPolyLine&gt;
+ :             &lt;img:point&gt;&lt;img:x&gt;10&lt;/img:x&gt;&lt;img:y&gt;10&lt;/img:y&gt;&lt;/img:point&gt;
+ :             &lt;img:point&gt;&lt;img:x&gt;40&lt;/img:x&gt;&lt;img:y&gt;80&lt;/img:y&gt;&lt;/img:point&gt;
+ :             &lt;img:point&gt;&lt;img:x&gt;50&lt;/img:x&gt;&lt;img:y&gt;30&lt;/img:y&gt;&lt;/img:point&gt;
+ :             &lt;img:strokeLength&gt;5&lt;/img:strokeLength&gt;&lt;img:gapLength&gt;2&lt;/img:gapLength&gt;
+ :           &lt;/img:strokedPolyLine&gt;
  :         </pre>
  :       </li>
  :       <li> rectangle:
  :         <pre class="brush: xml">
- :           &lt;image:rectangle&gt;
- :             &lt;upperLeft&gt;&lt;x&gt;20&lt;/x&gt;&lt;y&gt;20&lt;/y&gt;&lt;/upperLeft&gt;
- :             &lt;lowerRight&gt;&lt;x&gt;50&lt;/x&gt;&lt;y&gt;50&lt;/y&gt;&lt;/lowerRight&gt;
- :           &lt;/image:rectangle&gt;
+ :           &lt;img:rectangle&gt;
+ :             &lt;img:upperLeft&gt;&lt;img:x&gt;20&lt;/img:x&gt;&lt;img:y&gt;20&lt;/img:y&gt;&lt;/img:upperLeft&gt;
+ :             &lt;img:lowerRight&gt;&lt;img:x&gt;50&lt;/img:x&gt;&lt;img:y&gt;50&lt;/img:y&gt;&lt;/img:lowerRight&gt;
+ :           &lt;/img:rectangle&gt;
  :         </pre>
  :       </li>
  :       <li> rounded rectangle: 
  :         <pre class="brush: xml">
- :           &lt;image:roundedRectangle&gt;
- :             &lt;upperLeft&gt;&lt;x&gt;20&lt;/x&gt;&lt;y&gt;20&lt;/y&gt;&lt;/upperLeft&gt;
- :             &lt;lowerRight&gt;&lt;x&gt;50&lt;/x&gt;&lt;y&gt;50&lt;/y&gt;&lt;/lowerRight&gt;
- :             &lt;cornerWidth&gt;10&lt;/cornerWidth&gt;&lt;cornerHeight&gt;10&lt;/cornerHeight&gt;
- :           &lt;/image:roundedRectangle&gt;
+ :           &lt;img:roundedRectangle&gt;
+ :             &lt;img:upperLeft&gt;&lt;img:x&gt;20&lt;/img:x&gt;&lt;img:y&gt;20&lt;/img:y&gt;&lt;/img:upperLeft&gt;
+ :             &lt;img:lowerRight&gt;&lt;img:x&gt;50&lt;/img:x&gt;&lt;img:y&gt;50&lt;/img:y&gt;&lt;/img:lowerRight&gt;
+ :             &lt;img:cornerWidth&gt;10&lt;/img:cornerWidth&gt;&lt;img:cornerHeight&gt;10&lt;/img:cornerHeight&gt;
+ :           &lt;/img:roundedRectangle&gt;
  :         </pre>
  :       </li>
  :       <li> circle: 
  :         <pre class="brush: xml">
- :           &lt;image:circle&gt;
- :             &lt;origin&gt;&lt;x&gt;20&lt;/x&gt;&lt;y&gt;20&lt;/y&gt;
- :             &lt;/origin&gt;&lt;perimeter&gt;5&lt;/perimeter&gt;
- :           &lt;/image:circle&gt;
+ :           &lt;img:circle&gt;
+ :             &lt;img:origin&gt;&lt;img:x&gt;20&lt;/img:x&gt;&lt;img:y&gt;20&lt;/img:y&gt;&lt;/img:origin&gt;
+ :             &lt;img:perimeter&gt;5&lt;/img:perimeter&gt;
+ :           &lt;/img:circle&gt;
  :         </pre>
  :       </li>
  :       <li> ellipse: 
  :         <pre class="brush: xml">
- :           &lt;image:ellipse&gt;
- :             &lt;origin&gt;&lt;x&gt;50&lt;/x&gt;&lt;y&gt;50&lt;/y&gt;&lt;/origin&gt;
- :             &lt;perimeterX&gt;30&lt;/perimeterX&gt;&lt;perimeterY&gt;20&lt;/perimeterY&gt;
- :           &lt;/image:ellipse&gt;
+ :           &lt;img:ellipse&gt;
+ :             &lt;img:origin&gt;&lt;img:x&gt;50&lt;/img:x&gt;&lt;img:y&gt;50&lt;/img:y&gt;&lt;/img:origin&gt;
+ :             &lt;img:perimeterX&gt;30&lt;/img:perimeterX&gt;&lt;img:perimeterY&gt;20&lt;/img:perimeterY&gt;
+ :           &lt;/img:ellipse&gt;
  :         </pre>
  :       </li>
  :       <li> arc: 
  :         <pre class="brush: xml">
- :           &lt;image:arc&gt;
- :             &lt;origin&gt;&lt;x&gt;50&lt;/x&gt;&lt;y&gt;50&lt;/y&gt;&lt;/origin&gt;
- :             &lt;perimeterX&gt;10&lt;/perimeterX&gt;&lt;perimeterY&gt;20&lt;/perimeterY&gt;
- :             &lt;startDegrees&gt;180&lt;/startDegrees&gt;&lt;endDegrees&gt;270&lt;/endDegrees&gt;
- :           &lt;/image:arc&gt;
+ :           &lt;img:arc&gt;
+ :             &lt;img:origin&gt;&lt;img:x&gt;50&lt;/img:x&gt;&lt;img:y&gt;50&lt;/img:y&gt;&lt;/img:origin&gt;
+ :             &lt;img:perimeterX&gt;10&lt;/img:perimeterX&gt;&lt;img:perimeterY&gt;20&lt;/img:perimeterY&gt;
+ :             &lt;img:startDegrees&gt;180&lt;/img:startDegrees&gt;&lt;img:endDegrees&gt;270&lt;/img:endDegrees&gt;
+ :           &lt;/img:arc&gt;
  :         </pre>
  :       </li>
  :       <li> polygon: 
  :         <pre class="brush: xml">
- :           &lt;image:polygon&gt;
- :             &lt;point&gt;&lt;x&gt;10&lt;/x&gt;&lt;y&gt;10&lt;/y&gt;&lt;/point&gt;
- :             &lt;point&gt;&lt;x&gt;40&lt;/x&gt;&lt;y&gt;80&lt;/y&gt;&lt;/point&gt;
- :             &lt;point&gt;&lt;x&gt;50&lt;/x&gt;&lt;y&gt;30&lt;/y&gt;&lt;/point&gt;
- :           &lt;/image:polygon&gt;
+ :           &lt;img:polygon&gt;
+ :             &lt;img:point&gt;&lt;img:x&gt;10&lt;/img:x&gt;&lt;img:y&gt;10&lt;/img:y&gt;&lt;/img:point&gt;
+ :             &lt;img:point&gt;&lt;img:x&gt;40&lt;/img:x&gt;&lt;img:y&gt;80&lt;/img:y&gt;&lt;/img:point&gt;
+ :             &lt;img:point&gt;&lt;img:x&gt;50&lt;/img:x&gt;&lt;img:y&gt;30&lt;/img:y&gt;&lt;/img:point&gt;
+ :           &lt;/img:polygon&gt;
  :         </pre>
  :       </li>
  :       <li> text: 
  :         <pre class="brush: xml">
- :           &lt;image:text&gt;
- :             &lt;origin&gt;&lt;x&gt;20&lt;/x&gt;&lt;y&gt;20&lt;/y&gt;&lt;/origin&gt;
- :             &lt;text&gt;Hello Zorba&lt;/text&gt;&lt;font&gt;&lt;/font&gt;&lt;font-size&gt;12&lt;/font-size&gt;
- :           &lt;/image:text&gt;
+ :           &lt;img:text&gt;
+ :             &lt;img:origin&gt;&lt;img:x&gt;20&lt;/img:x&gt;&lt;img:y&gt;20&lt;/img:y&gt;&lt;/img:origin&gt;
+ :             &lt;img:text&gt;Hello Zorba&lt;/img:text&gt;&lt;img:font&gt;&lt;/img:font&gt;&lt;img:font-size&gt;12&lt;/img:font-size&gt;
+ :           &lt;/img:text&gt;
  :         </pre>
  :       </li>
  :     </ul>
@@ -143,14 +143,14 @@ declare option ver:module-version "1.0";
  : E.g.:
  : <p>
  :   <pre class="brush: xml">
- :     &lt;image:rectangle&gt;
- :       &lt;strokeWidth&gt;5&lt;/strokeWidth&gt;
- :       &lt;strokeColor&gt;#00AF00&lt;/strokeColor&gt;
- :       &lt;fillColor&gt;#A10000&lt;/fillColor&gt;
- :       &lt;antiAliasing&gt;true&lt;/antiAliasing&gt;
- :       &lt;upperLeft&gt;&lt;x&gt;20&lt;/x&gt;&lt;y&gt;20&lt;/y&gt;&lt;/upperLeft&gt;
- :       &lt;lowerRight&gt;&lt;x&gt;50&lt;/x&gt;&lt;y&gt;50&lt;/y&gt;&lt;/lowerRight&gt;
- :     &lt;/image:rectangle&gt;
+ :     &lt;img:rectangle&gt;
+ :       &lt;img:strokeWidth&gt;5&lt;/img:strokeWidth&gt;
+ :       &lt;img:strokeColor&gt;#00AF00&lt;/img:strokeColor&gt;
+ :       &lt;img:fillColor&gt;#A10000&lt;/img:fillColor&gt;
+ :       &lt;img:antiAliasing&gt;true&lt;/img:antiAliasing&gt;
+ :       &lt;img:upperLeft&gt;&lt;img:x&gt;20&lt;/img:x&gt;&lt;img:y&gt;20&lt;/img:y&gt;&lt;/img:upperLeft&gt;
+ :       &lt;img:lowerRight&gt;&lt;img:x&gt;50&lt;/img:x&gt;&lt;img:y&gt;50&lt;/img:y&gt;&lt;/img:lowerRight&gt;
+ :     &lt;/img:rectangle&gt;
  :   </pre>
  :  </p>
  : 
@@ -172,5 +172,5 @@ declare function paint:paint($image as xs:base64Binary, $shapes as element()*) a
   paint:paint-impl($image, for $x in $shapes return validate{$x})
 };
 
-declare %private function paint:paint-impl($image as xs:base64Binary, $shapes as element(*, image:paintableType)*) as xs:base64Binary external; 
+declare %private function paint:paint-impl($image as xs:base64Binary, $shapes as element(*, img:paintableType)*) as xs:base64Binary external; 
 

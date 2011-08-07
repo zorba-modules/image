@@ -39,7 +39,7 @@ ERROR:
  : @return true if the man:draw-rectangle function works.
  :)
 declare %ann:nondeterministic function local:test-draw-rectangle() as xs:boolean {
-    let $draw := paint:paint($local:gif, <image:rectangle><upperLeft><x>20</x><y>20</y></upperLeft><lowerRight><x>50</x><y>50</y></lowerRight></image:rectangle>)
+    let $draw := paint:paint($local:gif, <image:rectangle><image:upperLeft><image:x>20</image:x><image:y>20</image:y></image:upperLeft><image:lowerRight><image:x>50</image:x><image:y>50</image:y></image:lowerRight></image:rectangle>)
     let $draw-ref := file:read-binary(concat($local:image-dir, "paint/rectangle.gif"))
     return basic:equals($draw, $draw-ref)
 };
@@ -48,7 +48,7 @@ declare %ann:nondeterministic function local:test-draw-rectangle() as xs:boolean
  : @return true if the man:draw-rectangle function works.
  :)
 declare %ann:nondeterministic function local:test-draw-rectangle-green() as xs:boolean {
-    let $draw := paint:paint($local:gif, <image:rectangle><strokeColor>#00AF00</strokeColor><upperLeft><x>20</x><y>20</y></upperLeft><lowerRight><x>50</x><y>50</y></lowerRight></image:rectangle>)
+    let $draw := paint:paint($local:gif, <image:rectangle><image:strokeColor>#00AF00</image:strokeColor><image:upperLeft><image:x>20</image:x><image:y>20</image:y></image:upperLeft><image:lowerRight><image:x>50</image:x><image:y>50</image:y></image:lowerRight></image:rectangle>)
     let $draw-ref := file:read-binary(concat($local:image-dir, "paint/rectangleGreen.gif"))
     return basic:equals($draw, $draw-ref)
 };
@@ -58,7 +58,7 @@ declare %ann:nondeterministic function local:test-draw-rectangle-green() as xs:b
  : @return true if the man:draw-rectangle function works.
  :)
 declare %ann:nondeterministic function local:test-draw-rectangle-green-red() as xs:boolean {
-    let $draw := paint:paint($local:gif, <image:rectangle><strokeColor>#00AF00</strokeColor><fillColor>#A10000</fillColor><upperLeft><x>20</x><y>20</y></upperLeft><lowerRight><x>50</x><y>50</y></lowerRight></image:rectangle>)
+    let $draw := paint:paint($local:gif, <image:rectangle><image:strokeColor>#00AF00</image:strokeColor><image:fillColor>#A10000</image:fillColor><image:upperLeft><image:x>20</image:x><image:y>20</image:y></image:upperLeft><image:lowerRight><image:x>50</image:x><image:y>50</image:y></image:lowerRight></image:rectangle>)
     let $draw-ref := file:read-binary(concat($local:image-dir, "paint/rectangleGreenRed.gif"))
     return basic:equals($draw, $draw-ref)
 };
@@ -68,7 +68,7 @@ declare %ann:nondeterministic function local:test-draw-rectangle-green-red() as 
  : @return true if the man:draw-rectangle function works.
  :)
 declare %ann:nondeterministic function local:test-draw-rectangle-anti-aliased() as xs:boolean {
-    let $draw := paint:paint($local:gif, <image:rectangle><strokeWidth>5</strokeWidth><strokeColor>#00AF00</strokeColor><fillColor>#A10000</fillColor><antiAliasing>true</antiAliasing><upperLeft><x>20</x><y>20</y></upperLeft><lowerRight><x>50</x><y>50</y></lowerRight></image:rectangle>)
+    let $draw := paint:paint($local:gif, <image:rectangle><image:strokeWidth>5</image:strokeWidth><image:strokeColor>#00AF00</image:strokeColor><image:fillColor>#A10000</image:fillColor><image:antiAliasing>true</image:antiAliasing><image:upperLeft><image:x>20</image:x><image:y>20</image:y></image:upperLeft><image:lowerRight><image:x>50</image:x><image:y>50</image:y></image:lowerRight></image:rectangle>)
     let $draw-ref := file:read-binary(concat($local:image-dir, "paint/rectangleAntiAliased.gif"))
     return basic:equals($draw, $draw-ref)
 };
@@ -77,7 +77,7 @@ declare %ann:nondeterministic function local:test-draw-rectangle-anti-aliased() 
  : @return true if the man:draw-rounded-rectangle function works.
  :)
 declare %ann:nondeterministic function local:test-draw-rounded-rectangle() as xs:boolean {
-    let $draw := paint:paint($local:gif, <image:roundedRectangle><upperLeft><x>20</x><y>20</y></upperLeft><lowerRight><x>50</x><y>50</y></lowerRight><cornerWidth>10</cornerWidth><cornerHeight>10</cornerHeight></image:roundedRectangle>)
+    let $draw := paint:paint($local:gif, <image:roundedRectangle><image:upperLeft><image:x>20</image:x><image:y>20</image:y></image:upperLeft><image:lowerRight><image:x>50</image:x><image:y>50</image:y></image:lowerRight><image:cornerWidth>10</image:cornerWidth><image:cornerHeight>10</image:cornerHeight></image:roundedRectangle>)
     let $draw-ref := file:read-binary(concat($local:image-dir, "paint/rectangleRounded.gif"))
     return basic:equals($draw, $draw-ref)
 };
@@ -86,7 +86,7 @@ declare %ann:nondeterministic function local:test-draw-rounded-rectangle() as xs
  : @return true if the man:draw-rounded-rectangle function works.
  :)
 declare %ann:nondeterministic function local:test-draw-rounded-rectangle-blue() as xs:boolean {
-    let $draw := paint:paint($local:gif, <image:roundedRectangle><strokeColor>#0000FF</strokeColor><upperLeft><x>20</x><y>20</y></upperLeft><lowerRight><x>50</x><y>50</y></lowerRight><cornerWidth>10</cornerWidth><cornerHeight>10</cornerHeight></image:roundedRectangle>)
+    let $draw := paint:paint($local:gif, <image:roundedRectangle><image:strokeColor>#0000FF</image:strokeColor><image:upperLeft><image:x>20</image:x><image:y>20</image:y></image:upperLeft><image:lowerRight><image:x>50</image:x><image:y>50</image:y></image:lowerRight><image:cornerWidth>10</image:cornerWidth><image:cornerHeight>10</image:cornerHeight></image:roundedRectangle>)
     let $draw-ref := file:read-binary(concat($local:image-dir, "paint/rectangleRoundedBlue.gif"))
     return basic:equals($draw, $draw-ref)
 };
@@ -96,7 +96,7 @@ declare %ann:nondeterministic function local:test-draw-rounded-rectangle-blue() 
  : @return true if the man:draw-rounded-rectangle function works.
  :)
 declare %ann:nondeterministic function local:test-draw-rounded-rectangle-blue-green() as xs:boolean {
-    let $draw := paint:paint($local:gif, <image:roundedRectangle><strokeColor>#0000FF</strokeColor><fillColor>#00FF00</fillColor><upperLeft><x>20</x><y>20</y></upperLeft><lowerRight><x>50</x><y>50</y></lowerRight><cornerWidth>10</cornerWidth><cornerHeight>10</cornerHeight></image:roundedRectangle>)
+    let $draw := paint:paint($local:gif, <image:roundedRectangle><image:strokeColor>#0000FF</image:strokeColor><image:fillColor>#00FF00</image:fillColor><image:upperLeft><image:x>20</image:x><image:y>20</image:y></image:upperLeft><image:lowerRight><image:x>50</image:x><image:y>50</image:y></image:lowerRight><image:cornerWidth>10</image:cornerWidth><image:cornerHeight>10</image:cornerHeight></image:roundedRectangle>)
     let $draw-ref := file:read-binary(concat($local:image-dir, "paint/rectangleRoundedBlueGreen.gif"))
     return basic:equals($draw, $draw-ref)
 };
@@ -106,7 +106,7 @@ declare %ann:nondeterministic function local:test-draw-rounded-rectangle-blue-gr
  : @return true if the man:draw-rounded-rectangle function works.
  :)
 declare %ann:nondeterministic function local:test-draw-rounded-rectangle-anti-aliased() as xs:boolean {
-    let $draw := paint:paint($local:gif, <image:roundedRectangle><strokeColor>#0000FF</strokeColor><fillColor>#00FF00</fillColor><antiAliasing>true</antiAliasing><upperLeft><x>20</x><y>20</y></upperLeft><lowerRight><x>50</x><y>50</y></lowerRight><cornerWidth>10</cornerWidth><cornerHeight>10</cornerHeight></image:roundedRectangle>)
+    let $draw := paint:paint($local:gif, <image:roundedRectangle><image:strokeColor>#0000FF</image:strokeColor><image:fillColor>#00FF00</image:fillColor><image:antiAliasing>true</image:antiAliasing><image:upperLeft><image:x>20</image:x><image:y>20</image:y></image:upperLeft><image:lowerRight><image:x>50</image:x><image:y>50</image:y></image:lowerRight><image:cornerWidth>10</image:cornerWidth><image:cornerHeight>10</image:cornerHeight></image:roundedRectangle>)
     let $draw-ref := file:read-binary(concat($local:image-dir, "paint/rectangleRoundedAntiAliased.gif"))
     return basic:equals($draw, $draw-ref)
 };
