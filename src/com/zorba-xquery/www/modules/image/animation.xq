@@ -19,11 +19,7 @@ xquery version "3.0";
 (:~
  : This module provides functions to create animated GIF images. 
 
- : <p>The errors raised by functions of this module have the namespace
- : <tt>http://www.zorba-xquery.com/modules/image/error</tt> (associated with prefix ierr).</p>
- :
  : @author Daniel Thomas
- : @see http://www.zorba-xquery.com/modules/image/image
  : @library <a href="http://www.imagemagick.org/Magick++/">Magick++ C++ Library</a>
  : @project image
  :)
