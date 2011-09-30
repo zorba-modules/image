@@ -55,8 +55,7 @@ ELSE(ZORBA_SUPPRESS_ImageMagick)
     MESSAGE(STATUS "If you want to use image handling functionality please install the ImageMagick library containing these 3 components: Magick++, MagickCore, MagickWand.\n Please note that on some OS\n- ImageMagick and\n- libMagick++ (on OpenSuse) or ImageMagick-c++(on Fedora)\n are 2 different packages and you need to install both of them and additionally their development packages.")
   ENDIF (ImageMagick_FOUND)
 ENDIF(ZORBA_SUPPRESS_ImageMagick)
-MESSAGE("")
-
+MESSAGE(STATUS "") 
 
 
 ########################################################################
@@ -84,4 +83,4 @@ ELSE (ZORBA_SUPPRESS_GRAPHVIZ)
     MESSAGE(STATUS "Graphviz library not found.")
   ENDIF (GRAPHVIZ_FOUND)
 ENDIF (ZORBA_SUPPRESS_GRAPHVIZ)
-MESSAGE("") 
+MESSAGE(STATUS "") 
