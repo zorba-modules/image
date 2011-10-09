@@ -22,13 +22,26 @@
 #
 # See the FindLibTidy.cmake module shipped with Zorba for more information.
 
-FIND_PACKAGE_WIN32(NAME ImageMagick FOUND_VAR ImageMagick_FOUND SEARCH_NAMES ImageMagick COMPONENTS Magick++ MagickCore MagickWand)
+FIND_PACKAGE_WIN32 (NAME ImageMagick FOUND_VAR ImageMagick_FOUND SEARCH_NAMES ImageMagick COMPONENTS Magick++ MagickCore MagickWand)
 
 IF (ImageMagick_FOUND)
 
   #find the needed DLL's
-  FIND_PACKAGE_DLLS_WIN32 (${FOUND_LOCATION} "config/colors.xml;config/coder.xml;config/configure.xml;config/delegates.xml;config/english.xml;config/locale.xml;config/log.xml;config/magic.xml;config/mime.xml;config/thresholds.xml;config/type.xml;config/type-ghostscript.xml;CORE_RL_tiff_.dll;CORE_RL_png_.dll;CORE_RL_libxml_.dll;CORE_RL_jbig_.dll;CORE_RL_jp2_.dll;CORE_RL_jpeg_.dll;CORE_RL_Magick++_.dll;CORE_RL_bzlib_.dll;CORE_RL_lcms_.dll;CORE_RL_ttf_.dll;CORE_RL_xlib_.dll;CORE_RL_zlib_.dll;CORE_RL_magick_.dll;CORE_RL_wand_.dll")
-  
-ENDIF (ImageMagick_FOUND)  
+  FIND_PACKAGE_DLL_WIN32 (${FOUND_LOCATION} "CORE_RL_bzlib_")
+  FIND_PACKAGE_DLL_WIN32 (${FOUND_LOCATION} "CORE_RL_jbig_")
+  FIND_PACKAGE_DLL_WIN32 (${FOUND_LOCATION} "CORE_RL_jp2_")
+  FIND_PACKAGE_DLL_WIN32 (${FOUND_LOCATION} "CORE_RL_jpeg_")
+  FIND_PACKAGE_DLL_WIN32 (${FOUND_LOCATION} "CORE_RL_lcms_")
+  FIND_PACKAGE_DLL_WIN32 (${FOUND_LOCATION} "CORE_RL_libxml_")
+  FIND_PACKAGE_DLL_WIN32 (${FOUND_LOCATION} "CORE_RL_Magick++_")
+  FIND_PACKAGE_DLL_WIN32 (${FOUND_LOCATION} "CORE_RL_magick_")
+  FIND_PACKAGE_DLL_WIN32 (${FOUND_LOCATION} "CORE_RL_png_")
+  FIND_PACKAGE_DLL_WIN32 (${FOUND_LOCATION} "CORE_RL_tiff_")
+  FIND_PACKAGE_DLL_WIN32 (${FOUND_LOCATION} "CORE_RL_ttf_")
+  FIND_PACKAGE_DLL_WIN32 (${FOUND_LOCATION} "CORE_RL_wand_")
+  FIND_PACKAGE_DLL_WIN32 (${FOUND_LOCATION} "CORE_RL_xlib_")
+  FIND_PACKAGE_DLL_WIN32 (${FOUND_LOCATION} "CORE_RL_zlib_")
 
- 
+  FIND_PACKAGE_DLL_WIN32 (${FOUND_LOCATION} "X11")
+
+ENDIF (ImageMagick_FOUND)
