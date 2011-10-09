@@ -47,7 +47,40 @@ ELSE(ZORBA_SUPPRESS_ImageMagick)
       URI "http://www.zorba-xquery.com/modules/image/animation"
       EXTRA_SOURCES image_commons
       LINK_LIBRARIES ${ImageMagick_LIBRARIES})
-    ADD_TEST_DIRECTORY("${PROJECT_SOURCE_DIR}/test")  
+      
+    SET (EXCEPTION_LIST)
+    IF (WIN32)
+      # bug#867693
+      LIST (APPEND EXCEPTION_LIST
+        image/basic_svg.xq
+      )
+
+      IF (CMAKE_BUILD_TYPE STREQUAL "Debug")
+        # bug#867693
+        LIST (APPEND EXCEPTION_LIST
+          image/basic_svg.xq
+          image/basic.xq
+          image/basic_convert.xq
+          image/basic_create.xq
+          image/paint_1.xq
+          image/paint_2.xq
+          image/paint_3.xq
+          image/paint_4.xq
+          image/paint_5.xq
+          image/paint_6.xq
+          image/paint_circles.xq
+          image/paint_different_lines.xq
+          image/paint_polygon.xq
+          image/paint_polyline.xq
+          image/paint_rectangles.xq
+          image/paint_stroked_polyline.xq
+          image/paint_text.xq
+        )
+      ENDIF (CMAKE_BUILD_TYPE STREQUAL "Debug")
+    ENDIF (WIN32)
+
+    ADD_TEST_DIRECTORY ("${PROJECT_SOURCE_DIR}/test" "${EXCEPTION_LIST}")
+    
   ELSE (ImageMagick_FOUND)
     MESSAGE(STATUS "Magick++   component found: ${ImageMagick_Magick++_FOUND}")
     MESSAGE(STATUS "MagickCore component found: ${ImageMagick_MagickCore_FOUND}")
