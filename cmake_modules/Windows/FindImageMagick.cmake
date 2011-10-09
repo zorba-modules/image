@@ -14,19 +14,20 @@
 
 # - Try to find the ImageMagick lib on Windows
 #
-# This is a proxy module that calls the FindGraphviz.cmake module. Before
-# doing that, we try to guess where Graphviz might be on the user's machine.
-# The user should provide ZORBA_THIRD_PARTY_REQUIREMENTS which is a path where
-# the Graphviz directory can be found. The Graphviz directory must have "graphviz"
-# (case insensitive) in its name.
+# This is a proxy module that calls the FindImageMagick.cmake module.
 #
-# See the FindLibTidy.cmake module shipped with Zorba for more information.
+# See the FindImageMagick.cmake module shipped with Zorba for more information.
 
-FIND_PACKAGE_WIN32 (NAME ImageMagick FOUND_VAR ImageMagick_FOUND SEARCH_NAMES ImageMagick COMPONENTS Magick++ MagickCore MagickWand)
+FIND_PACKAGE_WIN32 (
+  NAME "ImageMagick"
+  FOUND_VAR "ImageMagick_FOUND"
+  SEARCH_NAMES "ImageMagick"
+  COMPONENTS Magick++ MagickCore MagickWand
+)
 
 IF (ImageMagick_FOUND)
 
-  #find the needed DLL's
+  # find the needed DLL's
   FIND_PACKAGE_DLL_WIN32 (${FOUND_LOCATION} "CORE_RL_bzlib_")
   FIND_PACKAGE_DLL_WIN32 (${FOUND_LOCATION} "CORE_RL_jbig_")
   FIND_PACKAGE_DLL_WIN32 (${FOUND_LOCATION} "CORE_RL_jp2_")
