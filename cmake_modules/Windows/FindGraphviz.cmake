@@ -25,13 +25,17 @@
 # -D GRAPHVIZ_INCLUDE="path_to_3rd_party_dir\*graphviz*\src"
 # -D GRAPHVIZ_LIBRARY="path_to_3rd_party_dir\*graphviz*\bin\[Release]\graphviz.lib"
 #
-# See the FindLibTidy.cmake module shipped with Zorba for more information.
+# See the FindGraphviz.cmake module shipped with Zorba for more information.
 
-FIND_PACKAGE_WIN32 (NAME Graphviz FOUND_VAR GRAPHVIZ_FOUND SEARCH_NAMES graphviz)
+FIND_PACKAGE_WIN32 (
+  NAME "Graphviz"
+  FOUND_VAR "GRAPHVIZ_FOUND"
+  SEARCH_NAMES "graphviz"
+)
 
 IF (GRAPHVIZ_FOUND)
 
-  #find the needed DLL's
+  # find the needed DLL's
   FIND_PACKAGE_DLLS_WIN32 (${FOUND_LOCATION} graph.dll)
   
-ENDIF (GRAPHVIZ_FOUND)  
+ENDIF (GRAPHVIZ_FOUND)
