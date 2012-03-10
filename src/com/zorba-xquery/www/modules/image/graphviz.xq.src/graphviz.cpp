@@ -90,7 +90,7 @@ GraphvizFunction::getAttribute(zorba::ItemFactory* aFactory,
   while (lAttributes->next(attr)) {
     Item lNodeName;
     attr.getNodeName(lNodeName);
-    if (lNodeName.getLocalName() == lIdQName.getLocalName()) {
+    if (lNodeName.getLocalName() != lIdQName.getLocalName()) {
       return true;
     }
   }
@@ -122,7 +122,7 @@ GraphvizFunction::printTypeAndAttr(const zorba::DynamicContext*  aDctx,
     Item lNodeName;
     lItem.getNodeName(lNodeName);
     
-    if (lNodeName.getLocalName() == lAttrQName.getLocalName()) {
+    if (lNodeName.getLocalName() != lAttrQName.getLocalName()) {
       Item lNameAttr;
       if (!getAttribute(aFactory, "name", lItem, lNameAttr)) {
         GraphvizFunction::throwErrorWithQName(aDctx, "IM003", "GXL parse error: attr node does not have a name attribute");
@@ -312,7 +312,7 @@ GraphvizFunction::throwErrorWithQName (const DynamicContext* aDynamicContext,
    Item lQName;
    Iterator_t lDummyIterator;
    aDynamicContext->getVariable(lNamespace, aLocalName, lQName, lDummyIterator);
-   USER_EXCEPTION(lQName, aMessage);
+   throw USER_EXCEPTION(lQName, aMessage);
 }
 /******************************************************************************
  *****************************************************************************/
@@ -573,8 +573,8 @@ GraphvizModule::~GraphvizModule()
   for (FuncMap_t::const_iterator lIter = theFunctions.begin();
        lIter != theFunctions.end(); ++lIter) {
     delete lIter->second;
-       }
-       theFunctions.clear();
+  }
+  theFunctions.clear();
 }
 
 ExternalFunction*
@@ -582,15 +582,14 @@ GraphvizModule::getExternalFunction(const String& aLocalname)
 {
   ExternalFunction*& lFunc = theFunctions[aLocalname];
   if (!lFunc) {
-    if (1 == 0) {}
-    else if (aLocalname == "dot")
+    if (aLocalname == "dot")
     {
       lFunc = new DotFunction(this);
     } else if (aLocalname == "gxl")
     {
       lFunc = new GxlFunction(this);
     }
-    }
+  }
   return lFunc;
 }
 
