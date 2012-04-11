@@ -8,7 +8,7 @@ import module namespace file = 'http://expath.org/ns/file';
 import module namespace paint = 'http://www.zorba-xquery.com/modules/image/paint';
 import schema namespace image = 'http://www.zorba-xquery.com/modules/image/image';
 
-declare namespace ann = "http://www.zorba-xquery.com/annotations";
+declare namespace an = "http://www.zorba-xquery.com/annotations";
 
 declare variable $local:image-dir := fn:concat(file:dir-name(fn:static-base-uri()), "/images/");
 
@@ -39,7 +39,7 @@ ERROR:
 (:~
  : @return true if the man:draw-circle function works.
  :)
-declare %ann:nondeterministic function local:test-draw-circle() as xs:boolean {
+declare %an:nondeterministic function local:test-draw-circle() as xs:boolean {
     let $draw := paint:paint($local:jpg, <image:circle><image:origin><image:x>20</image:x><image:y>20</image:y></image:origin><image:perimeter>5</image:perimeter></image:circle>)
     let $draw-ref := file:read-binary(concat($local:image-dir, "paint/circle.jpg"))
     return basic:equals($draw, $draw-ref)
@@ -49,7 +49,7 @@ declare %ann:nondeterministic function local:test-draw-circle() as xs:boolean {
 (:~
  : @return true if the man:draw-ellipse function works.
  :)
-declare %ann:nondeterministic function local:test-draw-ellipse() as xs:boolean {
+declare %an:nondeterministic function local:test-draw-ellipse() as xs:boolean {
     let $draw := paint:paint($local:jpg, <image:ellipse><image:origin><image:x>50</image:x><image:y>50</image:y></image:origin><image:perimeterX>30</image:perimeterX><image:perimeterY>20</image:perimeterY></image:ellipse>)
     let $draw-ref := file:read-binary(concat($local:image-dir, "paint/ellipse.jpg"))
     return basic:equals($draw, $draw-ref)
@@ -58,7 +58,7 @@ declare %ann:nondeterministic function local:test-draw-ellipse() as xs:boolean {
 (:~
  : @return true if the man:draw-arc function works.
  :)
-declare %ann:nondeterministic function local:test-draw-arc() as xs:boolean {
+declare %an:nondeterministic function local:test-draw-arc() as xs:boolean {
     let $draw := paint:paint($local:jpg, <image:arc><image:origin><image:x>50</image:x><image:y>50</image:y></image:origin><image:perimeterX>10</image:perimeterX><image:perimeterY>20</image:perimeterY><image:startDegrees>180</image:startDegrees><image:endDegrees>270</image:endDegrees></image:arc>)
     let $draw-ref := file:read-binary(concat($local:image-dir, "paint/arc.jpg"))
     return basic:equals($draw, $draw-ref)
@@ -67,7 +67,7 @@ declare %ann:nondeterministic function local:test-draw-arc() as xs:boolean {
 (:~
  : @return true if the man:draw-arc function works.
  :)
-declare %ann:nondeterministic function local:test-draw-red-arc() as xs:boolean {
+declare %an:nondeterministic function local:test-draw-red-arc() as xs:boolean {
     let $draw := paint:paint($local:jpg, <image:arc><image:strokeColor>#FF0000</image:strokeColor><image:origin><image:x>50</image:x><image:y>50</image:y></image:origin><image:perimeterX>10</image:perimeterX><image:perimeterY>20</image:perimeterY><image:startDegrees>180</image:startDegrees><image:endDegrees>270</image:endDegrees></image:arc>)
     let $draw-ref := file:read-binary(concat($local:image-dir, "paint/arcRed.jpg"))
     return basic:equals($draw, $draw-ref)
@@ -76,7 +76,7 @@ declare %ann:nondeterministic function local:test-draw-red-arc() as xs:boolean {
 (:~
  : @return true if the man:draw-arc function works.
  :)
-declare %ann:nondeterministic function local:test-draw-red-green-arc() as xs:boolean {
+declare %an:nondeterministic function local:test-draw-red-green-arc() as xs:boolean {
     let $draw := paint:paint($local:jpg, <image:arc><image:strokeColor>#FF0000</image:strokeColor><image:fillColor>#00AF00</image:fillColor><image:origin><image:x>50</image:x><image:y>50</image:y></image:origin><image:perimeterX>10</image:perimeterX><image:perimeterY>20</image:perimeterY><image:startDegrees>180</image:startDegrees><image:endDegrees>270</image:endDegrees></image:arc>)
     let $draw-ref := file:read-binary(concat($local:image-dir, "paint/arcRedGreen.jpg"))
     return basic:equals($draw, $draw-ref)
@@ -85,7 +85,7 @@ declare %ann:nondeterministic function local:test-draw-red-green-arc() as xs:boo
 (:~
  : @return true if the man:draw-arc function works.
  :)
-declare %ann:nondeterministic function local:test-draw-wide-arc() as xs:boolean {
+declare %an:nondeterministic function local:test-draw-wide-arc() as xs:boolean {
     let $draw := paint:paint($local:jpg, <image:arc><image:strokeWidth>5</image:strokeWidth><image:strokeColor>#FF0000</image:strokeColor><image:fillColor>#00AF00</image:fillColor><image:origin><image:x>50</image:x><image:y>50</image:y></image:origin><image:perimeterX>10</image:perimeterX><image:perimeterY>20</image:perimeterY><image:startDegrees>180</image:startDegrees><image:endDegrees>270</image:endDegrees></image:arc>)
     let $draw-ref := file:read-binary(concat($local:image-dir, "paint/arcWide.jpg"))
     return basic:equals($draw, $draw-ref)
@@ -96,7 +96,7 @@ declare %ann:nondeterministic function local:test-draw-wide-arc() as xs:boolean 
 (:~
  : @return true if the man:draw-arc function works.
  :)
-declare %ann:nondeterministic function local:test-draw-anti-aliased-arc() as xs:boolean {
+declare %an:nondeterministic function local:test-draw-anti-aliased-arc() as xs:boolean {
     let $draw := paint:paint($local:jpg, <image:arc><image:strokeWidth>5</image:strokeWidth><image:strokeColor>#FF0000</image:strokeColor><image:fillColor>#00AF00</image:fillColor><image:antiAliasing>true</image:antiAliasing><image:origin><image:x>50</image:x><image:y>50</image:y></image:origin><image:perimeterX>10</image:perimeterX><image:perimeterY>20</image:perimeterY><image:startDegrees>180</image:startDegrees><image:endDegrees>270</image:endDegrees></image:arc>)
     let $draw-ref := file:read-binary(concat($local:image-dir, "paint/arcAntiAliased.jpg"))
     return basic:equals($draw, $draw-ref)
@@ -106,7 +106,7 @@ declare %ann:nondeterministic function local:test-draw-anti-aliased-arc() as xs:
 
 
 
-declare %ann:nondeterministic %ann:sequential function local:main() as xs:string* {
+declare %an:nondeterministic %an:sequential function local:main() as xs:string* {
 
   let $a := local:test-draw-circle()
   return
