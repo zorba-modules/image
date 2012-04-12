@@ -8,7 +8,7 @@ import module namespace basic = 'http://www.zorba-xquery.com/modules/image/basic
 import module namespace ani = 'http://www.zorba-xquery.com/modules/image/animation';
 import schema namespace image = 'http://www.zorba-xquery.com/modules/image/image';
 
-declare namespace ann = "http://www.zorba-xquery.com/annotations";
+declare namespace an = "http://www.zorba-xquery.com/annotations";
 
 declare variable $local:image-dir := fn:concat(file:dir-name(fn:static-base-uri()), "/images/");
 
@@ -33,7 +33,7 @@ ERROR:
 (:~
  : @return true if the ani:create-animated-gif function works.
  :)
-declare %ann:nondeterministic function local:test-create-animated-gif() as xs:boolean {
+declare %an:nondeterministic function local:test-create-animated-gif() as xs:boolean {
     let $gif1 := file:read-binary(concat($local:image-dir, "bird.gif"))
     let $gif2 := file:read-binary(concat($local:image-dir, "bird2.gif"))
     let $animatedGif := ani:create-animated-gif(($gif1, $gif2), xs:unsignedInt(10), xs:unsignedInt(0))
@@ -44,7 +44,7 @@ declare %ann:nondeterministic function local:test-create-animated-gif() as xs:bo
 (:~
  : @return true if the ani:create-morphed-gif function works.
  :)
-declare %ann:nondeterministic function local:test-create-morphed-gif() as xs:boolean {
+declare %an:nondeterministic function local:test-create-morphed-gif() as xs:boolean {
     let $gif1 := file:read-binary(concat($local:image-dir, "bird.gif"))
     let $gif2 := file:read-binary(concat($local:image-dir, "bird2.gif"))
     let $animatedGif := ani:create-morphed-gif(($gif1, $gif2), xs:unsignedInt(10), xs:unsignedInt(0), xs:unsignedInt(2  ))
@@ -55,7 +55,7 @@ declare %ann:nondeterministic function local:test-create-morphed-gif() as xs:boo
 
 
 
-declare %ann:nondeterministic %ann:sequential function local:main() as xs:string* {
+declare %an:nondeterministic %an:sequential function local:main() as xs:string* {
 
   let $a := local:test-create-animated-gif()
   return

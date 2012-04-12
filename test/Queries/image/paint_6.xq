@@ -8,7 +8,7 @@ import module namespace file = 'http://expath.org/ns/file';
 import module namespace paint = 'http://www.zorba-xquery.com/modules/image/paint';
 import schema namespace image = 'http://www.zorba-xquery.com/modules/image/image';
 
-declare namespace ann = "http://www.zorba-xquery.com/annotations";
+declare namespace an = "http://www.zorba-xquery.com/annotations";
 
 declare variable $local:image-dir := fn:concat(file:dir-name(fn:static-base-uri()), "/images/");
 declare variable $local:jpg as xs:base64Binary := basic:create(xs:unsignedInt(100), xs:unsignedInt(100), image:imageFormat("JPEG"));
@@ -36,7 +36,7 @@ ERROR:
 (:~
  : @return true if the man:draw-polygon function works.
  :)
-declare %ann:nondeterministic function local:test-draw-polygon() as xs:boolean {
+declare %an:nondeterministic function local:test-draw-polygon() as xs:boolean {
     let $draw := paint:paint($local:jpg, <image:polygon><image:point><image:x>10</image:x><image:y>10</image:y></image:point><image:point><image:x>40</image:x><image:y>80</image:y></image:point><image:point><image:x>50</image:x><image:y>30</image:y></image:point></image:polygon>)
     let $draw-ref := file:read-binary(concat($local:image-dir, "paint/polygon.jpg"))
     return basic:equals($draw, $draw-ref)
@@ -45,7 +45,7 @@ declare %ann:nondeterministic function local:test-draw-polygon() as xs:boolean {
 (:~
  : @return true if the man:draw-polygon function works.
  :)
-declare %ann:nondeterministic function local:test-draw-polygon-red() as xs:boolean {
+declare %an:nondeterministic function local:test-draw-polygon-red() as xs:boolean {
     let $draw := paint:paint($local:jpg, <image:polygon><image:strokeColor>#FF0000</image:strokeColor><image:point><image:x>10</image:x><image:y>10</image:y></image:point><image:point><image:x>40</image:x><image:y>80</image:y></image:point><image:point><image:x>50</image:x><image:y>30</image:y></image:point></image:polygon>)
     let $draw-ref := file:read-binary(concat($local:image-dir, "paint/polygonRed.jpg"))
     return basic:equals($draw, $draw-ref)
@@ -54,7 +54,7 @@ declare %ann:nondeterministic function local:test-draw-polygon-red() as xs:boole
 (:~
  : @return true if the man:draw-polygon function works.
  :)
-declare %ann:nondeterministic function local:test-draw-polygon-red-green() as xs:boolean {
+declare %an:nondeterministic function local:test-draw-polygon-red-green() as xs:boolean {
     let $draw := paint:paint($local:jpg, <image:polygon><image:strokeColor>#FF0000</image:strokeColor><image:fillColor>#00FF00</image:fillColor><image:point><image:x>10</image:x><image:y>10</image:y></image:point><image:point><image:x>40</image:x><image:y>80</image:y></image:point><image:point><image:x>50</image:x><image:y>30</image:y></image:point></image:polygon>)
     let $draw-ref := file:read-binary(concat($local:image-dir, "paint/polygonRedGreen.jpg"))
     return basic:equals($draw, $draw-ref)
@@ -63,7 +63,7 @@ declare %ann:nondeterministic function local:test-draw-polygon-red-green() as xs
 (:~
  : @return true if the man:draw-polygon function works.
  :)
-declare %ann:nondeterministic function local:test-draw-polygon-wide() as xs:boolean {
+declare %an:nondeterministic function local:test-draw-polygon-wide() as xs:boolean {
     let $draw := paint:paint($local:jpg, <image:polygon><image:strokeWidth>3</image:strokeWidth><image:strokeColor>#FF0000</image:strokeColor><image:fillColor>#00FF00</image:fillColor><image:point><image:x>10</image:x><image:y>10</image:y></image:point><image:point><image:x>40</image:x><image:y>80</image:y></image:point><image:point><image:x>50</image:x><image:y>30</image:y></image:point></image:polygon>)
     let $draw-ref := file:read-binary(concat($local:image-dir, "paint/polygonWide.jpg"))
     return basic:equals($draw, $draw-ref)
@@ -73,14 +73,14 @@ declare %ann:nondeterministic function local:test-draw-polygon-wide() as xs:bool
 (:~
  : @return true if the man:draw-polygon function works.
  :)
-declare %ann:nondeterministic function local:test-draw-polygon-anti-aliased() as xs:boolean {
+declare %an:nondeterministic function local:test-draw-polygon-anti-aliased() as xs:boolean {
     let $draw := paint:paint($local:jpg, <image:polygon><image:strokeWidth>3</image:strokeWidth><image:strokeColor>#FF0000</image:strokeColor><image:fillColor>#00FF00</image:fillColor><image:antiAliasing>true</image:antiAliasing><image:point><image:x>10</image:x><image:y>10</image:y></image:point><image:point><image:x>40</image:x><image:y>80</image:y></image:point><image:point><image:x>50</image:x><image:y>30</image:y></image:point></image:polygon>)
     let $draw-ref := file:read-binary(concat($local:image-dir, "paint/polygonAntiAliased.jpg"))
     return basic:equals($draw, $draw-ref)
 };
 
 
-declare %ann:nondeterministic %ann:sequential function local:main() as xs:string* {
+declare %an:nondeterministic %an:sequential function local:main() as xs:string* {
 
   let $a := local:test-draw-polygon()
   return

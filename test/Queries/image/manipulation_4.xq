@@ -8,7 +8,7 @@ import module namespace file = 'http://expath.org/ns/file';
 import module namespace man = 'http://www.zorba-xquery.com/modules/image/manipulation';
 import schema namespace image = 'http://www.zorba-xquery.com/modules/image/image';
 
-declare namespace ann = "http://www.zorba-xquery.com/annotations";
+declare namespace an = "http://www.zorba-xquery.com/annotations";
 
 declare variable $local:image-dir := fn:concat(file:dir-name(fn:static-base-uri()), "/images/");
 
@@ -38,7 +38,7 @@ ERROR:
 (:~
  : @return true if the man:stereo function works.
  :)
-declare %ann:nondeterministic function local:test-stereo() as xs:boolean {
+declare %an:nondeterministic function local:test-stereo() as xs:boolean {
     let $right-image := man:zoom($local:jpg, 0.9)
     let $stereod := man:stereo($local:jpg, $right-image)
     let $stereod-ref := file:read-binary(concat($local:image-dir, "manipulation/stereodBird.jpg"))
@@ -48,7 +48,7 @@ declare %ann:nondeterministic function local:test-stereo() as xs:boolean {
 (:~
  : @return true if the man:transparent function works.
  :)
-declare %ann:nondeterministic function local:test-transparent() as xs:boolean {
+declare %an:nondeterministic function local:test-transparent() as xs:boolean {
     let $transparented := man:transparent($local:gif, "#000000")
     let $transparented-ref := file:read-binary(concat($local:image-dir, "manipulation/transparentedBird.gif"))
     return basic:equals($transparented, $transparented-ref)
@@ -57,7 +57,7 @@ declare %ann:nondeterministic function local:test-transparent() as xs:boolean {
 (:~
  : @return true if the man:swirl function works.
  :)
-declare %ann:nondeterministic function local:test-swirl() as xs:boolean {
+declare %an:nondeterministic function local:test-swirl() as xs:boolean {
     let $swirled := man:swirl($local:gif, -500)
     let $swirled-ref := file:read-binary(concat($local:image-dir, "manipulation/swirledBird.gif"))
     return basic:equals($swirled, $swirled-ref)
@@ -66,7 +66,7 @@ declare %ann:nondeterministic function local:test-swirl() as xs:boolean {
 (:~
  : @return true if the man:reduce-noise function works.
  :)
-declare %ann:nondeterministic function local:test-reduce-noise() as xs:boolean {
+declare %an:nondeterministic function local:test-reduce-noise() as xs:boolean {
     let $reduced := man:reduce-noise($local:gif, -0.4)
     let $reduced-ref := file:read-binary(concat($local:image-dir, "manipulation/reducedBird.gif"))
     return basic:equals($reduced, $reduced-ref)
@@ -76,14 +76,14 @@ declare %ann:nondeterministic function local:test-reduce-noise() as xs:boolean {
 (:~
  : @return true if the man:contrast function works.
  :)
-declare %ann:nondeterministic function local:test-contrast() as xs:boolean {
+declare %an:nondeterministic function local:test-contrast() as xs:boolean {
     let $contrasted := man:contrast($local:gif, 0.8)
     let $contrasted-ref := file:read-binary(concat($local:image-dir, "manipulation/contrastedBird.gif"))
     return basic:equals($contrasted, $contrasted-ref)
 };
 
 
-declare %ann:nondeterministic %ann:sequential function local:main() as xs:string* {
+declare %an:nondeterministic %an:sequential function local:main() as xs:string* {
 
   let $a := local:test-stereo()
   return

@@ -8,7 +8,7 @@ import module namespace file = 'http://expath.org/ns/file';
 import module namespace paint = 'http://www.zorba-xquery.com/modules/image/paint';
 import schema namespace image = 'http://www.zorba-xquery.com/modules/image/image';
 
-declare namespace ann = "http://www.zorba-xquery.com/annotations";
+declare namespace an = "http://www.zorba-xquery.com/annotations";
 
 declare variable $local:image-dir := fn:concat(file:dir-name(fn:static-base-uri()), "/images/");
 
@@ -38,20 +38,20 @@ ERROR:
 (:~
  : @return true if the man:draw-line function works.
  :)
-declare %ann:nondeterministic function local:test-draw-line() as xs:boolean {
+declare %an:nondeterministic function local:test-draw-line() as xs:boolean {
     let $draw := paint:paint($local:gif, <image:line><image:start><image:x>-20</image:x><image:y>-20</image:y></image:start><image:end><image:x>80</image:x><image:y>80</image:y></image:end></image:line>) 
     let $draw-ref := file:read-binary(concat($local:image-dir,"paint/line.gif"))
     return basic:equals($draw, $draw-ref)
 };
 
-declare %ann:nondeterministic function local:test-draw-line-color-red() {
+declare %an:nondeterministic function local:test-draw-line-color-red() {
     let $draw := paint:paint($local:gif, <image:line><image:strokeColor>#6F0000</image:strokeColor><image:start><image:x>0</image:x><image:y>0</image:y></image:start><image:end><image:x>80</image:x><image:y>80</image:y></image:end></image:line>) 
     let $draw-ref := file:read-binary(concat($local:image-dir,"paint/redLine.gif"))
     return basic:equals($draw, $draw-ref)
 
 };
 
-declare %ann:nondeterministic function local:test-draw-line-color-green() {
+declare %an:nondeterministic function local:test-draw-line-color-green() {
     let $draw := paint:paint($local:gif, <image:line><image:strokeColor>#006F00</image:strokeColor><image:start><image:x>0</image:x><image:y>0</image:y></image:start><image:end><image:x>80</image:x><image:y>80</image:y></image:end></image:line>)
 
     let $draw-ref := file:read-binary(concat($local:image-dir,"paint/greenLine.gif"))
@@ -59,14 +59,14 @@ declare %ann:nondeterministic function local:test-draw-line-color-green() {
 
 };
 
-declare %ann:nondeterministic function local:test-draw-line-color-blue() {
+declare %an:nondeterministic function local:test-draw-line-color-blue() {
     let $draw := paint:paint($local:gif, <image:line><image:strokeColor>#00006F</image:strokeColor><image:start><image:x>0</image:x><image:y>0</image:y></image:start><image:end><image:x>80</image:x><image:y>80</image:y></image:end></image:line>) 
     let $draw-ref := file:read-binary(concat($local:image-dir,"paint/blueLine.gif"))
     return basic:equals($draw, $draw-ref)
 
 };
 
-declare %ann:nondeterministic function local:test-stroke-width() {
+declare %an:nondeterministic function local:test-stroke-width() {
     let $draw := paint:paint($local:gif, (<image:line><image:strokeWidth>10</image:strokeWidth><image:strokeColor>#000000</image:strokeColor><image:start><image:x>0</image:x><image:y>0</image:y></image:start><image:end><image:x>80</image:x><image:y>80</image:y></image:end></image:line>,<image:line><image:strokeColor>#FF00FF</image:strokeColor><image:start><image:x>30</image:x><image:y>0</image:y></image:start><image:end><image:x>70</image:x><image:y>90</image:y></image:end></image:line>))
     let $draw-ref := file:read-binary(concat($local:image-dir,"paint/wideLine.gif"))
     return basic:equals($draw, $draw-ref)
@@ -76,7 +76,7 @@ declare %ann:nondeterministic function local:test-stroke-width() {
 
 
 
-declare %ann:nondeterministic %ann:sequential function local:main() as xs:string* {
+declare %an:nondeterministic %an:sequential function local:main() as xs:string* {
 
   let $a := local:test-draw-line()
   return
