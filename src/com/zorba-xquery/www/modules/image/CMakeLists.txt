@@ -47,39 +47,36 @@ ELSE(ZORBA_SUPPRESS_ImageMagick)
       URI "http://www.zorba-xquery.com/modules/image/animation"
       EXTRA_SOURCES image_commons
       LINK_LIBRARIES ${ImageMagick_LIBRARIES})
-      
-    SET (EXCEPTION_LIST)
+
+    SET (KNOWN_CRASHES)
     IF (WIN32)
-      # bug#867693
-      LIST (APPEND EXCEPTION_LIST
-        image/basic_svg.xq
+      LIST (APPEND KNOWN_CRASHES
+        zorba_image_module/image/basic_svg.xq 867693
       )
 
       IF (CMAKE_BUILD_TYPE STREQUAL "Debug")
-        # bug#867693
-        LIST (APPEND EXCEPTION_LIST
-          image/basic_svg.xq
-          image/basic.xq
-          image/basic_convert.xq
-          image/basic_create.xq
-          image/paint_1.xq
-          image/paint_2.xq
-          image/paint_3.xq
-          image/paint_4.xq
-          image/paint_5.xq
-          image/paint_6.xq
-          image/paint_circles.xq
-          image/paint_different_lines.xq
-          image/paint_polygon.xq
-          image/paint_polyline.xq
-          image/paint_rectangles.xq
-          image/paint_stroked_polyline.xq
-          image/paint_text.xq
+        LIST (APPEND KNOWN_CRASHES
+          zorba_image_module/image/basic.xq 867693
+          zorba_image_module/image/basic_convert.xq 867693
+          zorba_image_module/image/basic_create.xq 867693
+          zorba_image_module/image/paint_1.xq 867693
+          zorba_image_module/image/paint_2.xq 867693
+          zorba_image_module/image/paint_3.xq 867693
+          zorba_image_module/image/paint_4.xq 867693
+          zorba_image_module/image/paint_5.xq 867693
+          zorba_image_module/image/paint_6.xq 867693
+          zorba_image_module/image/paint_circles.xq 867693
+          zorba_image_module/image/paint_different_lines.xq 867693
+          zorba_image_module/image/paint_polygon.xq 867693
+          zorba_image_module/image/paint_polyline.xq 867693
+          zorba_image_module/image/paint_rectangles.xq 867693
+          zorba_image_module/image/paint_stroked_polyline.xq 867693
+          zorba_image_module/image/paint_text.xq 867693
         )
       ENDIF (CMAKE_BUILD_TYPE STREQUAL "Debug")
     ENDIF (WIN32)
 
-    ADD_TEST_DIRECTORY ("${PROJECT_SOURCE_DIR}/test" "${EXCEPTION_LIST}")
+    ADD_TEST_DIRECTORY ("${PROJECT_SOURCE_DIR}/test" "${KNOWN_CRASHES}")
     
   ELSE (ImageMagick_FOUND)
     MESSAGE(STATUS "Magick++   component found: ${ImageMagick_Magick++_FOUND}")
