@@ -26,9 +26,11 @@
 
 namespace zorba
 {
-  namespace graphvizmodule
-  {
-    class GraphvizModule;
+namespace graphvizmodule
+{
+
+class GraphvizModule;
+
 /******************************************************************************
  *****************************************************************************/
 class GraphvizFunction : public ContextualExternalFunction
@@ -40,7 +42,7 @@ class GraphvizFunction : public ContextualExternalFunction
     : theModule(aModule) {}
 
     static std::string
-    getGraphvizTmpFileName(const zorba::DynamicContext*  aDctx);
+    getGraphvizTmpFileName(zorba::ItemFactory* aFactory);
 
     static bool
     getAttribute(zorba::ItemFactory* aFactory,
@@ -49,33 +51,28 @@ class GraphvizFunction : public ContextualExternalFunction
         zorba::Item& attr);
 
     static void
-    printTypeAndAttr(const zorba::DynamicContext*  aDctx,
-                     zorba::ItemFactory* aFactory,
+    printTypeAndAttr(zorba::ItemFactory* aFactory,
                      const zorba::Item& in,
                      std::fstream& os);
 
     static void
-    visitNode(const zorba::DynamicContext*  aDctx,
-              zorba::ItemFactory* aFactory,
+    visitNode(zorba::ItemFactory* aFactory,
               const zorba::Item& in, std::fstream& os);
 
     static void
-    visitEdge(const zorba::DynamicContext*  aDctx,
-              zorba::ItemFactory* aFactory,
+    visitEdge(zorba::ItemFactory* aFactory,
               const zorba::Item& in, std::fstream& os);
 
     static void
-    printGraph(const zorba::DynamicContext*  aDctx,
-               zorba::ItemFactory* aFactory,
+    printGraph(zorba::ItemFactory* aFactory,
                const zorba::Item& in, std::fstream& os);
 
     static void
-    gxl2dot(const zorba::DynamicContext*  aDctx,
-            zorba::ItemFactory* aFactory,
+    gxl2dot(zorba::ItemFactory* aFactory,
             const zorba::Item& in, std::fstream& os);
 
     static void
-    throwErrorWithQName (const DynamicContext* aDynamicContext,
+    throwErrorWithQName (zorba::ItemFactory* aFactory,
                          const String& aLocalName,
                          const String& aMessage);
 
@@ -122,17 +119,13 @@ protected:
     };
     public:
       LazyDotSequence(const DotFunction*,
-                      ItemSequence* aArg,
-                      const zorba::DynamicContext*  aDctx);
+                      ItemSequence* aArg);
 
       virtual Iterator_t    getIterator();
-
-      const zorba::DynamicContext* getDctx() {return theDctx;};
 
     protected:
       const DotFunction*            theFunc;
       ItemSequence*                 theArg;
-      const zorba::DynamicContext*  theDctx;
   };
 };
 
@@ -173,17 +166,13 @@ protected:
     };
     public:
       LazyGxlSequence(const GxlFunction*,
-                      ItemSequence* aArg,
-                      const zorba::DynamicContext*  aDctx);
+                      ItemSequence* aArg);
 
       Iterator_t  getIterator();
-
-      const zorba::DynamicContext* getDctx() {return theDctx;};
 
     protected:
       const GxlFunction*            theFunc;
       ItemSequence*                 theArg;
-      const zorba::DynamicContext*  theDctx;
   };
 };
 
@@ -239,7 +228,7 @@ public:
   }
 };
 
-  } /* namespace zorba */
+} /* namespace zorba */
 } /* namespace graphvizmodule */
 
 #endif
