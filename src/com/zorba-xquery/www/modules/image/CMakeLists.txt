@@ -86,31 +86,3 @@ ELSE(ZORBA_SUPPRESS_ImageMagick)
   ENDIF (ImageMagick_FOUND)
 ENDIF(ZORBA_SUPPRESS_ImageMagick)
 MESSAGE(STATUS "") 
-
-
-########################################################################
-# Graphviz
-########################################################################
-IF(ZORBA_SUPPRESS_GRAPHVIZ)
-  MESSAGE(STATUS "ZORBA_SUPPRESS_Graphviz is true - not searching for Graphviz.")
-ELSE (ZORBA_SUPPRESS_GRAPHVIZ)
-
-  MESSAGE (STATUS "Looking for Graphviz")
-  FIND_PACKAGE(Graphviz)
-  
-  IF (GRAPHVIZ_FOUND)
-    MESSAGE(STATUS "Found Graphviz library -- "${GRAPHVIZ_LIBRARIES})
-     
-    INCLUDE_DIRECTORIES(${GRAPHVIZ_INCLUDE_DIRS})
-    INCLUDE_DIRECTORIES("graphviz.xq.src")
-    DECLARE_ZORBA_MODULE (VERSION 1.0 FILE "graphviz.xq"
-      URI "http://www.zorba-xquery.com/modules/image/graphviz"  
-      LINK_LIBRARIES "${GRAPHVIZ_LIBRARIES}")    
-    
-    ADD_TEST_DIRECTORY("${PROJECT_SOURCE_DIR}/test_graphviz")
-    
-  ELSE (GRAPHVIZ_FOUND)
-    MESSAGE(STATUS "Graphviz library not found.")
-  ENDIF (GRAPHVIZ_FOUND)
-ENDIF (ZORBA_SUPPRESS_GRAPHVIZ)
-MESSAGE(STATUS "") 
