@@ -30,6 +30,9 @@ namespace zorba {  namespace imagemodule {
 ImageFunction::ImageFunction(const ImageModule* aModule)
         : theModule(aModule)
 {
+    #ifdef WIN32
+    Magick::InitializeMagick(NULL);
+    #endif  //WIN32
 }
 
 ImageFunction::~ImageFunction()
