@@ -50,7 +50,7 @@ protected:
 public:
   virtual String
      getURI() const { return "http://www.zorba-xquery.com/modules/image/"; }
-  
+
   ImageModule():ExternalModule()
   {
     #ifdef WIN32
