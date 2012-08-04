@@ -50,7 +50,14 @@ protected:
 public:
   virtual String
      getURI() const { return "http://www.zorba-xquery.com/modules/image/"; }
-
+  
+  ImageModule():ExternalModule()
+  {
+    #ifdef WIN32
+    Magick::InitializeMagick(NULL);
+    #endif  //WIN32
+  };
+  
   virtual ~ImageModule();
 
   virtual ExternalFunction*
