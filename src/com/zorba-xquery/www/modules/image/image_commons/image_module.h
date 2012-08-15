@@ -19,6 +19,8 @@
 
 #include <map>
 #include <zorba/zorba.h>
+#include <zorba/user_exception.h>
+#include <zorba/diagnostic_list.h>
 #include <zorba/external_module.h>
 #include <Magick++.h>
 #include <Windows.h>
@@ -52,27 +54,15 @@ public:
   virtual String
      getURI() const { return "http://www.zorba-xquery.com/modules/image/"; }
   
-  ImageModule():ExternalModule()
+  ImageModule()
   {
-    #ifdef WIN32
-
-      HKEY hKey;
-      LONG lRes = RegOpenKeyExW(HKEY_LOCAL_MACHINE, L"SOFTWARE\\Wow6432Node\\ImageMagick\\Current\\", 0, KEY_READ, &hKey);
-      if (lRes == ERROR_SUCCESS) {
-        std::wstring strKeyDefaultValue;
-
-        WCHAR szBuffer[512];
-        DWORD dwBufferSize = sizeof(szBuffer);
-        ULONG nError = RegQueryValueExW(hKey, L"", NULL, NULL, (LPBYTE)szBuffer, &dwBufferSize);
-        if (ERROR_SUCCESS == nError)
-        {
-            strKeyDefaultValue = szBuffer;
-        }
-        std::wcout << strKeyDefaultValue;
-        RegCloseKey(hKey);
-      }
-    Magick::InitializeMagick(NULL);
-    #endif  //WIN32
+#ifdef WIN32
+    if (ImageModule::isImageMagickAvailable()) {
+      Magick::InitializeMagick(NULL);
+    } else {
+      throw USER_EXCEPTION( zerr::ZOSE0005_DLL_LOAD_FAILED, "ImageMagick is not installed" );
+    }
+#endif //WIN32
   };
   
   virtual ~ImageModule();
@@ -93,6 +83,8 @@ public:
 
     return theFactory;
   }
+  
+  static bool isImageMagickAvailable();
 };
 
 } /* namespace imagemodule */

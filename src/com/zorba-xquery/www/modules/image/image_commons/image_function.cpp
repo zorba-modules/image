@@ -30,24 +30,6 @@ namespace zorba {  namespace imagemodule {
 ImageFunction::ImageFunction(const ImageModule* aModule)
         : theModule(aModule)
 {
-    #ifdef WIN32
-      HKEY hKey;
-      LONG lRes = RegOpenKeyExW(HKEY_LOCAL_MACHINE, L"SOFTWARE\\Wow6432Node\\ImageMagick\\Current\\", 0, KEY_READ, &hKey);
-      if (lRes == ERROR_SUCCESS) {
-        std::wstring strKeyDefaultValue;
-
-        WCHAR szBuffer[512];
-        DWORD dwBufferSize = sizeof(szBuffer);
-        ULONG nError = RegQueryValueExW(hKey, L"", NULL, NULL, (LPBYTE)szBuffer, &dwBufferSize);
-        if (ERROR_SUCCESS == nError)
-        {
-            strKeyDefaultValue = szBuffer;
-        }
-        std::wcout << strKeyDefaultValue;
-        RegCloseKey(hKey);
-      }
-    Magick::InitializeMagick(NULL);
-    #endif  //WIN32
 }
 
 ImageFunction::~ImageFunction()
