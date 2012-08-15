@@ -23,8 +23,9 @@
 #include <zorba/diagnostic_list.h>
 #include <zorba/external_module.h>
 #include <Magick++.h>
+#ifdef WIN32
 #include <Windows.h>
-
+#endif //WIN32
 
 namespace zorba {  namespace imagemodule { 
 
