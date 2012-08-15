@@ -55,8 +55,6 @@ ImageModule::isImageMagickAvailable() {
   HKEY hKey;
   LONG lRes = RegOpenKeyExW(HKEY_LOCAL_MACHINE, L"SOFTWARE\\ImageMagick\\Current\\", 0, KEY_READ, &hKey);
   if (lRes != ERROR_SUCCESS) {
-    std::cout << "Fail A " << std::endl;
-
     lRes = RegOpenKeyExW(HKEY_LOCAL_MACHINE, L"SOFTWARE\\Wow6432Node\\ImageMagick\\Current\\", 0, KEY_READ, &hKey);
   }
   if (lRes == ERROR_SUCCESS) {
