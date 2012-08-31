@@ -17,15 +17,16 @@
 #ifndef ZORBA_IMAGEMODULE_IMAGEMODULE_H
 #define ZORBA_IMAGEMODULE_IMAGEMODULE_H
 
+#ifdef WIN32
+#include <Windows.h>
+#undef DrawText
+#endif //WIN32
 #include <map>
 #include <zorba/zorba.h>
 #include <zorba/user_exception.h>
 #include <zorba/diagnostic_list.h>
 #include <zorba/external_module.h>
 #include <Magick++.h>
-#ifdef WIN32
-#include <Windows.h>
-#endif //WIN32
 
 namespace zorba {  namespace imagemodule { 
 
