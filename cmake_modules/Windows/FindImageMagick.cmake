@@ -23,10 +23,10 @@ FIND_PACKAGE_WIN32 (
   FOUND_VAR "ImageMagick_FOUND"
   SEARCH_NAMES "ImageMagick"
   COMPONENTS Magick++ MagickCore MagickWand
-  
-  IF (ImageMagick_FOUND)
-    # find the needed DLL's
-    FIND_PACKAGE_DLL_WIN32 (${FOUND_LOCATION} "msvcp100")
-    FIND_PACKAGE_DLL_WIN32 (${FOUND_LOCATION} "msvcr100")
-  ENDIF (ImageMagick_FOUND)
 )
+
+IF (ImageMagick_FOUND)
+  # find the needed DLL's
+  FIND_PACKAGE_DLL_WIN32 (${FOUND_LOCATION} "msvcp100")
+  FIND_PACKAGE_DLL_WIN32 (${FOUND_LOCATION} "msvcr100")
+ENDIF (ImageMagick_FOUND)
