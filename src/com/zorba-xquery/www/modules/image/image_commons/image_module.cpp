@@ -46,4 +46,33 @@ ImageModule::destroy()
   }
   delete this;
 }
+
+bool
+ImageModule::isImageMagickAvailable() {
+  bool result = false;
+  #ifdef WIN32
+
+  HKEY hKey;
+  LONG lRes = RegOpenKeyExW(HKEY_LOCAL_MACHINE, L"SOFTWARE\\ImageMagick\\Current\\", 0, KEY_READ, &hKey);
+  if (lRes != ERROR_SUCCESS) {
+    lRes = RegOpenKeyExW(HKEY_LOCAL_MACHINE, L"SOFTWARE\\Wow6432Node\\ImageMagick\\Current\\", 0, KEY_READ, &hKey);
+  }
+  if (lRes == ERROR_SUCCESS) {
+    std::wstring strKeyDefaultValue;
+
+    WCHAR szBuffer[512];
+    DWORD dwBufferSize = sizeof(szBuffer);
+    ULONG nError = RegQueryValueExW(hKey, L"Version", NULL, NULL, (LPBYTE)szBuffer, &dwBufferSize);
+    if (ERROR_SUCCESS == nError)
+    {
+        strKeyDefaultValue = szBuffer;  // ImageMagick Version
+        result = true;
+    }
+    RegCloseKey(hKey);
+  }
+  #endif  //WIN32
+  return result;
+}
+
+
 }  /* namespace imagemodule */ } /* namespace zorba */

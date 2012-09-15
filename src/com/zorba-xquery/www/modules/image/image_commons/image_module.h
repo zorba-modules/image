@@ -17,10 +17,16 @@
 #ifndef ZORBA_IMAGEMODULE_IMAGEMODULE_H
 #define ZORBA_IMAGEMODULE_IMAGEMODULE_H
 
+#ifdef WIN32
+#include <Windows.h>
+#undef DrawText
+#endif //WIN32
 #include <map>
 #include <zorba/zorba.h>
+#include <zorba/user_exception.h>
+#include <zorba/diagnostic_list.h>
 #include <zorba/external_module.h>
-
+#include <Magick++.h>
 
 namespace zorba {  namespace imagemodule { 
 
@@ -50,7 +56,17 @@ public:
   virtual String
      getURI() const { return "http://www.zorba-xquery.com/modules/image/"; }
   
-
+  ImageModule()
+  {
+#ifdef WIN32
+    if (ImageModule::isImageMagickAvailable()) {
+      Magick::InitializeMagick(NULL);
+    } else {
+      throw USER_EXCEPTION( zerr::ZOSE0005_DLL_LOAD_FAILED, "ImageMagick is not installed" );
+    }
+#endif //WIN32
+  };
+  
   virtual ~ImageModule();
 
   virtual ExternalFunction*
@@ -69,6 +85,8 @@ public:
 
     return theFactory;
   }
+  
+  static bool isImageMagickAvailable();
 };
 
 } /* namespace imagemodule */
