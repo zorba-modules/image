@@ -55,9 +55,7 @@ ImageFunction::throwImageError(const DynamicContext* aDynamicContext, const char
   // constuct error QName
   String lNamespace = "http://www.zorba-xquery.com/modules/image/error";
   String lLocalname = "IM001";
-  Item lQName;
-  Iterator_t lDummyIterator;
-  aDynamicContext->getVariable(lNamespace, lLocalname, lQName, lDummyIterator); 
+  Item lQName = ImageModule::getItemFactory()->createQName(lNamespace, "image", lLocalname);
   // if we have zero length image, then tell the user so
   if (std::string(aMessage).find("zero-length") != std::string::npos) {
     lErrorMessage << "The passed xs:base64Binary seems to be empty.";
@@ -71,9 +69,7 @@ ImageFunction::throwImageError(const DynamicContext* aDynamicContext, const char
 void 
 ImageFunction::throwErrorWithQName (const DynamicContext* aDynamicContext, const String& aLocalName, const String& aMessage) {
    String lNamespace = "http://www.zorba-xquery.com/modules/image/error";
-   Item lQName;
-   Iterator_t lDummyIterator;
-   aDynamicContext->getVariable(lNamespace, aLocalName, lQName, lDummyIterator);
+   Item lQName = ImageModule::getItemFactory()->createQName(lNamespace, "image", aLocalName);
    USER_EXCEPTION(lQName, aMessage); 
 }
 

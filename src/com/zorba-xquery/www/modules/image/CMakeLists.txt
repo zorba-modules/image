@@ -48,12 +48,10 @@ ELSE(ZORBA_SUPPRESS_ImageMagick)
       EXTRA_SOURCES image_commons
       LINK_LIBRARIES ${ImageMagick_LIBRARIES})
 
+    # this could crash because of the ImageMagick version
+    # must be compiled in debug mode
     SET (KNOWN_CRASHES)
     IF (WIN32)
-      LIST (APPEND KNOWN_CRASHES
-        zorba_image_module/image/basic_svg.xq 867693
-      )
-
       IF (CMAKE_BUILD_TYPE STREQUAL "Debug")
         LIST (APPEND KNOWN_CRASHES
           zorba_image_module/image/basic.xq 867693
