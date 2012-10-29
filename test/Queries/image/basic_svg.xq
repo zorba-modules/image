@@ -9,6 +9,8 @@ import module namespace basic = 'http://www.zorba-xquery.com/modules/image/basic
 declare variable $local:image-dir := fn:concat(file:dir-name(fn:static-base-uri()), "/images/");
 
 
-let $svg-bird as xs:base64Binary := file:read-binary(concat($local:image-dir, "/test.svg"))
-let $jpeg-bird := basic:convert-svg($svg-bird, "JPEG")
-return not(empty($jpeg-bird))
+let $svg-bird as xs:string := file:read-text(concat($local:image-dir, "/test.svg"))
+let $svg-bird-node := fn:parse-xml($svg-bird)/*:svg
+let $jpeg-bird := basic:convert-svg-string($svg-bird, "JPEG")
+let $jpeg-bird2 := basic:convert-svg($svg-bird-node, "JPEG")
+return not(empty($jpeg-bird)) and not(empty($jpeg-bird2))

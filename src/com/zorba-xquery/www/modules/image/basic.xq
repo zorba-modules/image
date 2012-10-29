@@ -50,6 +50,7 @@ import schema namespace image = 'http://www.zorba-xquery.com/modules/image/image
 declare namespace err = "http://www.w3.org/2005/xqt-errors";
 declare namespace ierr = "http://www.zorba-xquery.com/modules/image/error";
 declare namespace ver = "http://www.zorba-xquery.com/options/versioning";
+declare namespace svg = "http://www.w3.org/2000/svg";
 declare option ver:module-version "1.0";
 
 (:~
@@ -165,9 +166,40 @@ declare function basic:equals($image1 as xs:base64Binary, $image2 as xs:base64Bi
  : @error ierr:IM001 the passed SVG is invalid.
  : @example test/Queries/image/basic_svg.xq
  :)
-declare function basic:convert-svg($svg as xs:base64Binary, $format as xs:string) as xs:base64Binary {
-  basic:convert-svg-impl($svg, image:imageFormat($format))
+declare function basic:convert-svg(
+                   $svg as element(svg:svg),
+                   $format as xs:string)
+                 as xs:base64Binary {
+
+   let $ser-params :=                                                                           
+      <serialization-parameters
+         xmlns="http://www.w3.org/2010/xslt-xquery-serialization">
+        <omit-xml-declaration value="no"/>
+      </serialization-parameters>
+   let $string as xs:string := fn:serialize($svg, $ser-params)
+   return
+     basic:convert-svg-impl($string, image:imageFormat($format))
 };
 
-declare %private function basic:convert-svg-impl($svg as xs:base64Binary, $format as xs:string) as xs:base64Binary external;
+(:~
+ : Converts an SVG image to a supported image format.
+ :
+ : @param $svg the image to convert as string
+ : @param $format target format 
+ : @return the resulting image
+ : @error ierr:IM001 the passed SVG is invalid.
+ : @example test/Queries/image/basic_svg.xq
+ :)
+declare function basic:convert-svg-string(
+                   $svg as xs:string,
+                   $format as xs:string)
+                 as xs:base64Binary {
+
+   basic:convert-svg-impl($svg, image:imageFormat($format))
+};
+
+declare %private function basic:convert-svg-impl(
+                            $svg as xs:string,
+                            $format as xs:string)
+                          as xs:base64Binary external;
 
