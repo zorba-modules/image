@@ -317,7 +317,7 @@ ImageFunction::getOneOrMoreImageArg(const DynamicContext* aDynamicContext,
 
 void
 ImageFunction::getImageFromString(const DynamicContext* aDynamicContext,
-                                  const String aString,
+                                  const String& aString,
                                   Magick::Image& aImage,
                                   bool aIsBase64) {
 
