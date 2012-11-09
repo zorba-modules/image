@@ -178,7 +178,7 @@ declare function basic:convert-svg(
       </serialization-parameters>
    let $string as xs:string := fn:serialize($svg, $ser-params)
    return
-     basic:convert-svg-impl($string, image:imageFormat($format))
+     basic:convert-svg-string($string, $format)
 };
 
 (:~
