@@ -13,15 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 #include "basic.h"
-#include <list> 
+
+#include <list>
 #include <sstream>
 #include <string>
-#include <zorba/empty_sequence.h>
+
 #include <zorba/base64.h>
+#include <zorba/empty_sequence.h>
 #include <zorba/singleton_item_sequence.h>
 #include <zorba/zorba.h>
+
 #include "basic_module.h"
 #include "draw_in_c.h"
 
@@ -105,11 +107,13 @@ ConvertSVGFunction::ConvertSVGFunction(const ImageModule* aModule) : ImageFuncti
 ItemSequence_t
 ConvertSVGFunction::evaluate(
   const ExternalFunction::Arguments_t& aArgs,
-  const StaticContext*                          aSctxCtx,
-  const DynamicContext*                         aDynCtx) const
+  const StaticContext*                 aSctxCtx,
+  const DynamicContext*                aDynCtx) const
 {
   Magick::Image lImage;
-  ImageFunction::getOneImageArg(aDynCtx, aArgs, 0, lImage);
+  String lSVG = ImageFunction::getOneStringArg(aArgs, 0);
+  ImageFunction::getImageFromString(aDynCtx, lSVG, lImage, false);   
+
   if (lImage.magick().compare("SVG") != 0) {
     ImageFunction::throwErrorWithQName(aDynCtx, "IM002", "The passed xs:base64Binary is not an image of type SVG");
   }

@@ -32,7 +32,7 @@ ELSE(ZORBA_SUPPRESS_ImageMagick)
     DECLARE_ZORBA_SCHEMA(FILE image.xsd
       URI "http://www.zorba-xquery.com/modules/image/image")
     DECLARE_ZORBA_MODULE(URI "http://www.zorba-xquery.com/modules/image/basic"
-      VERSION 1.0 FILE "basic.xq"
+      VERSION 2.0 FILE "basic.xq"
       EXTRA_SOURCES image_commons image_draw
       LINK_LIBRARIES ${ImageMagick_LIBRARIES})
     DECLARE_ZORBA_MODULE(VERSION 1.0 FILE "manipulation.xq"

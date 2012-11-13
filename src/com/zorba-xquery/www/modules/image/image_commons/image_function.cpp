@@ -316,9 +316,21 @@ ImageFunction::getOneOrMoreImageArg(const DynamicContext* aDynamicContext,
 }
 
 void
-ImageFunction::getImageFromString(const DynamicContext* aDynamicContext, const String aString, Magick::Image& aImage) {
+ImageFunction::getImageFromString(const DynamicContext* aDynamicContext,
+                                  const String& aString,
+                                  Magick::Image& aImage,
+                                  bool aIsBase64) {
 
-  String lDecodedContent = zorba::encoding::Base64::decode(aString);
+  String lDecodedContent;
+  if (aIsBase64)
+  {
+    lDecodedContent = zorba::encoding::Base64::decode(aString);
+  }
+  else
+  {
+    lDecodedContent = aString;
+  }
+
   Magick::Blob lBlob(lDecodedContent.c_str(), lDecodedContent.size());
 
   try {

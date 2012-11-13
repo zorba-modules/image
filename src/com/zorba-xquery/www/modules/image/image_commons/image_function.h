@@ -118,7 +118,9 @@ namespace zorba { namespace imagemodule {
                                               Magick::Image& aImage);
 
       static void getImageFromString(const DynamicContext* aDynamicContext, 
-                                     const String aString, Magick::Image& aImage);
+                                     const String& aString,
+                                     Magick::Image& aImage,
+                                     bool aIsBase64 = true);
 
       static void checkIfItemIsNull(Item& aItem);
 
