@@ -15,13 +15,15 @@
  */
 
 #include <sstream>
-#include <zorba/zorba.h>
 #include <Magick++.h>
-#include <zorba/base64.h>
+
+#include <zorba/zorba.h>
 #include <zorba/diagnostic_list.h>
-#include <zorba/user_exception.h>
 #include <zorba/empty_sequence.h>
 #include <zorba/singleton_item_sequence.h>
+#include <zorba/user_exception.h>
+#include <zorba/util/base64_util.h>
+
 #include "image_function.h"
 #include "image_module.h"
 
@@ -254,7 +256,7 @@ ImageFunction::getEncodedStringFromBlob(Magick::Blob& aBlob) {
     std::string lStringOfBlobContent((char *)aBlob.data(), aBlob.length());
     String lZorbaStringOfBlobContent(lStringOfBlobContent);
 
-    return zorba::encoding::Base64::encode(lZorbaStringOfBlobContent);
+    return zorba::base64::encode(lZorbaStringOfBlobContent);
 }
 
 String
@@ -324,7 +326,7 @@ ImageFunction::getImageFromString(const DynamicContext* aDynamicContext,
   String lDecodedContent;
   if (aIsBase64)
   {
-    lDecodedContent = zorba::encoding::Base64::decode(aString);
+    lDecodedContent = zorba::base64::decode(aString);
   }
   else
   {

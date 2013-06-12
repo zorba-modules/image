@@ -16,12 +16,11 @@
 #include "basic.h"
 
 #include <list>
-#include <sstream>
 #include <string>
 
-#include <zorba/base64.h>
 #include <zorba/empty_sequence.h>
 #include <zorba/singleton_item_sequence.h>
+#include <zorba/util/base64_util.h>
 #include <zorba/zorba.h>
 
 #include "basic_module.h"
