@@ -40,7 +40,7 @@ xquery version "3.0";
  :
  : @author Daniel Thomas
  : @library <a href="http://www.imagemagick.org/Magick++/">Magick++ C++ Library</a>
- : @project image
+ : @project Zorba/Image/Basic
  :
  :)
 module namespace basic = 'http://www.zorba-xquery.com/modules/image/basic';

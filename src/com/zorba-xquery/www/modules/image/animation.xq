@@ -21,7 +21,7 @@ xquery version "3.0";
 
  : @author Daniel Thomas
  : @library <a href="http://www.imagemagick.org/Magick++/">Magick++ C++ Library</a>
- : @project image
+ : @project Zorba/Image/Animation
  :)
 module namespace anim = 'http://www.zorba-xquery.com/modules/image/animation';
 
