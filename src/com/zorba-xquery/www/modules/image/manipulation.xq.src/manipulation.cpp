@@ -42,7 +42,7 @@ ResizeFunction::evaluate(
   const unsigned int lNewHeight = ImageFunction::getOneUnsignedIntArg(aArgs, 2);
   lImage.size(Magick::Geometry(lNewWidth, lNewHeight));
   String lEncodedContent = ImageFunction::getEncodedStringFromImage(aDynCtx, lImage);
-  Item lItem = theModule->getItemFactory()->createBase64Binary(lEncodedContent.c_str(), lEncodedContent.size());
+  Item lItem( theModule->getItemFactory()->createBase64Binary(lEncodedContent.c_str(), lEncodedContent.size(), true) );
   ImageFunction::checkIfItemIsNull(lItem);
   return ItemSequence_t(new SingletonItemSequence(lItem));
 }
@@ -67,7 +67,7 @@ ZoomByWidthFunction::evaluate(
   const unsigned int lRatio = lNewWidth/lImage.columns();
   lImage.zoom(Magick::Geometry(lNewWidth, lImage.rows()*lRatio));
   String lEncodedContent = ImageFunction::getEncodedStringFromImage(aDynCtx, lImage);
-  Item lItem = theModule->getItemFactory()->createBase64Binary(lEncodedContent.c_str(), lEncodedContent.size());
+  Item lItem( theModule->getItemFactory()->createBase64Binary(lEncodedContent.c_str(), lEncodedContent.size(), true));
   ImageFunction::checkIfItemIsNull(lItem);
   return ItemSequence_t(new SingletonItemSequence(lItem));
 
@@ -94,7 +94,7 @@ ZoomByHeightFunction::evaluate(
   const unsigned int lRatio = lNewHeight / lImage.rows();
   lImage.zoom(Magick::Geometry(lImage.columns()*lRatio, lNewHeight));
   String lEncodedContent = ImageFunction::getEncodedStringFromImage(aDynCtx, lImage);
-  Item lItem = theModule->getItemFactory()->createBase64Binary(lEncodedContent.c_str(), lEncodedContent.size());
+  Item lItem( theModule->getItemFactory()->createBase64Binary(lEncodedContent.c_str(), lEncodedContent.size(), true) );
   ImageFunction::checkIfItemIsNull(lItem);
   return ItemSequence_t(new SingletonItemSequence(lItem));
 
@@ -120,7 +120,7 @@ ZoomFunction::evaluate(
   const double lRatio = ImageFunction::getOneDoubleArg(aArgs, 1);
   lImage.zoom(Magick::Geometry(lImage.columns()*lRatio, lImage.rows()*lRatio));
   String lEncodedContent = ImageFunction::getEncodedStringFromImage(aDynCtx, lImage);
-  Item lItem = theModule->getItemFactory()->createBase64Binary(lEncodedContent.c_str(), lEncodedContent.size());
+  Item lItem( theModule->getItemFactory()->createBase64Binary(lEncodedContent.c_str(), lEncodedContent.size(), true) );
   ImageFunction::checkIfItemIsNull(lItem);
   return ItemSequence_t(new SingletonItemSequence(lItem));
 }
@@ -149,7 +149,7 @@ SubImageFunction::evaluate(
   // crop away everything that is either right of lRightLowerX or below lRightLowerY
   lImage.crop(Magick::Geometry(lWidth, lHeight));
   String lEncodedContent = ImageFunction::getEncodedStringFromImage(aDynCtx, lImage);
-  Item lItem = theModule->getItemFactory()->createBase64Binary(lEncodedContent.c_str(), lEncodedContent.size());
+  Item lItem( theModule->getItemFactory()->createBase64Binary(lEncodedContent.c_str(), lEncodedContent.size(), true) );
   ImageFunction::checkIfItemIsNull(lItem);
   return ItemSequence_t(new SingletonItemSequence(lItem));
 }
@@ -201,7 +201,7 @@ OverlayFunction::evaluate(
     lImage.composite(lOverlayImage, lLeftUpperX, lLeftUpperY, Magick::BumpmapCompositeOp);
   } 
   String lEncodedContent = ImageFunction::getEncodedStringFromImage(aDynCtx, lImage);
-  Item lItem = theModule->getItemFactory()->createBase64Binary(lEncodedContent.c_str(), lEncodedContent.size());
+  Item lItem( theModule->getItemFactory()->createBase64Binary(lEncodedContent.c_str(), lEncodedContent.size(), true) );
   ImageFunction::checkIfItemIsNull(lItem);
   return ItemSequence_t(new SingletonItemSequence(lItem));
 }
@@ -227,7 +227,7 @@ ChopFunction::evaluate(
   // chop away everything that is either left of lLeftUpperX or above lLeftUpperY
   lImage.chop(Magick::Geometry(lLeftUpperX, lLeftUpperY));
   String lEncodedContent = ImageFunction::getEncodedStringFromImage(aDynCtx, lImage);
-  Item lItem = theModule->getItemFactory()->createBase64Binary(lEncodedContent.c_str(), lEncodedContent.size());
+  Item lItem( theModule->getItemFactory()->createBase64Binary(lEncodedContent.c_str(), lEncodedContent.size(), true) );
   ImageFunction::checkIfItemIsNull(lItem);
   return ItemSequence_t(new SingletonItemSequence(lItem));
 }
@@ -252,7 +252,7 @@ CropFunction::evaluate(
   // crop away everything that is either right of lRightLowerX or below lRightLowerY
   lImage.crop(Magick::Geometry(lRightLowerX, lRightLowerY));
   String lEncodedContent = ImageFunction::getEncodedStringFromImage(aDynCtx, lImage);
-  Item lItem = theModule->getItemFactory()->createBase64Binary(lEncodedContent.c_str(), lEncodedContent.size());
+  Item lItem( theModule->getItemFactory()->createBase64Binary(lEncodedContent.c_str(), lEncodedContent.size(), true) );
   ImageFunction::checkIfItemIsNull(lItem);
   return ItemSequence_t(new SingletonItemSequence(lItem));
 }
@@ -274,7 +274,7 @@ RotateFunction::evaluate(
   int lAngle = ImageFunction::getOneIntArg(aArgs, 1);
   lImage.rotate(lAngle%360);
   String lEncodedContent = ImageFunction::getEncodedStringFromImage(aDynCtx, lImage);
-  Item lItem = theModule->getItemFactory()->createBase64Binary(lEncodedContent.c_str(), lEncodedContent.size());
+  Item lItem( theModule->getItemFactory()->createBase64Binary(lEncodedContent.c_str(), lEncodedContent.size(), true) );
   ImageFunction::checkIfItemIsNull(lItem);
   return ItemSequence_t(new SingletonItemSequence(lItem));
 }
@@ -296,7 +296,7 @@ EraseFunction::evaluate(
   ImageFunction::getOneImageArg(aDynCtx, aArgs, 0, lImage);
   lImage.erase();
   String lEncodedContent = ImageFunction::getEncodedStringFromImage(aDynCtx, lImage);
-  Item lItem = theModule->getItemFactory()->createBase64Binary(lEncodedContent.c_str(), lEncodedContent.size());
+  Item lItem( theModule->getItemFactory()->createBase64Binary(lEncodedContent.c_str(), lEncodedContent.size(), true) );
   ImageFunction::checkIfItemIsNull(lItem);
   return ItemSequence_t(new SingletonItemSequence(lItem));
 }
@@ -318,7 +318,7 @@ FlopFunction::evaluate(
   ImageFunction::getOneImageArg(aDynCtx, aArgs, 0, lImage);
   lImage.flop();
   String lEncodedContent = ImageFunction::getEncodedStringFromImage(aDynCtx, lImage);
-  Item lItem = theModule->getItemFactory()->createBase64Binary(lEncodedContent.c_str(), lEncodedContent.size());
+  Item lItem( theModule->getItemFactory()->createBase64Binary(lEncodedContent.c_str(), lEncodedContent.size(), true) );
   ImageFunction::checkIfItemIsNull(lItem);
   return ItemSequence_t(new SingletonItemSequence(lItem));
 }
@@ -339,7 +339,7 @@ FlipFunction::evaluate(
   ImageFunction::getOneImageArg(aDynCtx, aArgs, 0, lImage);
   lImage.flip();
   String lEncodedContent = ImageFunction::getEncodedStringFromImage(aDynCtx, lImage);
-  Item lItem = theModule->getItemFactory()->createBase64Binary(lEncodedContent.c_str(), lEncodedContent.size());
+  Item lItem( theModule->getItemFactory()->createBase64Binary(lEncodedContent.c_str(), lEncodedContent.size(), true) );
   ImageFunction::checkIfItemIsNull(lItem);
   return ItemSequence_t(new SingletonItemSequence(lItem));
 }
@@ -360,7 +360,7 @@ TrimFunction::evaluate(
   ImageFunction::getOneImageArg(aDynCtx, aArgs, 0, lImage);
   lImage.trim();
   String lEncodedContent = ImageFunction::getEncodedStringFromImage(aDynCtx, lImage);
-  Item lItem = theModule->getItemFactory()->createBase64Binary(lEncodedContent.c_str(), lEncodedContent.size());
+  Item lItem( theModule->getItemFactory()->createBase64Binary(lEncodedContent.c_str(), lEncodedContent.size(), true) );
   ImageFunction::checkIfItemIsNull(lItem);
   return ItemSequence_t(new SingletonItemSequence(lItem));
 }
@@ -401,7 +401,7 @@ AddNoiseFunction::evaluate(
   }     
 
   String lEncodedContent = ImageFunction::getEncodedStringFromImage(aDynCtx, lImage);
-  Item lItem = theModule->getItemFactory()->createBase64Binary(lEncodedContent.c_str(), lEncodedContent.size());
+  Item lItem( theModule->getItemFactory()->createBase64Binary(lEncodedContent.c_str(), lEncodedContent.size(), true) );
   ImageFunction::checkIfItemIsNull(lItem);
   return ItemSequence_t(new SingletonItemSequence(lItem));
 }
@@ -426,7 +426,7 @@ BlurFunction::evaluate(
   int  lSigma = ImageFunction::getOneIntArg(aArgs, 2);
   lImage.blur(lRadius, lSigma);
   String lEncodedContent = ImageFunction::getEncodedStringFromImage(aDynCtx, lImage);
-  Item lItem = theModule->getItemFactory()->createBase64Binary(lEncodedContent.c_str(), lEncodedContent.size());
+  Item lItem( theModule->getItemFactory()->createBase64Binary(lEncodedContent.c_str(), lEncodedContent.size(), true) );
 
   ImageFunction::checkIfItemIsNull(lItem);
   return ItemSequence_t(new SingletonItemSequence(lItem));
@@ -450,7 +450,7 @@ DespeckleFunction::evaluate(
   ImageFunction::getOneImageArg(aDynCtx, aArgs, 0, lImage);
   lImage.despeckle();
   String lEncodedContent = ImageFunction::getEncodedStringFromImage(aDynCtx, lImage);
-  Item lItem = theModule->getItemFactory()->createBase64Binary(lEncodedContent.c_str(), lEncodedContent.size());
+  Item lItem( theModule->getItemFactory()->createBase64Binary(lEncodedContent.c_str(), lEncodedContent.size(), true) );
   ImageFunction::checkIfItemIsNull(lItem);
   return ItemSequence_t(new SingletonItemSequence(lItem));
 }
@@ -471,7 +471,7 @@ EnhanceFunction::evaluate(
   ImageFunction::getOneImageArg(aDynCtx, aArgs, 0, lImage);
   lImage.enhance();
   String lEncodedContent = ImageFunction::getEncodedStringFromImage(aDynCtx, lImage);
-  Item lItem = theModule->getItemFactory()->createBase64Binary(lEncodedContent.c_str(), lEncodedContent.size());
+  Item lItem( theModule->getItemFactory()->createBase64Binary(lEncodedContent.c_str(), lEncodedContent.size(), true) );
   ImageFunction::checkIfItemIsNull(lItem);
   return ItemSequence_t(new SingletonItemSequence(lItem));
 }
@@ -493,7 +493,7 @@ EqualizeFunction::evaluate(
   ImageFunction::getOneImageArg(aDynCtx, aArgs, 0, lImage);
   lImage.equalize();
   String lEncodedContent = ImageFunction::getEncodedStringFromImage(aDynCtx, lImage);
-  Item lItem = theModule->getItemFactory()->createBase64Binary(lEncodedContent.c_str(), lEncodedContent.size());
+  Item lItem( theModule->getItemFactory()->createBase64Binary(lEncodedContent.c_str(), lEncodedContent.size(), true) );
   ImageFunction::checkIfItemIsNull(lItem);
   return ItemSequence_t(new SingletonItemSequence(lItem));
 }
@@ -513,11 +513,10 @@ EdgeFunction::evaluate(
 
   Magick::Image lImage;
   ImageFunction::getOneImageArg(aDynCtx, aArgs, 0, lImage);
-  Item lItem;   
   // check if second argument was given
   lImage.edge(ImageFunction::getOneUnsignedIntArg(aArgs,1));
   String lEncodedContent = ImageFunction::getEncodedStringFromImage(aDynCtx, lImage);
-  lItem = theModule->getItemFactory()->createBase64Binary(lEncodedContent.c_str(), lEncodedContent.size());
+  Item lItem( theModule->getItemFactory()->createBase64Binary(lEncodedContent.c_str(), lEncodedContent.size(), true) );
   ImageFunction::checkIfItemIsNull(lItem);
   return ItemSequence_t(new SingletonItemSequence(lItem));
 }
@@ -541,7 +540,7 @@ CharcoalFunction::evaluate(
   ImageFunction::getOneImageArg(aDynCtx, aArgs, 0, lImage);
   lImage.charcoal(lRadius, lSigma);
   String lEncodedContent = ImageFunction::getEncodedStringFromImage(aDynCtx, lImage);
-  Item lItem = theModule->getItemFactory()->createBase64Binary(lEncodedContent.c_str(), lEncodedContent.size());
+  Item lItem( theModule->getItemFactory()->createBase64Binary(lEncodedContent.c_str(), lEncodedContent.size(), true) );
   ImageFunction::checkIfItemIsNull(lItem);
   return ItemSequence_t(new SingletonItemSequence(lItem));
 }
@@ -566,7 +565,7 @@ EmbossFunction::evaluate(
   ImageFunction::getOneImageArg(aDynCtx, aArgs, 0, lImage);
   lImage.emboss(lRadius, lSigma);
   String lEncodedContent = ImageFunction::getEncodedStringFromImage(aDynCtx, lImage);
-  Item lItem = theModule->getItemFactory()->createBase64Binary(lEncodedContent.c_str(), lEncodedContent.size());
+  Item lItem( theModule->getItemFactory()->createBase64Binary(lEncodedContent.c_str(), lEncodedContent.size(), true) );
   ImageFunction::checkIfItemIsNull(lItem);
   return ItemSequence_t(new SingletonItemSequence(lItem));
 }
@@ -590,7 +589,7 @@ SolarizeFunction::evaluate(
   ImageFunction::getOneImageArg(aDynCtx, aArgs, 0, lImage);
   lImage.solarize(lFactor);
   String lEncodedContent = ImageFunction::getEncodedStringFromImage(aDynCtx, lImage);
-  Item lItem = theModule->getItemFactory()->createBase64Binary(lEncodedContent.c_str(), lEncodedContent.size());
+  Item lItem( theModule->getItemFactory()->createBase64Binary(lEncodedContent.c_str(), lEncodedContent.size(), true) );
   ImageFunction::checkIfItemIsNull(lItem);
   return ItemSequence_t(new SingletonItemSequence(lItem));
 }
@@ -618,7 +617,7 @@ StereoFunction::evaluate(
   }
   lFirstImage.stereo(lSecondImage);
   String lEncodedContent = ImageFunction::getEncodedStringFromImage(aDynCtx, lFirstImage);
-  Item lItem = theModule->getItemFactory()->createBase64Binary(lEncodedContent.c_str(), lEncodedContent.size());
+  Item lItem( theModule->getItemFactory()->createBase64Binary(lEncodedContent.c_str(), lEncodedContent.size(), true) );
   ImageFunction::checkIfItemIsNull(lItem);
   return ItemSequence_t(new SingletonItemSequence(lItem));
 }
@@ -653,7 +652,7 @@ TransparentFunction::evaluate(
   sscanf(lTmpString.substr(5,2).c_str(), "%x", &lBlue);
   lImage.transparent(Magick::ColorRGB((double)lRed/255.0, (double)lGreen/255.0, (double)lBlue/255.0));
   String lEncodedContent = ImageFunction::getEncodedStringFromImage(aDynCtx, lImage);
-  lItem = theModule->getItemFactory()->createBase64Binary(lEncodedContent.c_str(), lEncodedContent.size());
+  lItem = theModule->getItemFactory()->createBase64Binary(lEncodedContent.c_str(), lEncodedContent.size(), true);
   ImageFunction::checkIfItemIsNull(lItem);
   return ItemSequence_t(new SingletonItemSequence(lItem));
 }
@@ -676,7 +675,7 @@ SwirlFunction::evaluate(
   ImageFunction::getOneImageArg(aDynCtx, aArgs, 0, lImage);
   lImage.swirl(lDegrees);
   String lEncodedContent = ImageFunction::getEncodedStringFromImage(aDynCtx, lImage);
-  Item lItem = theModule->getItemFactory()->createBase64Binary(lEncodedContent.c_str(), lEncodedContent.size());
+  Item lItem( theModule->getItemFactory()->createBase64Binary(lEncodedContent.c_str(), lEncodedContent.size(), true) );
   ImageFunction::checkIfItemIsNull(lItem);
   return ItemSequence_t(new SingletonItemSequence(lItem));
 }
@@ -699,7 +698,7 @@ ReduceNoiseFunction::evaluate(
   ImageFunction::getOneImageArg(aDynCtx, aArgs, 0, lImage);
   lImage.reduceNoise(lOrder);
   String lEncodedContent = ImageFunction::getEncodedStringFromImage(aDynCtx, lImage);
-  Item lItem = theModule->getItemFactory()->createBase64Binary(lEncodedContent.c_str(), lEncodedContent.size());
+  Item lItem( theModule->getItemFactory()->createBase64Binary(lEncodedContent.c_str(), lEncodedContent.size(), true) );
   ImageFunction::checkIfItemIsNull(lItem);
   return ItemSequence_t(new SingletonItemSequence(lItem));
 }
@@ -723,7 +722,7 @@ ContrastFunction::evaluate(
   ImageFunction::getOneImageArg(aDynCtx, aArgs, 0, lImage);
   lImage.contrast(lSharpen);
   String lEncodedContent = ImageFunction::getEncodedStringFromImage(aDynCtx, lImage);
-  Item lItem = theModule->getItemFactory()->createBase64Binary(lEncodedContent.c_str(), lEncodedContent.size());
+  Item lItem( theModule->getItemFactory()->createBase64Binary(lEncodedContent.c_str(), lEncodedContent.size(), true) );
   ImageFunction::checkIfItemIsNull(lItem);
   return ItemSequence_t(new SingletonItemSequence(lItem));
 }
@@ -741,7 +740,6 @@ GammaFunction::evaluate(
   const StaticContext*                          aSctxCtx,
   const DynamicContext*                         aDynCtx) const
 {
-  Item lItem;
   Magick::Image lImage;
   ImageFunction::getOneImageArg(aDynCtx, aArgs, 0, lImage);
   // check if the one gamma value version was called or the version with seperate values for r g and b. Doing this by looking if the 3. argument exists.
@@ -755,7 +753,7 @@ GammaFunction::evaluate(
     lImage.gamma(lGamma);
   } 
   String lEncodedContent = ImageFunction::getEncodedStringFromImage(aDynCtx, lImage);
-  lItem = theModule->getItemFactory()->createBase64Binary(lEncodedContent.c_str(), lEncodedContent.size());
+  Item lItem( theModule->getItemFactory()->createBase64Binary(lEncodedContent.c_str(), lEncodedContent.size(), true) );
   ImageFunction::checkIfItemIsNull(lItem);
   return ItemSequence_t(new SingletonItemSequence(lItem));
 }
@@ -778,7 +776,7 @@ ImplodeFunction::evaluate(
   ImageFunction::getOneImageArg(aDynCtx, aArgs, 0, lImage);
   lImage.implode(lFactor);
   String lEncodedContent = ImageFunction::getEncodedStringFromImage(aDynCtx, lImage);
-  Item lItem = theModule->getItemFactory()->createBase64Binary(lEncodedContent.c_str(), lEncodedContent.size());
+  Item lItem( theModule->getItemFactory()->createBase64Binary(lEncodedContent.c_str(), lEncodedContent.size(), true) );
   ImageFunction::checkIfItemIsNull(lItem);
   return ItemSequence_t(new SingletonItemSequence(lItem));
 }
@@ -802,7 +800,7 @@ OilPaintFunction::evaluate(
   ImageFunction::getOneImageArg(aDynCtx, aArgs, 0, lImage);
   lImage.oilPaint(lRadius);
   String lEncodedContent = ImageFunction::getEncodedStringFromImage(aDynCtx, lImage);
-  Item lItem = theModule->getItemFactory()->createBase64Binary(lEncodedContent.c_str(), lEncodedContent.size());
+  Item lItem( theModule->getItemFactory()->createBase64Binary(lEncodedContent.c_str(), lEncodedContent.size(), true) );
   ImageFunction::checkIfItemIsNull(lItem);
   return ItemSequence_t(new SingletonItemSequence(lItem));
 }
@@ -826,7 +824,7 @@ WaterMarkFunction::evaluate(
   ImageFunction::getOneImageArg(aDynCtx, aArgs, 1, lImage);
   lImage.stegano(lWatermark);
   String lEncodedContent = ImageFunction::getEncodedStringFromImage(aDynCtx, lImage);
-  Item lItem = theModule->getItemFactory()->createBase64Binary(lEncodedContent.c_str(), lEncodedContent.size());
+  Item lItem( theModule->getItemFactory()->createBase64Binary(lEncodedContent.c_str(), lEncodedContent.size(), true) );
   ImageFunction::checkIfItemIsNull(lItem);
   return ItemSequence_t(new SingletonItemSequence(lItem));
 }
@@ -847,3 +845,5 @@ WaterMarkFunction::evaluate(
 extern "C" DLL_EXPORT zorba::ExternalModule* createModule() {
   return new zorba::imagemodule::manipulationmodule::ManipulationModule();
 }
+
+/* vim:set et sw=2 ts=2: */
