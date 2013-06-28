@@ -60,7 +60,7 @@ PaintImplFunction::evaluate(
 
   // pass the blob back as base64Binary ...
   String lEncodedContent = ImageFunction::getEncodedStringFromBlob(lBlob);
-  Item lItem = theModule->getItemFactory()->createBase64Binary(lEncodedContent.c_str(), lEncodedContent.size());
+  Item lItem( theModule->getItemFactory()->createBase64Binary(lEncodedContent.c_str(), lEncodedContent.size(), true));
   ImageFunction::checkIfItemIsNull(lItem);
   return ItemSequence_t(new SingletonItemSequence(lItem));
 
