@@ -252,11 +252,9 @@ ImageFunction::getOneDoubleArg(
 
 String
 ImageFunction::getEncodedStringFromBlob(Magick::Blob& aBlob) {
-
-    std::string lStringOfBlobContent((char *)aBlob.data(), aBlob.length());
-    String lZorbaStringOfBlobContent(lStringOfBlobContent);
-
-    return zorba::base64::encode(lZorbaStringOfBlobContent);
+  String result;
+  base64::encode( aBlob.data(), aBlob.length(), &result );
+  return result;
 }
 
 String
@@ -326,7 +324,7 @@ ImageFunction::getImageFromString(const DynamicContext* aDynamicContext,
   String lDecodedContent;
   if (aIsBase64)
   {
-    lDecodedContent = zorba::base64::decode(aString);
+    zorba::base64::decode(aString, &lDecodedContent);
   }
   else
   {
