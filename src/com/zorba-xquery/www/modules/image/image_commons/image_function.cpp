@@ -253,7 +253,9 @@ ImageFunction::getOneDoubleArg(
 String
 ImageFunction::getEncodedStringFromBlob(Magick::Blob& aBlob) {
   String result;
-  base64::encode( aBlob.data(), aBlob.length(), &result );
+  base64::encode(
+    static_cast<char const*>( aBlob.data() ), aBlob.length(), &result
+  );
   return result;
 }
 
@@ -389,3 +391,4 @@ ImageFunction::getStrokeWidthArg(const ExternalFunction::Arguments_t& aArgs,
 
 } // imagemodule 
 } // zorba
+/* vim:set et sw=2 ts=2: */
