@@ -14,8 +14,8 @@
  * limitations under the License.
  */
 
-#ifndef ZORBA_IMAGEMODULE_MANIPULATIONMODULE_MANIPULATIONMODULE_H
-#define ZORBA_IMAGEMODULE_MANIPULATIONMODULE_MANIPULATIONMODULE_H 
+#ifndef ZORBA_IMAGEMODULE_BASICMODULE_BASICMODULE_H
+#define ZORBA_IMAGEMODULE_BASICMODULE_BASICMODULE_H
 
 #include <map>
 
@@ -23,30 +23,22 @@
 #include <zorba/external_module.h>
 #include "image_module.h"
 
-namespace zorba { namespace imagemodule { namespace manipulationmodule {
+namespace zorba {  namespace imagemodule { namespace basicmodule {
 
-class ManipulationModule : public zorba::imagemodule::ImageModule 
+class BasicModule : public ImageModule 
 {
 
-  
-  
-  virtual String
-  getURI() const { return "http://www.zorba-xquery.com/modules/image/manipulation"; }
-  
   virtual ExternalFunction*
   getExternalFunction(const String& aLocalname);
+ 
+
+  virtual String
+  getURI() const { return "http://zorba.io/modules/image/basic"; }
 
 };
 
-
-} /* namespace manipulationmodule */ 
-} /* namespace imagemodule */
+} /* namespace basicmodule */
+} /* namespace imagemodule */ 
 } /* namespace zorba */
 
-#endif /* ZORBA_IMAGEMODULE_MANIPULATIONMODULE_MANIPULATIONMODULE_H  */
-
-/*
- * Local variables:
- * mode: c++
- * End:
- */
+#endif /* ZORBA_IMAGEMODULE_BASICMODULE_BASICMODULE_H */

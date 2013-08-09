@@ -3,10 +3,10 @@
  : 
  : @author Daniel Thomas
  :)
-import module namespace basic = 'http://www.zorba-xquery.com/modules/image/basic';
+import module namespace basic = 'http://zorba.io/modules/image/basic';
 import module namespace file = 'http://expath.org/ns/file';
-import module namespace man = 'http://www.zorba-xquery.com/modules/image/manipulation';
-import schema namespace image = 'http://www.zorba-xquery.com/modules/image/image';
+import module namespace man = 'http://zorba.io/modules/image/manipulation';
+import schema namespace image = 'http://zorba.io/modules/image/image';
 
 declare namespace an = "http://www.zorba-xquery.com/annotations";
 

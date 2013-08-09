@@ -3,7 +3,7 @@
  : 
  : @author Daniel Thomas
  :)
-import module namespace basic = 'http://www.zorba-xquery.com/modules/image/basic';
+import module namespace basic = 'http://zorba.io/modules/image/basic';
 import module namespace file = 'http://expath.org/ns/file';
 
 declare namespace an = "http://www.zorba-xquery.com/annotations";

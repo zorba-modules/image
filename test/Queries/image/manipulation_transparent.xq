@@ -6,7 +6,7 @@
  : to disk using file:write(a_path, $transparent-image, <method>binary</method>), send it in an email etc.
  :)
 import module namespace file = 'http://expath.org/ns/file';
-import module namespace manipulation = 'http://www.zorba-xquery.com/modules/image/manipulation';
+import module namespace manipulation = 'http://zorba.io/modules/image/manipulation';
 
 declare variable $local:image-dir := fn:concat(file:dir-name(fn:static-base-uri()), "/images/");
 

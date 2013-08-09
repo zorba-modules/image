@@ -1,0 +1,360 @@
+{
+ "$namespace" : "http://zorba.io/modules/images/"
+ "$types" : [
+  {                    
+    "$name" : "imageFormat",
+    "$about" : "This schema defines the different types used in the modules under:
+                http://zorba.io/modules/images/", 
+    "$kind" : "atomic",
+    "$baseType" : "string",
+    "$enumarion" : [ "GIF", "PNG", "JPEG", "TIFF", "BMP" ]  
+  },
+  {                    
+    "$name" : "colorType",
+    "$about" : "This type defines how colors should be formatted.",
+    "$kind" : "atomic",
+    "$baseType" : "string",
+    "$length" : 7,
+    "$pattern" : "[#]([A-F0-9]{6})" 
+  },
+  {
+    "$name" : "noiseType",
+    "$about" : "This type defines the different names that are allowed as noise identifiers.",
+    "$kind" : "atomic",
+    "$baseType" : "string",
+    "$enumarion" : [ "UniformNoise", "GaussianNoise", "MultiplicativeGaussianNoise", "ImpulseNoise", "LaplacianNoise", "PoissonNoise" ]  
+  },
+  {
+    "$name" : "compositeOperatorType",
+    "$about" : "This type defines the different operators applicable for overlaying images.
+                OverCompositeOp: The result is the union of the the two image shapes with the composite image obscuring image in the region of overlap. 
+                InCompositeOp: The result is a simply composite image cut by the shape of image. None of the image data of image is included in the result.
+                OutCompositeOp: The resulting image is composite image with the shape of image cut out.
+                AtopCompositeOp: The result is the same shape as image image, with composite image obscuring image there the image shapes overlap. Note that this differs from OverCompositeOp because the portion of composite image outside of image's shape does not appear in the result.
+                XorCompositeOp: The result is the image data from both composite image and image that is outside the overlap region. The overlap region will be blank.
+                PlusCompositeOp: The result is just the sum of the  image data. Output values are cropped to 255 (no overflow). This operation is independent of the matte channels.
+                MinusCompositeOp: The result of composite image - image, with overflow cropped to zero. The matte chanel is ignored (set to 255, full coverage).
+                AddCompositeOp: The result of composite image + image, with overflow wrapping around (mod 256).
+                SubtractCompositeOp: The result of composite image - image, with underflow wrapping around (mod 256). The add and subtract operators can be used to perform reverible transformations.
+                DifferenceCompositeOp: The result of abs(composite image - image). This is useful for comparing two very similar images.
+                BumpmapCompositeOp: The result image shaded by composite image."
+    "$kind" : "atomic",
+    "$baseType" : "string",
+    "$enumarion" : [ "OverCompositeOp", "InCompositeOp", "OutCompositeOp", "AtopCompositeOp", "XorCompositeOp", "PlusCompositeOp", "MinusCompositeOp", "AddCompositeOp", "SubtractCompositeOp", "DifferenceCompositeOp", "BumpmapCompositeOp" ]  
+  },
+  {
+    "$name" : "pointType",
+    "$kind" : "array",
+    "$content" : [ "integer" ],
+    "$minLength" : 2,
+    "$maxLength" : 2
+  },
+  {
+    "$name" : "pointsType",
+    "$kind" : "array",
+    "$content" : [ "pointType" ],
+    "$minLength" : 1
+  },
+  {
+    "$name" : "line",
+    "$kind" : "object",
+    "$content" : {
+      "start" : {
+        "$type" : "pointType"
+      },
+      "end" : {
+        "$type" : "pointType"
+      },
+      "strokeWidth" : {
+        "$type" : "double",
+        "$optional" : true
+      },
+      "strokeColor" : {
+        "$type" : "colorType",
+        "optional" : true
+      },
+      "fillColor" : {
+        "$type" : "colorType",
+        "optional" : true
+      },
+      "antiAliasing" : {
+        "$type" : "boolean",
+        "optional" : true
+      }
+    }
+  },
+  {
+    "$name" : "polyLine",
+    "$kind" : "object"
+    "$content" : {
+      "points" : {
+        "$type" : "pointsType"
+      },
+      "strokeWidth" : {
+        "$type" : "double",
+        "$optional" : true
+      },
+      "strokeColor" : {
+        "$type" : "colorType",
+        "optional" : true
+      },
+      "fillColor" : {
+        "$type" : "colorType",
+        "optional" : true
+      },
+      "antiAliasing" : {
+        "$type" : "boolean",
+        "optional" : true
+      }
+    }
+  },
+  {
+    "$name" : "strokedPolyLine"
+    "$kind" : "object"
+    "$content" : {
+      "points" : {
+        "$type" : "pointsType"
+      },
+      "strokeLength" : {
+        "$type" : "double"
+      },
+      "gapLength" : {
+        "$type" : "double"
+      },
+      "strokeWidth" : {
+        "$type" : "double",
+        "$optional" : true
+      },
+      "strokeColor" : {
+        "$type" : "colorType",
+        "optional" : true
+      },
+      "fillColor" : {
+        "$type" : "colorType",
+        "optional" : true
+      },
+      "antiAliasing" : {
+        "$type" : "boolean",
+        "optional" : true
+      }
+    }
+  },
+  {
+    "$name" : "rectangle",
+    "$kind" : "object",
+    "$content" : {
+      "upperLeft" : {
+        "$type" : "pointType"
+      },
+      "lowerRight" : {
+        "$type" : "pointType"
+      },
+      "strokeWidth" : {
+        "$type" : "double",
+        "$optional" : true
+      },
+      "strokeColor" : {
+        "$type" : "colorType",
+        "optional" : true
+      },
+      "fillColor" : {
+        "$type" : "colorType",
+        "optional" : true
+      },
+      "antiAliasing" : {
+        "$type" : "boolean",
+        "optional" : true
+      }
+    }
+  },
+  {
+    "$name" : "roundedRectangle",
+    "$kind" : "object",
+    "$content" : {
+      "upperLeft" : {
+        "$type" : "pointType"
+      },
+      "lowerRight" : {
+        "$type" : "pointType"
+      },
+      "cornerWidth" : {
+        "$type" : "double"
+      },
+      "cornerHeight" : {
+        "$type" : "double"
+      },
+      "strokeWidth" : {
+        "$type" : "double",
+        "$optional" : true
+      },
+      "strokeColor" : {
+        "$type" : "colorType",
+        "optional" : true
+      },
+      "fillColor" : {
+        "$type" : "colorType",
+        "optional" : true
+      },
+      "antiAliasing" : {
+        "$type" : "boolean",
+        "optional" : true
+      }  
+    }
+  },
+  {
+    "$name" : "circle",
+    "$kind" : "object",
+    "$content" : {
+      "origin" : {
+        "$type" : "pointType"
+      },
+      "radius" : {
+        "$type" : "double"
+      },
+      "strokeWidth" : {
+        "$type" : "double",
+        "$optional" : true
+      },
+      "strokeColor" : {
+        "$type" : "colorType",
+        "optional" : true
+      },
+      "fillColor" : {
+        "$type" : "colorType",
+        "optional" : true
+      },
+      "antiAliasing" : {
+        "$type" : "boolean",
+        "optional" : true
+      }
+    }
+  },
+  {
+    "$name" : "ellipse",
+    "$kind" : "object",
+    "$content" : {
+      "origin" : {
+        "$type" : "pointType"
+      },
+      "radiusX" : {
+        "$type" : "double"
+      },
+      "radiusY" : {
+        "$type" : "double"
+      },
+      "strokeWidth" : {
+        "$type" : "double",
+        "$optional" : true
+      },
+      "strokeColor" : {
+        "$type" : "colorType",
+        "optional" : true
+      },
+      "fillColor" : {
+        "$type" : "colorType",
+        "optional" : true
+      },
+      "antiAliasing" : {
+        "$type" : "boolean",
+        "optional" : true
+      }
+    }
+  },
+  {
+    "$name" : "arc",
+    "$kind" : "object",
+    "$content" : {
+      "origin" : {
+        "$type" : "pointType"
+      },
+      "radiusX" : {
+        "$type" : "double"
+      },
+      "radiusY" : {
+        "$type" : "double"
+      },
+      "startDegrees" : {
+        "$type" : "double"
+      },
+      "endDegrees" : {
+        "$type" : "double"
+      },
+      "strokeWidth" : {
+        "$type" : "double",
+        "$optional" : true
+      },
+      "strokeColor" : {
+        "$type" : "colorType",
+        "optional" : true
+      },
+      "fillColor" : {
+        "$type" : "colorType",
+        "optional" : true
+      },
+      "antiAliasing" : {
+        "$type" : "boolean",
+        "optional" : true
+      }
+    }
+  },
+  {
+    "$name" : "polygon",
+    "$kind" : "object",
+    "$content" : {
+      "points" : {
+        "$kind" : "pointsType"
+      },
+      "strokeWidth" : {
+        "$type" : "double",
+        "$optional" : true
+      },
+      "strokeColor" : {
+        "$type" : "colorType",
+        "optional" : true
+      },
+      "fillColor" : {
+        "$type" : "colorType",
+        "optional" : true
+      },
+      "antiAliasing" : {
+        "$type" : "boolean",
+        "optional" : true
+      }
+    }
+  },
+  {
+    "$name" : "text",
+    "$kind" : "object",
+    "$content" : {
+      "origin" : {
+        "$type" : "pointType"
+      },
+      "text" : {
+        "$type" : "string"
+      },
+      "font" : {
+        "$type" : "string"
+      },
+      "fontSize" : {
+        "$type" : "double"
+      },
+      "strokeWidth" : {
+        "$type" : "double",
+        "$optional" : true
+      },
+      "strokeColor" : {
+        "$type" : "colorType",
+        "optional" : true
+      },
+      "fillColor" : {
+        "$type" : "colorType",
+        "optional" : true
+      },
+      "antiAliasing" : {
+        "$type" : "boolean",
+        "optional" : true
+      }
+    }
+  }             
+ ]
+}

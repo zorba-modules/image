@@ -55,8 +55,8 @@ void
 ImageFunction::throwImageError(const DynamicContext* aDynamicContext, const char *aMessage) {
   std::stringstream lErrorMessage;
   // constuct error QName
-  String lNamespace = "http://www.zorba-xquery.com/modules/image/error";
-  String lLocalname = "IM001";
+  String lNamespace = "http://zorba.io/modules/image/error";
+  String lLocalname = "INVALID_IMAGE";
   Item lQName = ImageModule::getItemFactory()->createQName(lNamespace, "image", lLocalname);
   // if we have zero length image, then tell the user so
   if (std::string(aMessage).find("zero-length") != std::string::npos) {
@@ -70,7 +70,7 @@ ImageFunction::throwImageError(const DynamicContext* aDynamicContext, const char
 
 void 
 ImageFunction::throwErrorWithQName (const DynamicContext* aDynamicContext, const String& aLocalName, const String& aMessage) {
-   String lNamespace = "http://www.zorba-xquery.com/modules/image/error";
+   String lNamespace = "http://zorba.io/modules/image/error";
    Item lQName = ImageModule::getItemFactory()->createQName(lNamespace, "image", aLocalName);
    USER_EXCEPTION(lQName, aMessage); 
 }
