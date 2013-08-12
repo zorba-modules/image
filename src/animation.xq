@@ -26,7 +26,7 @@ xquery version "3.0";
 module namespace anim = 'http://zorba.io/modules/image/animation';
 
 declare namespace ierr = "http://zorba.io/modules/image/error";
-declare namespace ver = "http://www.zorba-xquery.com/options/versioning";
+declare namespace ver = "http://zorba.io/options/versioning";
 declare option ver:module-version "1.0";
 
 (:~

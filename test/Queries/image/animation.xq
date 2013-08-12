@@ -8,7 +8,7 @@ import module namespace basic = 'http://zorba.io/modules/image/basic';
 import module namespace ani = 'http://zorba.io/modules/image/animation';
 import schema namespace image = 'http://zorba.io/modules/image/image';
 
-declare namespace an = "http://www.zorba-xquery.com/annotations";
+declare namespace an = "http://zorba.io/annotations";
 
 declare variable $local:image-dir := fn:concat(file:dir-name(fn:static-base-uri()), "/images/");
 
