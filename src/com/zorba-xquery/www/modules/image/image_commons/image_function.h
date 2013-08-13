@@ -22,6 +22,8 @@
 #include <zorba/item.h>
 #include <zorba/iterator.h>
 #include <zorba/options.h>
+#include <zorba/zorba_string.h>
+
 #include <Magick++.h>
 
 namespace zorba { namespace imagemodule {
