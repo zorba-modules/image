@@ -5,7 +5,7 @@
  : to disk using file:write-binary(a_path, $animatedGif), send it in an email etc.
  :)
 import module namespace file = 'http://expath.org/ns/file';
-import module namespace animation = 'http://www.zorba-xquery.com/modules/image/animation';
+import module namespace animation = 'http://zorba.io/modules/image/animation';
 
 declare variable $local:image-dir := fn:concat(file:dir-name(fn:static-base-uri()), "/images/");
 

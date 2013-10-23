@@ -14,8 +14,8 @@
  * limitations under the License.
  */
 
-#ifndef ZORBA_IMAGEMODULE_PAINTMODULE_PAINTMODULE_H
-#define ZORBA_IMAGEMODULE_PAINTMODULE_PAINTMODULE_H
+#ifndef ZORBA_IMAGEMODULE_ANIMATIONMODULE_BASICMODULE_H
+#define ZORBA_IMAGEMODULE_ANIMATIONMODULE_BASICMODULE_H
 
 #include <map>
 
@@ -23,30 +23,25 @@
 #include <zorba/external_module.h>
 #include "image_module.h"
 
-namespace zorba {  namespace imagemodule { namespace paintmodule {
+namespace zorba {  namespace imagemodule { namespace animationmodule {
 
-class PaintModule : public zorba::imagemodule::ImageModule 
+class AnimationModule : public ImageModule 
 {
 
-  
-
-  
-public:
-  
-  virtual String
-  getURI() const { return "http://www.zorba-xquery.com/modules/image/paint"; }
-  
   virtual ExternalFunction*
   getExternalFunction(const String& aLocalname);
+ 
 
-    
+  virtual String
+  getURI() const { return "http://zorba.io/modules/image/animation"; }
+
 };
 
-} /* namespace paintmodule */
+} /* namespace animationmodule */
 } /* namespace imagemodule */ 
 } /* namespace zorba */
 
-#endif /* ZORBA_IMAGEMODULE_PAINTMODULE_PAINTMODULE_H */
+#endif /* ZORBA_IMAGEMODULE_ANIMATIONMODULE_BASICMODULE_H */
 
 /*
  * Local variables:

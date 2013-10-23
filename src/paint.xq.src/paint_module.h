@@ -14,8 +14,8 @@
  * limitations under the License.
  */
 
-#ifndef ZORBA_IMAGEMODULE_BASICMODULE_BASICMODULE_H
-#define ZORBA_IMAGEMODULE_BASICMODULE_BASICMODULE_H
+#ifndef ZORBA_IMAGEMODULE_PAINTMODULE_PAINTMODULE_H
+#define ZORBA_IMAGEMODULE_PAINTMODULE_PAINTMODULE_H
 
 #include <map>
 
@@ -23,22 +23,33 @@
 #include <zorba/external_module.h>
 #include "image_module.h"
 
-namespace zorba {  namespace imagemodule { namespace basicmodule {
+namespace zorba {  namespace imagemodule { namespace paintmodule {
 
-class BasicModule : public ImageModule 
+class PaintModule : public zorba::imagemodule::ImageModule 
 {
 
+  
+
+  
+public:
+  
+  virtual String
+  getURI() const { return "http://zorba.io/modules/image/paint"; }
+  
   virtual ExternalFunction*
   getExternalFunction(const String& aLocalname);
- 
 
-  virtual String
-  getURI() const { return "http://www.zorba-xquery.com/modules/image/basic"; }
-
+    
 };
 
-} /* namespace basicmodule */
+} /* namespace paintmodule */
 } /* namespace imagemodule */ 
 } /* namespace zorba */
 
-#endif /* ZORBA_IMAGEMODULE_BASICMODULE_BASICMODULE_H */
+#endif /* ZORBA_IMAGEMODULE_PAINTMODULE_PAINTMODULE_H */
+
+/*
+ * Local variables:
+ * mode: c++
+ * End:
+ */

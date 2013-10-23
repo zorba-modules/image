@@ -23,38 +23,38 @@ xquery version "3.0";
  : @library <a href="http://www.imagemagick.org/Magick++/">Magick++ C++ Library</a>
  : @project Zorba/Image/Animation
  :)
-module namespace anim = 'http://www.zorba-xquery.com/modules/image/animation';
+module namespace anim = 'http://zorba.io/modules/image/animation';
 
-declare namespace ierr = "http://www.zorba-xquery.com/modules/image/error";
+declare namespace ierr = "http://zorba.io/modules/image/error";
 declare namespace ver = "http://zorba.io/options/versioning";
 declare option ver:module-version "1.0";
 
 (:~
- : Creates an animated GIF image.
- : The resulting animated GIF shows the passed images consecutively. 
- : It has the same width and height as the first passed image.
+ : <p>Creates an animated GIF image.</p>
+ : <p>The resulting animated GIF shows the passed images consecutively.</p> 
+ : <p>It has the same width and height as the first passed image.</p>
  :
  : @param $images the image sequence
  : @param $delay the hundredths of seconds an image is shown
  : @param $iterations the amount of times all images are shown. 0 for infinite.
  : @return the animated GIF
- : @error ierr:IM001 one of the passed images is invalid.
+ : @error ierr:INVALID_IMAGE the passed image is invalid.
  : @example test/Queries/image/animation_create.xq
  :)
 declare function anim:create-animated-gif($images as xs:base64Binary+, $delay as xs:unsignedInt, $iterations as xs:unsignedInt) as xs:base64Binary external; 
 
 
 (:~
- : Creates an animated GIF image with morph effect.
- : The resulting animated GIF shows the passed images consecutively with morph effect between the changes.
- : It has the same width and height as the first passed image.
+ : <p>Creates an animated GIF image with morph effect.</p>
+ : <p>The resulting animated GIF shows the passed images consecutively with morph effect between the changes.</p>
+ : <p>It has the same width and height as the first passed image.</p>
  :
  : @param $images the image sequence
  : @param $delay the hundredths of seconds an image is shown
  : @param $iterations the amount of times all images are shown. 0 for infinite.
  : @param $nr-of-morph-images the number of additionally added images to create the morph effect between two passed images.
  : @return the animated GIF
- : @error ierr:IM001 one of the passed images is invalid.
+ : @error ierr:INVALID_IMAGE the passed image is invalid.
  : @example test/Queries/image/animation_create.xq
  :)
 declare function anim:create-morphed-gif($images as xs:base64Binary+, $delay as xs:unsignedInt, $iterations as xs:unsignedInt, $nr-of-morph-images as xs:unsignedInt) as xs:base64Binary external; 

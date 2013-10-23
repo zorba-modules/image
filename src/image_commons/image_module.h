@@ -54,7 +54,7 @@ protected:
 
 public:
   virtual String
-     getURI() const { return "http://www.zorba-xquery.com/modules/image/"; }
+     getURI() const { return "http://zorba.io/modules/image/"; }
   
   ImageModule()
   {

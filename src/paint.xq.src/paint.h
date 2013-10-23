@@ -79,11 +79,10 @@ class PaintImplFunction : public zorba::imagemodule::ImageFunction
       applyText(Magick::Blob& aBlob, Item& aShape) const;      
 
       virtual bool
-      getCommonValues(Iterator_t& aChildIterator, 
-                      Item& aLastItemFound, 
+      getCommonValues(Item& lObjectValue, 
                       double* aStrokeWidth, 
                       std::string& aStrokeColor, 
-                      std::string& aFillColor) const; 
+                      std::string& aFillColor) const;  
 
 
       double

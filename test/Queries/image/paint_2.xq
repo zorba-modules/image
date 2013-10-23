@@ -3,10 +3,10 @@
  : 
  : @author Daniel Thomas
  :)
-import module namespace basic = 'http://www.zorba-xquery.com/modules/image/basic';
+import module namespace basic = 'http://zorba.io/modules/image/basic';
 import module namespace file = 'http://expath.org/ns/file';
-import module namespace paint = 'http://www.zorba-xquery.com/modules/image/paint';
-import schema namespace img = 'http://www.zorba-xquery.com/modules/image/image';
+import module namespace paint = 'http://zorba.io/modules/image/paint';
+import schema namespace img = 'http://zorba.io/modules/image/image';
 
 declare namespace an = "http://zorba.io/annotations";
 
@@ -37,14 +37,25 @@ ERROR:
 
 declare %an:nondeterministic function local:test-draw-poly-line() as xs:boolean 
 {
-  let $draw := paint:paint($local:gif, <img:polyLine><img:point><img:x>10</img:x><img:y>10</img:y></img:point><img:point><img:x>40</img:x><img:y>80</img:y></img:point><img:point><img:x>50</img:x><img:y>30</img:y></img:point><img:point><img:x>200</img:x><img:y>200</img:y></img:point></img:polyLine>)
+  let $draw := paint:paint($local:gif, 
+  {
+    "polyLine" : {
+      "points" : [ [ 10, 10 ], [ 40, 80 ], [ 50, 30 ], [ 200, 200 ] ]
+    }
+  })
   let $draw-ref := file:read-binary(concat($local:image-dir, "paint/polyLine.gif"))
   return basic:equals($draw, $draw-ref)
 };
 
 declare %an:nondeterministic function local:test-draw-poly-line-anti-aliased() as xs:boolean
 {
-  let $draw := paint:paint($local:gif, <img:polyLine><img:antiAliasing>true</img:antiAliasing><img:point><img:x>10</img:x><img:y>10</img:y></img:point><img:point><img:x>40</img:x><img:y>80</img:y></img:point><img:point><img:x>50</img:x><img:y>30</img:y></img:point></img:polyLine>)
+  let $draw := paint:paint($local:gif, 
+  {
+    "polyLine" : {
+      "antiAliasing" : fn:true(),
+      "points" : [ [ 10, 10 ], [ 40, 80 ], [ 50, 30 ] ]
+    }
+  })
   let $draw-ref := file:read-binary(concat($local:image-dir, "paint/polyLineAntiAliased.gif"))
   return basic:equals($draw,  $draw-ref)
 };
@@ -54,27 +65,40 @@ declare %an:nondeterministic function local:test-draw-poly-line-anti-aliased() a
  : @return true if the man:draw-poly-line function works.
  :)
 declare %an:nondeterministic function local:test-draw-poly-line-red() as xs:boolean 
-{
-    let $draw := paint:paint($local:gif, <img:polyLine><img:strokeColor>#FF0000</img:strokeColor><img:antiAliasing>true</img:antiAliasing><img:point><img:x>10</img:x><img:y>10</img:y></img:point><img:point><img:x>40</img:x><img:y>80</img:y></img:point><img:point><img:x>50</img:x><img:y>30</img:y></img:point></img:polyLine>)
-    
-    let $draw-ref := file:read-binary(concat($local:image-dir, "paint/polyLineRed.gif"))
-    return basic:equals($draw, $draw-ref)
+{   
+  let $draw := paint:paint($local:gif, 
+  {
+    "polyLine" : {
+      "strokeColor" : "#FF0000",
+      "antiAliasing" : fn:true(),
+      "points" : [ [ 10, 10 ], [ 40, 80 ], [ 50, 30 ] ]
+    }
+  })    
+  let $draw-ref := file:read-binary(concat($local:image-dir, "paint/polyLineRed.gif"))
+  return basic:equals($draw, $draw-ref)
 };
 
 
 (:~
  : @return true if the man:draw-poly-line function works.
  :)
-declare %an:nondeterministic function local:test-draw-poly-line-wide() as xs:boolean {
-     let $draw := paint:paint($local:gif, <img:polyLine><img:strokeWidth>5</img:strokeWidth><img:antiAliasing>true</img:antiAliasing><img:point><img:x>10</img:x><img:y>10</img:y></img:point><img:point><img:x>40</img:x><img:y>80</img:y></img:point><img:point><img:x>50</img:x><img:y>30</img:y></img:point></img:polyLine>)
-    
-    let $draw-ref := file:read-binary(concat($local:image-dir, "paint/polyLineWide.gif"))
-    return basic:equals($draw, $draw-ref)
+declare %an:nondeterministic function local:test-draw-poly-line-wide() as xs:boolean 
+{ 
+  let $draw := paint:paint($local:gif, 
+  {
+    "polyLine" : {
+      "strokeWidth" : 5,
+      "antiAliasing" : fn:true(),
+      "points" : [ [ 10, 10 ], [ 40, 80 ], [ 50, 30 ] ]
+    }
+  })    
+  let $draw-ref := file:read-binary(concat($local:image-dir, "paint/polyLineWide.gif"))
+  return basic:equals($draw, $draw-ref)
 };
 
 
 
-declare %an:nondeterministic %an:sequential function local:main() as xs:string* {
+declare %an:nondeterministic function local:main() as xs:string* {
 
 
   let $a := local:test-draw-poly-line()
