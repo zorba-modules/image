@@ -17,7 +17,7 @@ xquery version "3.0";
 :)
 
 (:~
- : <p>This module provides function to do the following basic image operations:
+ : <p>This module provides function to do the following basic image operations:</p>
  : <ul>
  :   <li>create empty images</li>
  :   <li>compare images</li>
@@ -34,7 +34,7 @@ xquery version "3.0";
  :   <li>TIFF</li>
  :   <li>BMP</li>
  : </ul>
- : <p/>
+ : </p>
  : <p>The errors raised by functions of this module have the namespace
  : <tt>http://zorba.io/modules/image/error</tt> (associated with prefix ierr).</p>
  :
