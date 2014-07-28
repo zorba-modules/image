@@ -495,13 +495,12 @@ PaintImplFunction::applyText(Magick::Blob& aBlob, Item& aText) const {
   double lStrokeWidth = 0; 
   std::string lStrokeColor = "";
   std::string lFillColor = "";
-  bool lAntiAliasing;
   double lOriginCoordinates[2];
   Item lItem;
   String lText, lFontFamily;
   double lFontSize;
 
-  lAntiAliasing = getCommonValues(aText, &lStrokeWidth, lStrokeColor, lFillColor);
+  getCommonValues(aText, &lStrokeWidth, lStrokeColor, lFillColor);
   lItem = aText.getObjectValue("origin");
   getDoublesFromPoint(lItem, lOriginCoordinates);
   lItem = aText.getObjectValue("text");
